@@ -26,8 +26,10 @@ const CircleParticles: React.FC<CircleParticlesProps> = ({
     if (!canvasRef.current) return
 
     const x =
+      // @ts-ignore
       (e.offsetX / canvasRef.current.offsetWidth) * canvasRef.current.width
     const y =
+      // @ts-ignore
       (e.offsetY / canvasRef.current.offsetHeight) * canvasRef.current.height
 
     cursor.x = x
