@@ -17,6 +17,7 @@ const colors = [
 ]
 
 const particleOptions = {
+  // @ts-ignore
   filter: ({ x, y, image }) => {
     // @ts-ignore
     const pixel = image.get(x, y)
@@ -34,6 +35,7 @@ const motionForce = (x: number, y: number) => {
 
 const InnovationImage = () => {
   const innerHeight = '600'
+  // @ts-ignore
   const innerWidth = innerHeight * 1.5
 
   return (
@@ -48,7 +50,7 @@ const InnovationImage = () => {
       mouseMoveForce={motionForce}
       touchMoveForce={motionForce}
       backgroundColor="transparent"
-      className="absolute top-[20%] left-[40%] z-0"
+      className="absolute top-[20%] right-[40%] z-0"
     />
   )
 }
