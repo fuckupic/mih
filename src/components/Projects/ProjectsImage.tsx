@@ -14,6 +14,7 @@ const colors = [
 ]
 
 const particleOptions = {
+  // @ts-ignore
   filter: ({ x, y, image }) => {
     const pixel = image.get(x, y)
     return pixel.b > 50
@@ -24,12 +25,13 @@ const particleOptions = {
   friction: () => 0.15,
 }
 
-const motionForce = (x, y) => {
+const motionForce = (x: number, y: number) => {
   return forces.disturbance(x, y, 10)
 }
 
 const ProjectsImage = () => {
   const innerHeight = '600'
+  // @ts-ignore
   const innerWidth = innerHeight * 1.5
 
   return (

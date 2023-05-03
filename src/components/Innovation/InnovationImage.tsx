@@ -7,6 +7,7 @@ import ParticleImage, {
   ParticleForce,
   ParticleImageProps,
 } from 'react-particle-image'
+// @ts-ignore
 import { Array2D } from 'react-particle-image/src/universe/Array2D'
 
 const colors = [
@@ -37,6 +38,7 @@ const motionForce = (x: number, y: number) => {
 
 const InnovationImage = () => {
   const innerHeight = '600'
+  // @ts-ignore
   const innerWidth = innerHeight * 1.5
 
   return (
