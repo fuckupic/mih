@@ -2,6 +2,59 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Campton';
+  font-style: thin;
+  src: url('/fonts/Campton-Book.woff2') format('woff2'),
+    url('/fonts/Campton-Book.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Campton';
+  font-style: bold;
+  src: url('/fonts/Campton-Bold.woff2') format('woff2'),
+    url('/fonts/Campton-Bold.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Campton';
+  font-style: semibold;
+  src: url('/fonts/Campton-SemiBold.woff2') format('woff2'),
+    url('/fonts/Campton-SemiBold.woff') format('woff');
+}
+
+.section {
+  @apply w-[100vw] max-w-[100vw] h-[90vh] lg:h-[100vh] flex flex-col justify-center items-center relative p-8 lg:p-16;
+}
+
+.sectionWrapper {
+  @apply h-[100%] max-w-[1000px] w-full flex;
+}
+
+.cardCarousel {
+  @apply text-left border w-[70%] rounded-lg bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-60 border-primary p-4 flex flex-col items-start font-tabletgothic justify-end relative;
+}
+
+.cardGradient {
+  @apply absolute top-0 left-0 rounded-lg w-[100%] h-[100%] bg-gradient-to-r z-[-1] bg-opacity-80 opacity-50 backdrop-filter backdrop-blur-xl;
+}
+
+.inputField {
+  @apply border-2 backdrop-filter backdrop-blur-lg bg-transparent border-primary rounded-lg p-2;
+}
+
+.centerAbsolute {
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+}
+
+.centerAbsoluteParticles {
+  top: 0;
+  right: 0%;
+  transform-origin: center;
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -24,4 +77,9 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+}
+
+.font-tabletgothic {
+  line-height: 1.4;
+  min-height: 0em; /* Set a min-height to the container */
 }

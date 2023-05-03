@@ -18,6 +18,14 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "helpers/isomorphicEffect.tsxx",
+    "src/components/Hero/Hero.tsx",
+    "src/components/Hero/HeroParticles.js",
+    "src/components/Hero/CircleParticles.tsx"
+  ],
   "exclude": ["node_modules"]
 }
