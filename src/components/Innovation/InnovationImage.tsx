@@ -5,7 +5,9 @@ import ParticleImage, {
   Vector,
   forces,
   ParticleForce,
+  ParticleImageProps,
 } from 'react-particle-image'
+import { Array2D } from 'react-particle-image/src/universe/Array2D'
 
 const colors = [
   'rgba(0, 189, 199, 0.5)',
@@ -14,7 +16,11 @@ const colors = [
 ]
 
 const particleOptions = {
-  filter: ({ x, y, image }) => {
+  filter: (params: {
+    x: number
+    y: number
+    image: Array2D<{ r: number; g: number; b: number; a: number }>
+  }) => {
     const pixel = image.get(x, y)
     return pixel.b > 50
   },
@@ -24,7 +30,7 @@ const particleOptions = {
   friction: () => 0.15,
 }
 
-const motionForce = (x, y) => {
+const motionForce = (x: number, y: number) => {
   return forces.disturbance(x, y, 10)
 }
 

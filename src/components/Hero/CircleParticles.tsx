@@ -4,15 +4,27 @@ import random from 'canvas-sketch-util/random'
 import { createNoise2D } from 'simplex-noise'
 import { lerp } from 'canvas-sketch-util/math'
 
-const CircleParticles = ({ width, height, progress }) => {
-  const canvasRef = useRef()
+interface CircleParticlesProps {
+  width: number
+  height: number
+  progress: number
+}
 
-  const particles = []
+const CircleParticles: React.FC<CircleParticlesProps> = ({
+  width,
+  height,
+  progress,
+}) => {
+  const canvasRef = useRef<HTMLCanvasElement>(null)
+
+  const particles: any[] = []
   const noise2D = createNoise2D(random.value)
   const scaleFactor = 0.005
   const cursor = { x: 9999, y: 9999 }
 
-  const onMouseMove = (e) => {
+  const onMouseMove = (e: MouseEvent) => {
+    if (!canvasRef.current) return
+
     const x =
       (e.offsetX / canvasRef.current.offsetWidth) * canvasRef.current.width
     const y =
@@ -30,11 +42,22 @@ const CircleParticles = ({ width, height, progress }) => {
     cursor.y = 9999
   }
 
-  const sketch = ({ context }) => {
+  const sketch = ({ context }: { context: CanvasRenderingContext2D }) => {
     const numParticles = 10000
 
     class Particle {
-      constructor(x, y, radius) {
+      x: number
+      y: number
+      radius: number
+      baseRadius: number
+      color: string
+      ax: number
+      ay: number
+      minDist: number
+      pushFactor: number
+      destination: { x: number; y: number }
+      delay: number
+      constructor(x: number, y: number, radius: number) {
         this.x = x
         this.y = y
         this.radius = radius
@@ -92,7 +115,7 @@ const CircleParticles = ({ width, height, progress }) => {
         this.ay = 0
       }
 
-      draw(context) {
+      draw(context: CanvasRenderingContext2D) {
         context.beginPath()
         context.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false)
         context.fillStyle = this.color
@@ -100,7 +123,7 @@ const CircleParticles = ({ width, height, progress }) => {
       }
     }
 
-    const lerpColor = (color1, color2, t) => {
+    const lerpColor = (color1: string, color2: string, t: number) => {
       const c1 = parseColor(color1)
       const c2 = parseColor(color2)
       const r = lerp(c1[0], c2[0], t)
@@ -110,11 +133,11 @@ const CircleParticles = ({ width, height, progress }) => {
       return `rgba(${r},${g},${b},${a})`
     }
 
-    const parseColor = (color) => {
+    const parseColor = (color: string) => {
       const match = color.match(
         /rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+(?:\.\d+)?))?\)/
       )
-      return match.slice(1).map(Number)
+      return match ? match.slice(1).map(Number) : [0, 0, 0, 0]
     }
 
     for (let i = 0; i < numParticles; i++) {
@@ -133,7 +156,7 @@ const CircleParticles = ({ width, height, progress }) => {
       particles.push(particle)
     }
 
-    return (props) => {
+    return () => {
       context.fillStyle = 'black'
       context.fillRect(0, 0, width, height)
 
@@ -145,6 +168,8 @@ const CircleParticles = ({ width, height, progress }) => {
   }
 
   useEffect(() => {
+    if (!canvasRef.current) return
+
     const settings = {
       dimensions: [width, height],
       animate: true,
@@ -153,10 +178,13 @@ const CircleParticles = ({ width, height, progress }) => {
 
     canvasSketch(sketch, settings)
 
+    // Add null check for 'canvasRef.current' before adding and removing event listeners
     canvasRef.current.addEventListener('mousemove', onMouseMove)
 
     return () => {
-      canvasRef.current.removeEventListener('mousemove', onMouseMove)
+      if (canvasRef.current) {
+        canvasRef.current.removeEventListener('mousemove', onMouseMove)
+      }
     }
   }, [width, height])
 
