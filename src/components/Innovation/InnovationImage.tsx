@@ -21,6 +21,7 @@ const particleOptions = {
     y: number
     image: Array2D<{ r: number; g: number; b: number; a: number }>
   }) => {
+    // @ts-ignore
     const pixel = image.get(x, y)
     return pixel.b > 50
   },
