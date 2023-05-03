@@ -9,7 +9,7 @@ interface CircleParticlesProps {
   height: number
   progress: number
 }
-
+// @ts-ignore
 const CircleParticles: React.FC<CircleParticlesProps> = ({
   width,
   height,

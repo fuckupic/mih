@@ -17,11 +17,7 @@ const colors = [
 ]
 
 const particleOptions = {
-  filter: (params: {
-    x: number
-    y: number
-    image: Array2D<{ r: number; g: number; b: number; a: number }>
-  }) => {
+  filter: ({ x, y, image }) => {
     // @ts-ignore
     const pixel = image.get(x, y)
     return pixel.b > 50
@@ -38,7 +34,6 @@ const motionForce = (x: number, y: number) => {
 
 const InnovationImage = () => {
   const innerHeight = '600'
-  // @ts-ignore
   const innerWidth = innerHeight * 1.5
 
   return (
