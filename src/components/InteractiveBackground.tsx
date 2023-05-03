@@ -4,6 +4,7 @@ import { Points } from '@react-three/drei'
 import * as THREE from 'three'
 import { createNoise3D } from 'simplex-noise'
 
+// @ts-ignore
 function createOrbTexture(startColor, endColor, endColorTransparent) {
   if (typeof document !== 'undefined') {
     const canvas = document.createElement('canvas')
@@ -91,7 +92,7 @@ const Particles = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const particlesRef = useRef<THREE.Points | null>(null)
   const { scene } = useThree()
-
+  // @ts-ignore
   const handleMouseMove = (e) => {
     setMousePosition({ x: e.clientX, y: e.clientY })
   }

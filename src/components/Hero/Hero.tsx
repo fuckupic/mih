@@ -57,6 +57,7 @@ export default function Hero() {
     <div
       className="section !h-[200vh] !pt-16 !relative !justify-start"
       id="hero"
+      // @ts-ignore
       ref={mainWrapper}
     >
       <div className="heroSection p-8 lg:p-16 w-[100%] md:w-[70%] lg:w-1/2 sticky left-0 md:top-[13em] text-center flex flex-col items-center justify-center gap-4">
@@ -71,6 +72,7 @@ export default function Hero() {
           Zjistit víc
         </button>
         <div
+          // @ts-ignore
           ref={mainCircleRef}
           className="mainCircle bg-black flex justify-center items-center absolute centerAbsolute w-[100%] md:w-[80%] lg:w-[90%] z-[1] aspect-square rounded-full pointer-events-none"
         ></div>
