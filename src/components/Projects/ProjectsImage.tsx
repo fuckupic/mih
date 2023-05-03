@@ -46,7 +46,7 @@ const ProjectsImage = () => {
       mouseMoveForce={motionForce}
       touchMoveForce={motionForce}
       backgroundColor="transparent"
-      className="absolute bottom-[0%] right-[0%] z-0"
+      className="absolute bottom-[0%] right-[30%] z-0"
     />
   )
 }

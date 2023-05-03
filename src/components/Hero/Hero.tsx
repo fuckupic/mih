@@ -60,7 +60,7 @@ export default function Hero() {
       // @ts-ignore
       ref={mainWrapper}
     >
-      <div className="heroSection p-8 lg:p-16 w-[100%] md:w-[70%] lg:w-1/2 sticky left-0 md:top-[13em] text-center flex flex-col items-center justify-center gap-4">
+      <div className="heroSection p-8 lg:p-16 w-[100%] md:w-[70%] lg:w-1/2 sticky left-0 md:top-[25%] text-center flex flex-col items-center justify-center gap-4">
         <h3 className="introText font-tabletgothic z-[2] text-xl pointer-events-none">
           Mobility Innovation Hub Plzeň
         </h3>

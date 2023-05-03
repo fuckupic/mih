@@ -48,7 +48,7 @@ const InnovationImage = () => {
       mouseMoveForce={motionForce}
       touchMoveForce={motionForce}
       backgroundColor="transparent"
-      className="absolute top-[20%] left-[10%] z-0"
+      className="absolute top-[20%] left-[40%] z-0"
     />
   )
 }
