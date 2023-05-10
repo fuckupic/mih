@@ -4,8 +4,17 @@ import { Points } from '@react-three/drei'
 import * as THREE from 'three'
 import { createNoise3D } from 'simplex-noise'
 
-// @ts-ignore
-function createOrbTexture(startColor, endColor, endColorTransparent) {
+type OrbTextureParams = {
+  startColor: string
+  endColor: string
+  endColorTransparent: string
+}
+
+function createOrbTexture({
+  startColor,
+  endColor,
+  endColorTransparent,
+}: OrbTextureParams): THREE.CanvasTexture | undefined {
   if (typeof document !== 'undefined') {
     const canvas = document.createElement('canvas')
     canvas.width = 256
@@ -67,35 +76,30 @@ function createOrbTexture(startColor, endColor, endColorTransparent) {
   }
 }
 
-const greenOrbTexture = createOrbTexture(
-  'rgba(255, 255, 255, 1)',
-  'rgba(45, 214, 135, 1)',
-  'rgba(45, 214, 135, 0)'
-)
-const blueOrbTexture = createOrbTexture(
-  'rgba(255, 255, 255, 1)',
-  'rgba(0, 189, 199, 1)',
-  'rgba(0, 189, 199, 0)'
-)
-const lightBlueOrbTexture = createOrbTexture(
-  'rgba(255, 255, 255, 1)',
-  'rgba(47, 65, 202, 1)',
-  'rgba(47, 65, 202, 0)'
-)
-const purpleOrbTexture = createOrbTexture(
-  'rgba(255, 255, 255, 1)',
-  'rgba(123, 108, 230, 1)',
-  'rgba(123, 108, 230, 0)'
-)
+const greenOrbTexture = createOrbTexture({
+  startColor: 'rgba(255, 255, 255, 1)',
+  endColor: 'rgba(45, 214, 135, 1)',
+  endColorTransparent: 'rgba(45, 214, 135, 0)',
+})
+const blueOrbTexture = createOrbTexture({
+  startColor: 'rgba(255, 255, 255, 1)',
+  endColor: 'rgba(0, 189, 199, 1)',
+  endColorTransparent: 'rgba(0, 189, 199, 0)',
+})
+const lightBlueOrbTexture = createOrbTexture({
+  startColor: 'rgba(255, 255, 255, 1)',
+  endColor: 'rgba(47, 65, 202, 1)',
+  endColorTransparent: 'rgba(47, 65, 202, 0)',
+})
+const purpleOrbTexture = createOrbTexture({
+  startColor: 'rgba(255, 255, 255, 1)',
+  endColor: 'rgba(123, 108, 230, 1)',
+  endColorTransparent: 'rgba(123, 108, 230, 0)',
+})
 
 const Particles = () => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const particlesRef = useRef<THREE.Points | null>(null)
   const { scene } = useThree()
-  // @ts-ignore
-  const handleMouseMove = (e) => {
-    setMousePosition({ x: e.clientX, y: e.clientY })
-  }
 
   const noise = createNoise3D()
   const { geometry, material } = useMemo(() => {
@@ -132,11 +136,11 @@ const Particles = () => {
       new THREE.Float32BufferAttribute(vertices, 3)
     )
 
-    const orbTexture = createOrbTexture(
-      'rgba(255, 255, 255, 1)',
-      'rgba(0, 255, 255, 1)',
-      'rgba(0, 255, 255, 0)'
-    )
+    const orbTexture = createOrbTexture({
+      startColor: 'rgba(255, 255, 255, 1)',
+      endColor: 'rgba(0, 255, 255, 1)',
+      endColorTransparent: 'rgba(0, 255, 255, 0)',
+    })
 
     // Create Points object with custom PointsMaterial
     const material = new THREE.PointsMaterial({
@@ -189,7 +193,6 @@ const Particles = () => {
     const points = new THREE.Points(geometry, material)
     particlesRef.current = points
     scene.add(points)
-    window.addEventListener('mousemove', handleMouseMove)
 
     const animate = () => {
       // Update particles position
@@ -217,6 +220,7 @@ const InteractiveBackground = () => {
     <Canvas
       style={{
         width: '100vw',
+        maxWidth: '100vw',
         height: '100vh',
         display: 'block',
         position: 'fixed',

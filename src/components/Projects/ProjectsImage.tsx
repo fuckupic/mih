@@ -13,8 +13,7 @@ const colors = [
   'rgba(0, 189, 199, 0.75)',
 ]
 
-const particleOptions = {
-  // @ts-ignore
+const particleOptions: ParticleOptions = {
   filter: ({ x, y, image }) => {
     const pixel = image.get(x, y)
     return pixel.b > 50
@@ -25,14 +24,16 @@ const particleOptions = {
   friction: () => 0.15,
 }
 
-const motionForce = (x: number, y: number) => {
-  return forces.disturbance(x, y, 10)
+const motionForce = () => {
+  return forces.entropy(50)
 }
 
 const ProjectsImage = () => {
   const innerHeight = '600'
-  // @ts-ignore
-  const innerWidth = innerHeight * 1.5
+  const innerWidth = Number(innerHeight) * 1.5
+  const { innerWidth: windowWidth } = useWindowSize()
+  const leftPercentage =
+    ((Number(windowWidth) / 2 + 10) / Number(windowWidth)) * 100
 
   return (
     <ParticleImage
@@ -46,7 +47,7 @@ const ProjectsImage = () => {
       mouseMoveForce={motionForce}
       touchMoveForce={motionForce}
       backgroundColor="transparent"
-      className="absolute bottom-[0%] left-[30%] z-0"
+      className={`absolute bottom-[0%] left-[${Number(leftPercentage)}%] z-0`}
     />
   )
 }

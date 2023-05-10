@@ -5,7 +5,7 @@ const Projects: React.FC = () => {
   return (
     <div className="section">
       <div className="sectionWrapper flex-col flex-1 items-start gap-16">
-        <div className="w-[70%] justify-start relative flex flex-col gap-8">
+        <div className="w-full md:w-[70%] relative flex flex-col gap-8 z-[1] pointer-events-none">
           <div className="flex flex-col gap-2">
             <div className="flex flex-row gap-2 items-center justify-start">
               <h3 className="text-lg font-tabletgothic">Inovativní Plzeň</h3>
@@ -25,7 +25,7 @@ const Projects: React.FC = () => {
             </div>
           </div>
         </div>
-        <div className="w-[90%] flex flex-row gap-8 place-items-start">
+        <div className="w-full lg:w-[90%] relative flex flex-row gap-8 z-[1] pointer-events-none">
           <div className="cardCarousel aspect-video">
             <div className="from-primary to-lightblue cardGradient"></div>
             <h3 className="text-xl font-semibold">Projekt 1</h3>

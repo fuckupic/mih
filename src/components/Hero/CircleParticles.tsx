@@ -1,203 +1,46 @@
-import React, { useEffect, useRef } from 'react'
-import canvasSketch from 'canvas-sketch'
-import random from 'canvas-sketch-util/random'
-import { createNoise2D } from 'simplex-noise'
-import { lerp } from 'canvas-sketch-util/math'
+import React from 'react'
+import ParticleImage, { forces, ParticleOptions } from 'react-particle-image'
 
-interface CircleParticlesProps {
-  width: number
-  height: number
-  progress: number
+const colors = [
+  'rgba(0, 189, 199, 0.5)',
+  'rgba(0, 189, 199, 1)',
+  'rgba(123, 108, 230, 1)',
+]
+
+const particleOptions: ParticleOptions = {
+  filter: ({ x, y, image }) => {
+    const pixel = image.get(x, y)
+    return pixel.b > 50
+  },
+  color: () => colors[Math.floor(Math.random() * colors.length)],
+  radius: () => Math.random() * 1.5 + 0.5,
+  mass: () => 20,
+  friction: () => 0.15,
 }
-// @ts-ignore
-const CircleParticles: React.FC<CircleParticlesProps> = ({
-  width,
-  height,
-  progress,
-}) => {
-  const canvasRef = useRef<HTMLCanvasElement>(null)
 
-  const particles: any[] = []
-  const noise2D = createNoise2D(random.value)
-  const scaleFactor = 0.005
-  const cursor = { x: 9999, y: 9999 }
+const motionForce = () => {
+  return forces.entropy(100)
+}
 
-  const onMouseMove = (e: MouseEvent) => {
-    if (!canvasRef.current) return
-
-    const x =
-      // @ts-ignore
-      (e.offsetX / canvasRef.current.offsetWidth) * canvasRef.current.width
-    const y =
-      // @ts-ignore
-      (e.offsetY / canvasRef.current.offsetHeight) * canvasRef.current.height
-
-    cursor.x = x
-    cursor.y = y
-  }
-
-  const onMouseUp = () => {
-    window.removeEventListener('mousemove', onMouseMove)
-    window.removeEventListener('mouseup', onMouseUp)
-
-    cursor.x = 9999
-    cursor.y = 9999
-  }
-
-  const sketch = ({ context }: { context: CanvasRenderingContext2D }) => {
-    const numParticles = 10000
-
-    class Particle {
-      x: number
-      y: number
-      radius: number
-      baseRadius: number
-      color: string
-      ax: number
-      ay: number
-      minDist: number
-      pushFactor: number
-      destination: { x: number; y: number }
-      delay: number
-      constructor(x: number, y: number, radius: number) {
-        this.x = x
-        this.y = y
-        this.radius = radius
-        this.baseRadius = radius // Store the initial radius
-        this.color = this.getColor()
-        this.ax = 0
-        this.ay = 0
-        this.minDist = 1000
-        this.pushFactor = 0.1
-        this.destination = { x: width / 2, y: height / 2 }
-        this.delay = random.range(0, 1)
-      }
-
-      getColor() {
-        const noiseValue =
-          (noise2D(this.x * scaleFactor, this.y * scaleFactor) + 1) / 2
-        const color1 = 'rgba(0, 189, 199, 1)'
-        const color2 = 'rgba(0, 189, 199, 1)'
-        const color3 = 'rgba(123, 108, 230, 1)'
-
-        if (noiseValue < 0.5) {
-          return lerpColor(color1, color2, noiseValue * 2)
-        } else {
-          return lerpColor(color2, color3, (noiseValue - 0.5) * 2)
-        }
-      }
-
-      update() {
-        let dx, dy, dd, distDelta
-
-        dx = this.x - cursor.x
-        dy = this.y - cursor.y
-        dd = Math.sqrt(dx * dx + dy * dy)
-
-        distDelta = this.minDist - dd
-
-        if (dd < this.minDist) {
-          // Calculate the distance ratio, which will be used to grow and enlighten the particles
-          distDelta = 1 - dd / this.minDist
-
-          // Grow the particle's radius based on the distance ratio
-          this.radius = this.baseRadius * (1 + distDelta)
-
-          // Update the particle's color by increasing the alpha value based on the distance ratio
-        } else {
-          // Reset the particle's radius and color when it's not affected by the cursor
-          this.radius = this.baseRadius
-        }
-
-        this.x += this.ax
-        this.y += this.ay
-
-        // Reset acceleration values for the next update
-        this.ax = 0
-        this.ay = 0
-      }
-
-      draw(context: CanvasRenderingContext2D) {
-        context.beginPath()
-        context.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false)
-        context.fillStyle = this.color
-        context.fill()
-      }
-    }
-
-    const lerpColor = (color1: string, color2: string, t: number) => {
-      const c1 = parseColor(color1)
-      const c2 = parseColor(color2)
-      const r = lerp(c1[0], c2[0], t)
-      const g = lerp(c1[1], c2[1], t)
-      const b = lerp(c1[2], c2[2], t)
-      const a = lerp(c1[3], c2[3], t)
-      return `rgba(${r},${g},${b},${a})`
-    }
-
-    const parseColor = (color: string) => {
-      const match = color.match(
-        /rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+(?:\.\d+)?))?\)/
-      )
-      return match ? match.slice(1).map(Number) : [0, 0, 0, 0]
-    }
-
-    for (let i = 0; i < numParticles; i++) {
-      const radius = random.range(1, 10)
-      const angle = random.range(0, Math.PI * 2)
-      const distanceFromCenter = random.range(0, Math.min(width, height) / 2)
-      const noise = noise2D(
-        (width / 2 + distanceFromCenter * Math.cos(angle)) * scaleFactor,
-        (height / 2 + distanceFromCenter * Math.sin(angle)) * scaleFactor
-      )
-      const deformation = lerp(0.8, 1.2, (noise + 1) / 2)
-      const x = width / 2 + distanceFromCenter * deformation * Math.cos(angle)
-      const y = height / 2 + distanceFromCenter * deformation * Math.sin(angle)
-
-      const particle = new Particle(x, y, radius)
-      particles.push(particle)
-    }
-
-    return () => {
-      context.fillStyle = 'black'
-      context.fillRect(0, 0, width, height)
-
-      particles.forEach((particle) => {
-        particle.draw(context)
-        particle.update()
-      })
-    }
-  }
-
-  useEffect(() => {
-    if (!canvasRef.current) return
-
-    const settings = {
-      dimensions: [width, height],
-      animate: true,
-      canvas: canvasRef.current,
-    }
-
-    canvasSketch(sketch, settings)
-
-    // Add null check for 'canvasRef.current' before adding and removing event listeners
-    canvasRef.current.addEventListener('mousemove', onMouseMove)
-
-    return () => {
-      if (canvasRef.current) {
-        canvasRef.current.removeEventListener('mousemove', onMouseMove)
-      }
-    }
-  }, [width, height])
+const HeroParticles = () => {
+  const innerHeight = '1000'
+  const innerWidth = '1000'
 
   return (
-    <canvas
-      style={{ position: 'absolute', zIndex: 0, transformOrigin: 'center' }}
-      ref={canvasRef}
-      width={width}
-      height={height}
+    <ParticleImage
+      src="images/circle2.png" // Replace this with the image source you want to use
+      width={Number(innerWidth)}
+      height={Number(innerHeight)}
+      scale={0.75}
+      entropy={20}
+      maxParticles={5000}
+      particleOptions={particleOptions}
+      mouseMoveForce={motionForce}
+      touchMoveForce={motionForce}
+      backgroundColor="transparent"
+      className="z-0 absolute"
     />
   )
 }
 
-export default CircleParticles
+export default HeroParticles

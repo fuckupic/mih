@@ -7,8 +7,6 @@ import ParticleImage, {
   ParticleForce,
   ParticleImageProps,
 } from 'react-particle-image'
-// @ts-ignore
-import { Array2D } from 'react-particle-image/src/universe/Array2D'
 
 const colors = [
   'rgba(0, 189, 199, 0.5)',
@@ -16,10 +14,8 @@ const colors = [
   'rgba(0, 189, 199, 0.75)',
 ]
 
-const particleOptions = {
-  // @ts-ignore
+const particleOptions: ParticleOptions = {
   filter: ({ x, y, image }) => {
-    // @ts-ignore
     const pixel = image.get(x, y)
     return pixel.b > 50
   },
@@ -29,14 +25,13 @@ const particleOptions = {
   friction: () => 0.15,
 }
 
-const motionForce = (x: number, y: number) => {
-  return forces.disturbance(x, y, 10)
+const motionForce = () => {
+  return forces.entropy(50)
 }
 
 const InnovationImage = () => {
   const innerHeight = '600'
-  // @ts-ignore
-  const innerWidth = innerHeight * 1.5
+  const innerWidth = Number(innerHeight) * 1.5
 
   return (
     <ParticleImage
