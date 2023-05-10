@@ -1,5 +1,4 @@
 import React from 'react'
-import InnovationImage from './InnovationImage'
 
 const Innovation: React.FC = () => {
   return (
@@ -38,7 +37,6 @@ const Innovation: React.FC = () => {
             </div>
           </div>
         </div>
-        <InnovationImage />
       </div>
     </div>
   )

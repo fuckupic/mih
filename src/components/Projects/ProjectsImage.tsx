@@ -1,31 +1,29 @@
 import React from 'react'
 import useWindowSize from '@rooks/use-window-size'
-import ParticleImage, {
-  ParticleOptions,
-  Vector,
-  forces,
-  ParticleForce,
-} from 'react-particle-image'
-
-const colors = [
-  'rgba(0, 189, 199, 0.5)',
-  'rgba(0, 189, 199, 1)',
-  'rgba(0, 189, 199, 0.75)',
-]
+import ParticleImage, { ParticleOptions, forces } from 'react-particle-image'
 
 const particleOptions: ParticleOptions = {
   filter: ({ x, y, image }) => {
     const pixel = image.get(x, y)
     return pixel.b > 50
   },
-  color: () => colors[Math.floor(Math.random() * colors.length)],
+  color: ({ x, y, image }) => {
+    const pixel = image.get(x, y)
+    const intensity = (pixel.r + pixel.g + pixel.b) / (3 * 255)
+
+    return `rgba(123, 108, 230, ${1 - intensity})`
+  },
   radius: () => Math.random() * 1.5 + 0.5,
   mass: () => 20,
   friction: () => 0.15,
 }
 
-const motionForce = () => {
-  return forces.entropy(50)
+const motionForce = (x: number, y: number) => {
+  return forces.disturbance(x, y, 5)
+}
+
+const clickForce = (x: number, y: number) => {
+  return forces.blackHole(x, y, 0.2)
 }
 
 const ProjectsImage = () => {
@@ -41,13 +39,15 @@ const ProjectsImage = () => {
       width={Number(innerWidth)}
       height={Number(innerHeight)}
       scale={0.75}
-      entropy={0}
+      entropy={10}
       maxParticles={5000}
       particleOptions={particleOptions}
       mouseMoveForce={motionForce}
-      touchMoveForce={motionForce}
+      touchMoveForce={clickForce}
       backgroundColor="transparent"
-      className={`absolute bottom-[0%] left-[${Number(leftPercentage)}%] z-0`}
+      className={`absolute max-w-[100%] bottom-[0%] left-[${Number(
+        leftPercentage
+      )}%] z-0 pointer-events-none md:pointer-events-auto`}
     />
   )
 }

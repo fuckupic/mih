@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react'
-import { gsap } from 'gsap/dist/gsap'
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'ScrollTrigger'
+
 import CircleParticles from './CircleParticles'
 
 import { useIsomorphicLayoutEffect } from '../../../helpers/isomorphicEffect'
@@ -73,7 +74,7 @@ export default function Hero() {
         </div>
         <div
           ref={mainCircleRef}
-          className="mainCircle max-w-[100vw] bg-black flex justify-center items-center absolute centerAbsolute w-[200%] md:w-[100%] lg:w-[90%] z-[1] aspect-square xl:aspect-square rounded-full pointer-events-none"
+          className="mainCircle max-w-[100vw] bg-black flex justify-center items-center absolute centerAbsolute w-[200%] sm:w-[150%] md:w-[125%] lg:w-[90%] z-[1] aspect-square xl:aspect-square rounded-full pointer-events-none"
         ></div>
         <CircleParticles />
       </div>

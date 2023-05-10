@@ -1,5 +1,4 @@
 import React from 'react'
-import ProjectsImage from './ProjectsImage'
 
 const Projects: React.FC = () => {
   return (
@@ -25,25 +24,25 @@ const Projects: React.FC = () => {
             </div>
           </div>
         </div>
-        <div className="w-full lg:w-[90%] relative flex flex-row gap-8 z-[1] pointer-events-none">
-          <div className="cardCarousel aspect-video">
-            <div className="from-primary to-lightblue cardGradient"></div>
+        <div className=" w-full lg:w-[90%] relative flex flex-col lg:flex-row gap-8 z-[1] !pointer-events-auto">
+          <div className="cardWrapper cardCarousel lg:aspect-video">
+            <div className="!opacity-0 hover:!opacity-50 transition transition-300 from-primary to-lightblue cardGradient"></div>
             <h3 className="text-xl font-semibold">Projekt 1</h3>
             <p className="text-md">
               Toto je popis projektu 1. Může být až takto dlouhý. Pokud bude
               delší...
             </p>
           </div>
-          <div className="cardCarousel aspect-video">
-            <div className="from-lightblue to-secondary cardGradient "></div>
+          <div className="cardWrapper cardCarousel lg:aspect-video !pointer-events-auto">
+            <div className="!opacity-0 hover:!opacity-50 transition transition-300 from-lightblue to-secondary cardGradient "></div>
             <h3 className="text-xl font-semibold">Projekt 2</h3>
             <p className="text-md">
               Toto je popis projektu 1. Může být až takto dlouhý. Pokud bude
               delší...
             </p>
           </div>
-          <div className="cardCarousel aspect-video">
-            <div className=" from-secondary to-black  cardGradient"></div>
+          <div className="cardWrapper cardCarousel lg:aspect-video">
+            <div className="!opacity-0 hover:!opacity-50 transition transition-300 from-secondary to-black  cardGradient"></div>
             <h3 className="text-xl font-semibold">Projekt 3</h3>
             <p className="text-md">
               Toto je popis projektu 1. Může být až takto dlouhý. Pokud bude
@@ -52,7 +51,6 @@ const Projects: React.FC = () => {
           </div>
         </div>
       </div>
-      <ProjectsImage />
     </div>
   )
 }

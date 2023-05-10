@@ -32,13 +32,13 @@ const HeroParticles = () => {
       width={Number(innerWidth)}
       height={Number(innerHeight)}
       scale={0.75}
-      entropy={20}
+      entropy={40}
       maxParticles={5000}
       particleOptions={particleOptions}
       mouseMoveForce={motionForce}
       touchMoveForce={motionForce}
       backgroundColor="transparent"
-      className="z-0 absolute"
+      className="z-0 absolute pointer-events-none md:pointer-events-auto"
     />
   )
 }
