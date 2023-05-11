@@ -4,32 +4,31 @@ import useWindowSize from '@rooks/use-window-size'
 import ParticleImage, { ParticleOptions, forces } from 'react-particle-image'
 
 const motionForce = (x: number, y: number) => {
-  return forces.disturbance(x, y, 5)
+  return forces.disturbance(x, y, 10)
 }
 
 const clickForce = () => {
   return forces.entropy(50)
 }
 
-const colorPairs = [
-  { mainColor: [45, 214, 135], secondColor: [0, 189, 199] },
-  { mainColor: [123, 108, 230], secondColor: [0, 189, 199] },
-  { mainColor: [123, 108, 230], secondColor: [47, 65, 202] },
-  { mainColor: [47, 65, 202], secondColor: [123, 108, 230] },
-  { mainColor: [47, 65, 202], secondColor: [0, 189, 199] },
-]
+// const colorPairs = [
+//   { mainColor: [45, 214, 135], secondColor: [0, 189, 199] },
+//   { mainColor: [123, 108, 230], secondColor: [0, 189, 199] },
+//   { mainColor: [123, 108, 230], secondColor: [47, 65, 202] },
+//   { mainColor: [47, 65, 202], secondColor: [123, 108, 230] },
+//   { mainColor: [47, 65, 202], secondColor: [0, 189, 199] },
+// ]
 
-const getColorPair = (excludeIndex: number) => {
-  let index
-  do {
-    index = Math.floor(Math.random() * colorPairs.length)
-  } while (index === excludeIndex)
-  return colorPairs[index]
-}
+// const getColorPair = (excludeIndex: number) => {
+//   let index
+//   do {
+//     index = Math.floor(Math.random() * colorPairs.length)
+//   } while (index === excludeIndex)
+//   return colorPairs[index]
+// }
 
 const InnovationImage = () => {
-  const [colorPair, setColorPair] = useState(getColorPair(-1))
-  const [imageIndex, setImageIndex] = useState(1)
+  // const [colorPair, setColorPair] = useState(getColorPair(-1))
   const innerHeight = '800'
   const innerWidth = Number(innerHeight) * 1.5
 
@@ -42,7 +41,9 @@ const InnovationImage = () => {
       const pixel = image.get(x, y)
       const intensity = (pixel.r + pixel.g + pixel.b) / (3 * 255)
 
-      const { mainColor, secondColor } = colorPair
+      // const { mainColor, secondColor } = colorPair
+      const mainColor = [47, 65, 202]
+      const secondColor = [0, 189, 199]
 
       // Calculate the color based on the intensity
       const r = mainColor[0] * intensity + secondColor[0] * (1 - intensity)
@@ -57,27 +58,26 @@ const InnovationImage = () => {
     friction: () => 0.15,
   }
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setImageIndex((prevIndex) => (prevIndex % 8) + 1)
-      setColorPair(getColorPair(colorPairs.indexOf(colorPair)))
-    }, 5000)
-    return () => clearInterval(interval)
-  }, [])
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setColorPair(getColorPair(colorPairs.indexOf(colorPair)))
+  //   }, 5000)
+  //   return () => clearInterval(interval)
+  // }, [])
 
   return (
     <ParticleImage
-      src={`images/vehicles${imageIndex}.png`}
+      src={`images/vehicles7.png`}
       width={Number(innerWidth)}
       height={Number(innerHeight)}
-      scale={0.75}
-      entropy={10}
-      maxParticles={10000}
+      scale={1}
+      entropy={30}
+      maxParticles={15000}
       particleOptions={particleOptions}
       mouseMoveForce={motionForce}
       touchMoveForce={clickForce}
       backgroundColor="transparent"
-      className={`mainLight opacity-0 w-[40%] h-auto !z-0 fixed centerAbsolute pointer-events-none md:pointer-events-auto`}
+      className={`mainLight opacity-0 w-[100%] sm:w-[70%] h-auto !z-0 fixed centerAbsolute pointer-events-none md:pointer-events-auto`}
     />
   )
 }

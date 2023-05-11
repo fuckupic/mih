@@ -26,7 +26,7 @@
     "src/components/Hero/Hero.tsx",
     "src/components/Hero/HeroParticles.js",
     "src/components/Hero/CircleParticles.tsx",
-    "src/components/ScrollingSections/SmootherContext.js"
+    "src/pages/SmootherContext.js"
   ],
   "exclude": ["node_modules"]
 }

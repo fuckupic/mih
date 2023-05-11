@@ -3,9 +3,9 @@ import ContactForm from '../ContactForm/ContactForm'
 
 const Vision: React.FC = () => {
   return (
-    <div className="section !h-min">
-      <div className="sectionWrapper justify-between flex-row flex-1 items-start gap-16">
-        <div className="w-[30%] font-tabletgothic flex flex-col gap-4">
+    <div className="section !h-min pointer-events-none">
+      <div className="sectionWrapper justify-between flex-col sm:flex-row  flex-1 items-start gap-16">
+        <div className="w-full sm:w-[30%] font-tabletgothic flex flex-col gap-4">
           <div className="flex flex-col gap-2 font-medium">
             <span>
               Nevíme, zda dokážeme řídit dopravu tak, aby byla vždy zcela
@@ -24,7 +24,7 @@ const Vision: React.FC = () => {
             </span>
           </div>
         </div>
-        <div className="w-[70%] relative flex flex-col gap-8">
+        <div className="w-full sm:w-[70%] relative flex flex-col gap-8">
           <div className="flex flex-col gap-2">
             <h3 className="text-lg font-tabletgothic">Plzeň 2050</h3>
             <div className="separator w-[90%] bg-primary border-1 border-solid h-1 z-[1] "></div>

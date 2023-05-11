@@ -2,7 +2,7 @@ import React from 'react'
 
 const Services: React.FC = () => {
   return (
-    <div className="section">
+    <div className="section pointer-events-none">
       <div className="sectionWrapper relative flex-col flex-1 items-center justify-center text-center gap-16">
         <div className="w-[70%] justify-center relative flex flex-col gap-8">
           <div className="flex flex-col gap-4">
@@ -18,8 +18,8 @@ const Services: React.FC = () => {
             </div>
           </div>
         </div>
-        <div className="w-[100%] flex flex-row gap-8 place-items-start">
-          <div className="cardCarousel aspect-square ">
+        <div className="w-[100%] flex flex-col sm:flex-row  gap-8 place-items-start">
+          <div className="cardCarousel sm:aspect-square ">
             <div className="from-primary to-lightblue cardGradient !opacity-10"></div>
             <h3 className="text-xl font-semibold">
               Hledání dodavatelů nových řešení
@@ -28,14 +28,14 @@ const Services: React.FC = () => {
               Dokážeme propojit inovátory s realizátory.
             </p>
           </div>
-          <div className="cardCarousel aspect-square">
+          <div className="cardCarousel sm:aspect-square">
             <div className="from-lightblue to-secondary cardGradient !opacity-10"></div>
             <h3 className="text-xl font-semibold">
               Přenos nových řešení do komerční praxe
             </h3>
             <p className="text-md">Pomáháme inovacím dostat se na trh.</p>
           </div>
-          <div className="cardCarousel aspect-square">
+          <div className="cardCarousel sm:aspect-square">
             <div className=" from-secondary to-transparent cardGradient !opacity-10"></div>
             <h3 className="text-xl font-semibold">
               Komunikace s investory a mentory
@@ -46,7 +46,9 @@ const Services: React.FC = () => {
             </p>
           </div>
         </div>
-        <button className="btn btn-primary">Spojte se s námi</button>
+        <button className="btn btn-primary pointer-events-auto">
+          Spojte se s námi
+        </button>
       </div>
     </div>
   )

@@ -2,9 +2,9 @@ import React from 'react'
 
 const Projects: React.FC = () => {
   return (
-    <div className="section">
+    <div className="section pointer-events-none" id="projects">
       <div className="sectionWrapper flex-col flex-1 items-start gap-16">
-        <div className="w-full md:w-[70%] relative flex flex-col gap-8 z-[1] pointer-events-none">
+        <div className="w-full md:w-[70%] relative flex flex-col gap-8 z-[1]">
           <div className="flex flex-col gap-2">
             <div className="flex flex-row gap-2 items-center justify-start">
               <h3 className="text-lg font-tabletgothic">Inovativní Plzeň</h3>

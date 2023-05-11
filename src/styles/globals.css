@@ -24,7 +24,7 @@
 }
 
 .section {
-  @apply w-[100vw] max-w-[100vw] lg:h-[100vh] flex flex-col justify-center items-center relative p-8 lg:p-16;
+  @apply w-[100vw] mb-16 max-w-[100vw] flex flex-col justify-center items-center relative p-8 lg:p-16;
 }
 
 .sectionWrapper {
@@ -32,7 +32,7 @@
 }
 
 .cardCarousel {
-  @apply text-left border w-[70%] rounded-lg bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-60 border-primary p-4 flex flex-col items-start font-tabletgothic justify-end relative !pointer-events-auto cursor-pointer transition hover:scale-105;
+  @apply text-left border w-[100%] sm:w-[70%] rounded-lg bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-60 border-primary p-4 flex flex-col items-start font-tabletgothic justify-end relative !pointer-events-auto cursor-pointer transition hover:scale-105;
 }
 
 .cardGradient {

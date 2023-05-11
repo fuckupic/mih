@@ -4,7 +4,7 @@ const ContactForm: React.FC = () => {
   return (
     <div className="section !h-min">
       <div className="sectionWrapper flex-col !justify-start flex-1 items-start gap-16">
-        <div className="w-[70%] justify-start relative flex flex-col gap-8">
+        <div className=" w-full sm:w-[70%] justify-start relative flex flex-col gap-8">
           <div className="flex flex-col gap-2">
             <h2 className="font-campton text-3xl font-semibold text-primary">
               Co se v Plzni vymyslí a vyzkouší, bude fungovat úspěšně i jinde.
