@@ -25,8 +25,7 @@
     "helpers/isomorphicEffect.tsxx",
     "src/components/Hero/Hero.tsx",
     "src/components/Hero/HeroParticles.js",
-    "src/components/Hero/CircleParticles.tsx",
-    "src/pages/SmootherContext.tsx"
+    "src/components/Hero/CircleParticles.tsx"
   ],
   "exclude": ["node_modules"]
 }
