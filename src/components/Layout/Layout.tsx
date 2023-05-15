@@ -11,7 +11,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         <div className="relative top-0 left-0 w-[100%] h-[100%] max-w-[1000px] flex justify-start items-start">
           <img
             src="logoWhite_circle.svg"
-            alt="Logo"
+            alt="Logo white"
             style={{ height: '50px' }}
           />
         </div>
