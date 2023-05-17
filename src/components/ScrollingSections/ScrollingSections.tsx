@@ -1,8 +1,6 @@
 import React, { useRef, useContext, useState } from 'react'
 import gsap from 'gsap'
 import ScrollTrigger from 'ScrollTrigger'
-import Hero from '../Hero/Hero'
-import ScrollSmoother from 'ScrollSmoother'
 import { useIsomorphicLayoutEffect } from '../../../helpers/isomorphicEffect'
 import Innovation from '../Innovation/Innovation'
 import Projects from '../Projects/Projects'
@@ -11,7 +9,6 @@ import Vision from '../Vision/Vision'
 import ContactForm from '../ContactForm/ContactForm'
 import Footer from '../Footer/Footer'
 import InnovationImage from './InnovationImage'
-// import InteractiveBackground from '../InteractiveBackground'
 
 export default function ScrollingSections() {
   const wrapperRef = useRef<HTMLDivElement | null>(null)

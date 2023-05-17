@@ -1,7 +1,69 @@
-import React from 'react'
+import React, { useState, FormEvent } from 'react'
+import useContactForm from '../../hooks/useContactForm'
+import sendEmail from '../../lib/sendEmail'
+
+interface ResponseMessage {
+  isSuccessful: boolean
+  message: string
+}
 
 const ContactForm: React.FC = () => {
+  const { values, handleChange } = useContactForm()
+  const [responseMessage, setResponseMessage] = useState<ResponseMessage>({
+    isSuccessful: false,
+    message: '',
+  })
+  const [errors, setErrors] = useState({
+    name: '',
+    email: '',
+  })
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault()
+    const date = new Date().toString()
+    if (!validateForm()) {
+      return
+    }
+    try {
+      const { status } = await sendEmail({ ...values, date })
+      if (status === 200) {
+        setResponseMessage({
+          isSuccessful: true,
+          message: 'Thank you for your message.',
+        })
+      }
+    } catch (e) {
+      console.log(e)
+      setResponseMessage({
+        isSuccessful: false,
+        message: 'Oops something went wrong. Please try again.',
+      })
+    }
+  }
+
+  const validateForm = () => {
+    let errorsFound = false
+    let newErrors = { name: '', email: '' }
+
+    if (!values.name) {
+      newErrors.name = 'Jméno je povinné.'
+      errorsFound = true
+    }
+
+    if (!values.email) {
+      newErrors.email = 'Emailová adresa je povinná.'
+      errorsFound = true
+    } else if (!/\S+@\S+\.\S+/.test(values.email)) {
+      newErrors.email = 'Emailová adresa není správně napsaná.'
+      errorsFound = true
+    }
+
+    setErrors(newErrors)
+    return !errorsFound
+  }
+
   return (
+    // your form code here with some modifications to the form controls
     <div className="section !h-min">
       <div className="sectionWrapper flex-col !justify-start flex-1 items-start gap-16">
         <div className=" w-full sm:w-[70%] justify-start relative flex flex-col gap-8">
@@ -14,41 +76,69 @@ const ContactForm: React.FC = () => {
             </div>
             {/* form with name, email, choose one, additional note */}
           </div>
-          <form className="flex flex-col gap-4">
+          <form onSubmit={handleSubmit} className="flex flex-col gap-4">
             <div className="flex flex-col gap-2">
-              <label className="font-tabletgothic text-md">* Jméno</label>
-              <input type="text" className="inputField" />
+              <label htmlFor="name" className="font-tabletgothic text-md">
+                * Jméno
+              </label>
+              <input
+                required
+                id="name"
+                value={values.name}
+                onChange={handleChange}
+                type="text"
+                className="inputField"
+              />
             </div>
             <div className="flex flex-col gap-2">
-              <label className="font-tabletgothic text-md">
+              <label htmlFor="email" className="font-tabletgothic text-md">
                 * Emailová adresa
               </label>
-              <input type="text" className="inputField" />
+              <input
+                required
+                id="email"
+                value={values.email}
+                onChange={handleChange}
+                type="email"
+                className="inputField"
+              />
             </div>
             <div className="flex flex-col gap-2">
-              <label className="font-tabletgothic text-md">Zajímá mě</label>
+              <label htmlFor="mobility" className="font-tabletgothic text-md">
+                Zajímá mě
+              </label>
               <select
-                name="mobility"
-                id="mobility"
-                className="select inputField"
                 required
+                id="mobility"
+                value={values.mobility}
+                onChange={handleChange}
+                className="select inputField"
               >
+                <option value="">Select an option...</option>
                 <option value="partnership">Partnerství</option>
                 <option value="personalMobility">Osobní mobilita</option>
-                <option value="mobility">Nákladní mobilita</option>
-                <option value="mobility">Budoucí inovace v mobilitě</option>
-                <option value="mobility">Startupy</option>
-                <option value="mobility">Události</option>
+                <option value="cargoMobility">Nákladní mobilita</option>
+                <option value="futureInnovations">
+                  Budoucí inovace v mobilitě
+                </option>
+                <option value="startups">Startupy</option>
+                <option value="events">Události</option>
               </select>
               <div className="flex flex-col gap-2">
-                <label className="font-tabletgothic text-md">Poznámka</label>
+                <label htmlFor="note" className="font-tabletgothic text-md">
+                  Poznámka
+                </label>
                 <textarea
-                  name="note"
                   id="note"
-                  className="inputField"
-                  rows={4}
-                ></textarea>
+                  value={values.note}
+                  onChange={handleChange}
+                  className="textarea inputField"
+                  rows={8}
+                />
               </div>
+              <button className="btn btn-primary w-28" type="submit">
+                Odeslat
+              </button>
             </div>
           </form>
         </div>
