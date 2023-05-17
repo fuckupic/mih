@@ -1,6 +1,8 @@
 import React, { useState, FormEvent } from 'react'
 import useContactForm from '../../hooks/useContactForm'
 import sendEmail from '../../lib/sendEmail'
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 interface ResponseMessage {
   isSuccessful: boolean
@@ -8,7 +10,7 @@ interface ResponseMessage {
 }
 
 const ContactForm: React.FC = () => {
-  const { values, handleChange } = useContactForm()
+  const { values, handleChange, resetForm } = useContactForm()
   const [responseMessage, setResponseMessage] = useState<ResponseMessage>({
     isSuccessful: false,
     message: '',
@@ -31,13 +33,16 @@ const ContactForm: React.FC = () => {
           isSuccessful: true,
           message: 'Thank you for your message.',
         })
+        resetForm()
+        toast.success('Zpráva odeslána!') // success toast here
       }
     } catch (e) {
       console.log(e)
       setResponseMessage({
         isSuccessful: false,
-        message: 'Oops something went wrong. Please try again.',
+        message: 'Něco se pokazilo. Zkuste to znovu.',
       })
+      toast.error('Něco se pokazilo. Zkuste to znovu.') // error toast here
     }
   }
 

@@ -27,7 +27,7 @@ const HeroParticles = () => {
       src="images/circle2.png" // Replace this with the image source you want to use
       width={Number(innerWidth)}
       height={Number(innerHeight)}
-      scale={0.85}
+      scale={0.75}
       entropy={40}
       maxParticles={4000}
       particleOptions={particleOptions}

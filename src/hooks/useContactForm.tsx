@@ -8,12 +8,13 @@ interface Values {
 }
 
 const useContactForm = () => {
-  const [values, setValues] = useState<Values>({
+  const initialFormState = {
     name: '',
     email: '',
     mobility: '',
     note: '',
-  })
+  }
+  const [values, setValues] = useState<Values>(initialFormState)
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -22,7 +23,11 @@ const useContactForm = () => {
     setValues((prev) => ({ ...prev, [id]: value }))
   }
 
-  return { values, handleChange }
+  const resetForm = () => {
+    setValues(initialFormState)
+  }
+
+  return { values, handleChange, resetForm }
 }
 
 export default useContactForm
