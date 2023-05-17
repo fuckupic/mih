@@ -15,10 +15,12 @@ export default function Hero() {
 
   useEffect(() => {
     const fadeInTl = gsap.timeline()
-    gsap.set(['.introText', '.headline', 'canvas', '.btn'], { opacity: 0 })
+    gsap.set(['.introText', '.headline', '.heroSection canvas', '.btn'], {
+      opacity: 0,
+    })
     gsap.set('.separator', { width: 0 })
     fadeInTl.to('.separator', {
-      width: '100%',
+      width: '80%',
       duration: 2,
       ease: 'power3.inOut',
     })
@@ -45,14 +47,23 @@ export default function Hero() {
       '-=1'
     )
     fadeInTl.fromTo(
-      'canvas',
+      '.heroSection canvas',
       { opacity: 0 },
-      { opacity: 1, duration: 1, ease: 'power3.inOut' }
+      {
+        opacity: 1,
+        duration: 1,
+        ease: 'power4.Out',
+      }
     )
+
     fadeInTl.fromTo(
-      '.btn',
+      '.heroSection .btn',
       { opacity: 0 },
-      { opacity: 1, duration: 1, ease: 'power3.inOut' },
+      {
+        opacity: 1,
+        duration: 0.1,
+        ease: 'power4.Out',
+      },
       '-=1'
     )
   }, [])

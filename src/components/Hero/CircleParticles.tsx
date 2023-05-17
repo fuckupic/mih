@@ -16,11 +16,11 @@ const particleOptions: ParticleOptions = {
 }
 
 const motionForce = (x: number, y: number) => {
-  return forces.disturbance(x, y, 40)
+  return forces.disturbance(x, y, 30)
 }
 
-const HeroParticles = () => {
-  const { width, height } = useWindowDimensions()
+const CircleParticles = () => {
+  const { width = 0, height = 0 } = useWindowDimensions()
 
   const calculatedHeight =
     width && height
@@ -52,4 +52,4 @@ const HeroParticles = () => {
   )
 }
 
-export default HeroParticles
+export default CircleParticles
