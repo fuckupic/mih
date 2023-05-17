@@ -32,7 +32,7 @@ const CircleParticles = () => {
       : undefined
 
   const calculatedScale = calculatedHeight
-    ? (calculatedHeight / 900) * 0.8 + 0.05
+    ? (calculatedHeight / 1000) * 0.7 + 0.06
     : 1
 
   return (
