@@ -21,17 +21,25 @@ export default function ScrollingSections() {
     const ctx = gsap.context(() => {
       const timeline = gsap.timeline({
         scrollTrigger: {
-          trigger: '.mainLight',
+          trigger: '#innovation',
           markers: true,
-          scrub: 0.5,
-          start: '#innovation',
+          scrub: 1,
+          start: 'top center',
           end: 'bottom bottom',
-          endTrigger: '#projects',
+          endTrigger: '#services',
         },
       })
 
       // Opacity 100 when entering the ScrollingSections
-      timeline.to('.mainLight', { opacity: 1, duration: 1 })
+      timeline.fromTo(
+        '.mainLight',
+        {
+          opacity: 0,
+        },
+        {
+          opacity: 1,
+        }
+      )
     }, wrapperRef)
     return () => ctx.revert()
   }, [])

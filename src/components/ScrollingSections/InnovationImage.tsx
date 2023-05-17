@@ -4,7 +4,7 @@ import useWindowSize from '@rooks/use-window-size'
 import ParticleImage, { ParticleOptions, forces } from 'react-particle-image'
 
 const motionForce = (x: number, y: number) => {
-  return forces.disturbance(x, y, 10)
+  return forces.disturbance(x, y, 30)
 }
 
 const clickForce = () => {
