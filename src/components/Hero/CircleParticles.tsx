@@ -1,31 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import ParticleImage, { forces, ParticleOptions } from 'react-particle-image'
+import useWindowDimensions from '../../hooks/getWindowDimensions'
 
 const colors = ['rgba(0, 189, 199, 0.5)', 'rgba(0, 189, 199, 1)']
-
-function useWindowSize() {
-  const [windowSize, setWindowSize] = useState({
-    width: undefined as unknown as number,
-    height: undefined as unknown as number,
-  })
-
-  useEffect(() => {
-    function handleResize() {
-      setWindowSize({
-        width: window.innerWidth,
-        height: window.innerHeight,
-      })
-    }
-
-    window.addEventListener('resize', handleResize)
-
-    handleResize()
-
-    return () => window.removeEventListener('resize', handleResize)
-  }, [])
-
-  return windowSize
-}
 
 const particleOptions: ParticleOptions = {
   filter: ({ x, y, image }) => {
@@ -43,15 +20,26 @@ const motionForce = () => {
 }
 
 const HeroParticles = () => {
-  const { width, height } = useWindowSize()
-  console.log(width, height)
+  const { width, height } = useWindowDimensions()
+  const calculatedHeight =
+    width && height
+      ? width > 1000
+        ? width > 1500
+          ? Number(width) * 0.5
+          : Number(width) * 0.8
+        : Number(width)
+      : undefined
+
+  const calculatedScale = calculatedHeight
+    ? (calculatedHeight / 900) * 0.8 + 0.05
+    : 1
 
   return (
     <ParticleImage
       src="images/circle2.png" // Replace this with the image source you want to use
-      width={Number(width)}
-      height={width > 480 ? Number(width) : Number(height)}
-      scale={width / 1500 + 0.15}
+      width={Number(width) > 1000 ? Number(width) * 0.8 : Number(width)}
+      height={Number(height)}
+      scale={calculatedScale}
       entropy={40}
       maxParticles={4000}
       particleOptions={particleOptions}
