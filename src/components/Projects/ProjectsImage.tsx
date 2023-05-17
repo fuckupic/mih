@@ -22,10 +22,6 @@ const motionForce = (x: number, y: number) => {
   return forces.disturbance(x, y, 5)
 }
 
-const clickForce = (x: number, y: number) => {
-  return forces.blackHole(x, y, 0.2)
-}
-
 const ProjectsImage = () => {
   const innerHeight = '600'
   const innerWidth = Number(innerHeight) * 1.5
@@ -40,10 +36,9 @@ const ProjectsImage = () => {
       height={Number(innerHeight)}
       scale={0.75}
       entropy={10}
-      maxParticles={5000}
+      maxParticles={3000}
       particleOptions={particleOptions}
       mouseMoveForce={motionForce}
-      touchMoveForce={clickForce}
       backgroundColor="transparent"
       className={`absolute max-w-[100%] bottom-[0%] left-[${Number(
         leftPercentage

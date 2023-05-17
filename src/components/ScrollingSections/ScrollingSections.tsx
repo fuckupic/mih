@@ -31,8 +31,11 @@ export default function ScrollingSections() {
         '.mainLight',
         {
           opacity: 0,
+          zIndex: -20,
+          display: 'absolute !important',
         },
         {
+          zIndex: 0,
           opacity: 1,
         }
       )

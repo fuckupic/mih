@@ -29,7 +29,7 @@ const Innovation: React.FC = () => {
                 přinášejí lidem vyšší kvalitu života ve městech
               </h2>
             </div>
-            <div className="w-[100%] flex flex-row gap-4 justify-end items-center pointer-events-auto">
+            <div className="w-[100%] flex flex-row gap-4 justify-start items-center pointer-events-auto">
               <button className="btn btn-primary btn-sm">Proč Plzeň?</button>
               <button className="btn btn-primary btn-outline btn-sm">
                 Co nabízíme

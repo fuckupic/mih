@@ -35,6 +35,10 @@
   @apply text-left border w-[100%] sm:w-[70%] rounded-lg bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-60 border-primary p-4 flex flex-col items-start font-tabletgothic justify-end relative !pointer-events-auto cursor-pointer transition hover:scale-105;
 }
 
+.modalCarousel {
+  @apply text-left border w-[100%] rounded-lg bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-60 border-primary p-4 flex flex-col items-start font-tabletgothic justify-end relative !pointer-events-auto transition;
+}
+
 .cardGradient {
   @apply absolute top-0 left-0 rounded-lg w-[100%] h-[100%] bg-gradient-to-r z-[-1] bg-opacity-80 backdrop-filter backdrop-blur-xl;
 }
@@ -65,6 +69,7 @@ body {
   color: white;
   background: black;
   overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
 .font-tabletgothic {

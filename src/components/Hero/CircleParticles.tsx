@@ -15,12 +15,13 @@ const particleOptions: ParticleOptions = {
   friction: () => 0.15,
 }
 
-const motionForce = () => {
-  return forces.entropy(100)
+const motionForce = (x: number, y: number) => {
+  return forces.disturbance(x, y, 40)
 }
 
 const HeroParticles = () => {
   const { width, height } = useWindowDimensions()
+
   const calculatedHeight =
     width && height
       ? width > 1000
@@ -40,7 +41,7 @@ const HeroParticles = () => {
       width={Number(width) > 1000 ? Number(width) * 0.8 : Number(width)}
       height={Number(height)}
       scale={calculatedScale}
-      entropy={40}
+      entropy={20}
       maxParticles={4000}
       particleOptions={particleOptions}
       mouseMoveForce={motionForce}
