@@ -1,11 +1,7 @@
 import React from 'react'
 import ParticleImage, { forces, ParticleOptions } from 'react-particle-image'
 
-const colors = [
-  'rgba(0, 189, 199, 0.5)',
-  'rgba(0, 189, 199, 1)',
-  'rgba(123, 108, 230, 1)',
-]
+const colors = ['rgba(0, 189, 199, 0.5)', 'rgba(0, 189, 199, 1)']
 
 const particleOptions: ParticleOptions = {
   filter: ({ x, y, image }) => {
@@ -31,9 +27,9 @@ const HeroParticles = () => {
       src="images/circle2.png" // Replace this with the image source you want to use
       width={Number(innerWidth)}
       height={Number(innerHeight)}
-      scale={0.75}
+      scale={0.85}
       entropy={40}
-      maxParticles={5000}
+      maxParticles={4000}
       particleOptions={particleOptions}
       mouseMoveForce={motionForce}
       touchMoveForce={motionForce}

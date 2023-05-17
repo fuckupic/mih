@@ -36,9 +36,9 @@ const ContactForm: React.FC = () => {
                 <option value="partnership">Partnerství</option>
                 <option value="personalMobility">Osobní mobilita</option>
                 <option value="mobility">Nákladní mobilita</option>
-                <option value="mobility">Budoi</option>
-                <option value="mobility">mobility</option>
-                <option value="mobility">mobility</option>
+                <option value="mobility">Budoucí inovace v mobilitě</option>
+                <option value="mobility">Startupy</option>
+                <option value="mobility">Události</option>
               </select>
               <div className="flex flex-col gap-2">
                 <label className="font-tabletgothic text-md">Poznámka</label>

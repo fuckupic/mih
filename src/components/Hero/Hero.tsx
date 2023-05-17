@@ -20,8 +20,8 @@ export default function Hero() {
           markers: false,
           scrub: true,
           pin: true,
-          start: 'bottom bottom',
-          endTrigger: '#projects bottom',
+          start: 'top top',
+          endTrigger: '#innovation',
         },
       })
       tl.add('start')
