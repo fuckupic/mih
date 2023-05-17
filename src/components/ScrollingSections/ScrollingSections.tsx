@@ -22,15 +22,14 @@ export default function ScrollingSections() {
       const timeline = gsap.timeline({
         scrollTrigger: {
           trigger: '#innovation',
-          markers: true,
+          markers: false,
           scrub: 1,
-          start: 'top center',
+          start: 'bottom bottom',
           end: 'bottom bottom',
-          endTrigger: '#services',
+          endTrigger: '#projects bottom',
         },
       })
 
-      // Opacity 100 when entering the ScrollingSections
       timeline.fromTo(
         '.mainLight',
         {
