@@ -34,12 +34,22 @@ export default function ScrollingSections() {
         '.mainOrb',
         {
           opacity: 0,
-          zIndex: -20,
-          display: 'absolute !important',
+          width: '30%',
         },
         {
-          zIndex: 0,
           opacity: 1,
+          width: '50%',
+        }
+      )
+
+      timeline.fromTo(
+        '.secondaryOrb',
+        {
+          width: '10%',
+        },
+        {
+          opacity: 0.2,
+          width: '30%',
         }
       )
     }, wrapperRef)
