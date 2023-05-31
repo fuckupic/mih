@@ -72,7 +72,7 @@ const InnovationImage = () => {
       height={Number(innerHeight)}
       scale={1}
       entropy={30}
-      maxParticles={10000}
+      maxParticles={3000}
       particleOptions={particleOptions}
       mouseMoveForce={motionForce}
       touchMoveForce={clickForce}

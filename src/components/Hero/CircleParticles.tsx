@@ -42,7 +42,7 @@ const CircleParticles = () => {
       height={Number(height)}
       scale={calculatedScale}
       entropy={20}
-      maxParticles={4000}
+      maxParticles={2000}
       particleOptions={particleOptions}
       mouseMoveForce={motionForce}
       touchMoveForce={motionForce}
