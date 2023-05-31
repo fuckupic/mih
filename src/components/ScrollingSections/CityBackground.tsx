@@ -74,7 +74,7 @@ const CityBackground: React.FC = () => {
     if (window.innerWidth > 640) {
       blockCount = Math.ceil(window.innerHeight / 30) // 80 is an average height of a block
     } else {
-      blockCount = Math.ceil(window.innerHeight / 20) // 80 is an average height of a block
+      blockCount = Math.ceil(window.innerHeight / 5) // 80 is an average height of a block
     }
 
     setLeftCityBlocks(generateCityBlocks(blockCount, 'left'))
