@@ -20,7 +20,7 @@ const randomFloorIntFromRange = (min: number, max: number): number =>
 // Function to generate a city block with random properties
 const generateBlock = (type: 'left' | 'right'): Block => {
   const blockHeight = randomIntFromRange(4, 10)
-  const padding = randomIntFromRange(0.4, 0.8)
+  const padding = randomIntFromRange(0, 0)
   const gap = randomIntFromRange(0.4, 0.8)
 
   const houseCount = randomFloorIntFromRange(2, 3)
