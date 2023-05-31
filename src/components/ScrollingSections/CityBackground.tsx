@@ -21,7 +21,7 @@ const randomFloorIntFromRange = (min: number, max: number): number =>
 const generateBlock = (type: 'left' | 'right'): Block => {
   const blockHeight = randomIntFromRange(5, 10)
   const padding = randomIntFromRange(0.2, 0.8)
-  const gap = randomIntFromRange(0.5, 0.75)
+  const gap = randomIntFromRange(0.5, 0)
 
   const houseCount = randomFloorIntFromRange(2, 3)
   let houses: number[] = []
