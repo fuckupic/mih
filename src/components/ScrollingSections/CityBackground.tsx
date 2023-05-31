@@ -19,9 +19,9 @@ const randomFloorIntFromRange = (min: number, max: number): number =>
 
 // Function to generate a city block with random properties
 const generateBlock = (type: 'left' | 'right'): Block => {
-  const blockHeight = randomIntFromRange(5, 10)
-  const padding = randomIntFromRange(0.2, 0.8)
-  const gap = randomIntFromRange(0.5, 0)
+  const blockHeight = randomIntFromRange(4, 10)
+  const padding = randomIntFromRange(0.4, 0.8)
+  const gap = randomIntFromRange(0.4, 0.8)
 
   const houseCount = randomFloorIntFromRange(2, 3)
   let houses: number[] = []
@@ -82,7 +82,7 @@ const CityBackground: React.FC = () => {
   }, [])
 
   return (
-    <div className="top-0 left-0 z-[0] absolute w-[100%] h-[100%] flex items-start justify-center">
+    <div className="top-0 left-0 z-[0] absolute w-[100%] h-[100%] flex items-start justify-center overflow-hidden">
       <div className="w-[100%] h-[100%] relative flex flex-row gap-[2] z-10">
         <div className="w-[49%] h-[100%] flex flex-col items-start justify-start relative gap-2">
           {leftCityBlocks.map((block, i) => (
