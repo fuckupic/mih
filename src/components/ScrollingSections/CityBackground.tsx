@@ -60,13 +60,22 @@ const generateCityBlocks = (
 
 const CityBackground: React.FC = () => {
   const [windowHeight, setWindowHeight] = useState<number>(0)
+  const [windowWidth, setWindowWidth] = useState<number>(0)
   const [leftCityBlocks, setLeftCityBlocks] = useState<Block[]>([])
   const [rightCityBlocks, setRightCityBlocks] = useState<Block[]>([])
 
   useEffect(() => {
     setWindowHeight(window.innerHeight)
+    setWindowWidth(window.innerWidth)
 
-    const blockCount = Math.ceil(window.innerHeight / 30) // 80 is an average height of a block
+    var blockCount = 0
+
+    // if window width is not mobile
+    if (window.innerWidth > 640) {
+      blockCount = Math.ceil(window.innerHeight / 30) // 80 is an average height of a block
+    } else {
+      blockCount = Math.ceil(window.innerHeight / 10) // 80 is an average height of a block
+    }
 
     setLeftCityBlocks(generateCityBlocks(blockCount, 'left'))
     setRightCityBlocks(generateCityBlocks(blockCount, 'right'))
