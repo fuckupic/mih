@@ -23,7 +23,7 @@ const generateBlock = (type: 'left' | 'right'): Block => {
   const padding = randomIntFromRange(0, 0)
   const gap = randomIntFromRange(0.4, 0.8)
 
-  const houseCount = randomFloorIntFromRange(2, 3)
+  const houseCount = randomFloorIntFromRange(2, 4)
   let houses: number[] = []
 
   for (let i = 0; i < houseCount; i++) {
@@ -72,7 +72,7 @@ const CityBackground: React.FC = () => {
 
     // if window width is not mobile
     if (window.innerWidth > 640) {
-      blockCount = Math.ceil(window.innerHeight / 30) // 80 is an average height of a block
+      blockCount = Math.ceil(window.innerHeight / 25) // 80 is an average height of a block
     } else {
       blockCount = Math.ceil(window.innerHeight / 5) // 80 is an average height of a block
     }

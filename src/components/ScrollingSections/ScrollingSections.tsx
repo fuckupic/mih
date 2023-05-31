@@ -34,11 +34,11 @@ export default function ScrollingSections() {
         '.mainOrb',
         {
           opacity: 0,
-          width: '10%',
+          width: '5%',
         },
         {
           opacity: 1,
-          width: '70%',
+          width: '50%',
         }
       )
 

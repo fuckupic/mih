@@ -16,7 +16,7 @@ const particleOptions: ParticleOptions = {
 }
 
 const motionForce = (x: number, y: number) => {
-  return forces.disturbance(x, y, 30)
+  return forces.disturbance(x, y, 20)
 }
 
 const CircleParticles = () => {
@@ -41,8 +41,8 @@ const CircleParticles = () => {
       width={Number(width) > 1000 ? Number(width) * 0.8 : Number(width)}
       height={Number(height)}
       scale={calculatedScale}
-      entropy={20}
-      maxParticles={2000}
+      entropy={5}
+      maxParticles={1000}
       particleOptions={particleOptions}
       mouseMoveForce={motionForce}
       touchMoveForce={motionForce}
