@@ -8,7 +8,10 @@ import Services from '../Services/Services'
 import Vision from '../Vision/Vision'
 import ContactForm from '../ContactForm/ContactForm'
 import Footer from '../Footer/Footer'
-import InnovationImage from './InnovationImage'
+import BackgroundOrb from './BackgroundOrb'
+import CityBackground from './CityBackground'
+import ForegroundOrb from './ForegroundOrb'
+// import InnovationImage from './InnovationImage'
 
 export default function ScrollingSections() {
   const wrapperRef = useRef<HTMLDivElement | null>(null)
@@ -28,7 +31,7 @@ export default function ScrollingSections() {
       })
 
       timeline.fromTo(
-        '.mainLight',
+        '.mainOrb',
         {
           opacity: 0,
           zIndex: -20,
@@ -46,7 +49,10 @@ export default function ScrollingSections() {
   return (
     <>
       <div className="relative h-min overflow-visible" ref={wrapperRef}>
-        <InnovationImage />
+        {/* <InnovationImage /> */}
+        <BackgroundOrb />
+        <CityBackground />
+        <ForegroundOrb />
         <Innovation />
         <Projects />
         <Services />

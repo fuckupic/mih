@@ -5,12 +5,12 @@ import Hero from '../components/Hero/Hero'
 import ScrollingSections from '../components/ScrollingSections/ScrollingSections'
 import gsap from 'gsap'
 // import { useIsomorphicLayoutEffect } from '../../../helpers/isomorphicEffect'
-import InteractiveBackground from '../components/InteractiveBackground'
+// import InteractiveBackground from '../components/InteractiveBackground'
 
 const IndexPage: React.FC = () => {
   return (
     <>
-      <InteractiveBackground />
+      {/* <InteractiveBackground /> */}
       <Hero />
       <ScrollingSections />
     </>
