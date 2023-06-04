@@ -100,7 +100,7 @@ const Projects: React.FC = () => {
   }, [])
 
   return (
-    <div className="section pointer-events-none" id="projects">
+    <div className="section pointer-events-auto" id="projects">
       {/* ... */}
       <div className="w-full lg:w-[90%] relative flex flex-col lg:flex-row gap-8 z-[1] !pointer-events-auto">
         {projects

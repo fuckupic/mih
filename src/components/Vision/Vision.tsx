@@ -3,7 +3,7 @@ import ContactForm from '../ContactForm/ContactForm'
 
 const Vision: React.FC = () => {
   return (
-    <div className="section !h-min pointer-events-none">
+    <div className="section !h-min pointer-events-auto">
       <div className="sectionWrapper justify-between flex-col sm:flex-row  flex-1 items-start gap-16">
         <div className="w-full sm:w-[30%] font-tabletgothic flex flex-col gap-4">
           <div className="flex flex-col gap-2 font-medium">

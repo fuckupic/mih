@@ -77,7 +77,7 @@ const InnovationImage = () => {
       mouseMoveForce={motionForce}
       touchMoveForce={clickForce}
       backgroundColor="transparent"
-      className={`mainLight opacity-0 w-[100%] sm:w-[70%] h-auto !z-0 fixed centerAbsolute pointer-events-none md:pointer-events-auto`}
+      className={`mainLight opacity-0 w-[100%] sm:w-[70%] h-auto !z-0 fixed centerAbsolute pointer-events-auto md:pointer-events-auto`}
     />
   )
 }

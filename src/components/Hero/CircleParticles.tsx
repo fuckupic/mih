@@ -47,7 +47,7 @@ const CircleParticles = () => {
       mouseMoveForce={motionForce}
       touchMoveForce={motionForce}
       backgroundColor="transparent"
-      className="z-0 absolute pointer-events-none md:pointer-events-auto"
+      className="z-0 absolute pointer-events-auto md:pointer-events-auto"
     />
   )
 }

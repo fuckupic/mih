@@ -42,7 +42,7 @@ const ProjectsImage = () => {
       backgroundColor="transparent"
       className={`absolute max-w-[100%] bottom-[0%] left-[${Number(
         leftPercentage
-      )}%] z-0 pointer-events-none md:pointer-events-auto`}
+      )}%] z-0 pointer-events-auto md:pointer-events-auto`}
     />
   )
 }

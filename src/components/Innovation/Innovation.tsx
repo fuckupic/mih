@@ -4,8 +4,8 @@ const Innovation: React.FC = () => {
   return (
     <div className="section !mt-[14em]" id="innovation">
       <div className="sectionWrapper justify-start flex-col flex-1 items-start gap-16">
-        <div className="!h-[min] flex justify-center lg:justify-between flex-col md:flex-row flex-1 items-start gap-16 z-[1] pointer-events-none">
-          <div className="w-full lg:w-[30%] font-tabletgothic flex flex-col gap-4 z-[1] pointer-events-none">
+        <div className="!h-[min] flex justify-center lg:justify-between flex-col md:flex-row flex-1 items-start gap-16 z-[1] pointer-events-auto">
+          <div className="w-full lg:w-[30%] font-tabletgothic flex flex-col gap-4 z-[1] pointer-events-auto">
             <h3 className="headline font-semibold text-lg font-tabletgothic">
               V jakých oblastech chceme rozvíjet naše inovace?
             </h3>
@@ -18,8 +18,8 @@ const Innovation: React.FC = () => {
               <li>• sdílená doprava</li>
             </ul>
           </div>
-          <div className="w-full lg:w-[70%] relative flex flex-col gap-8 z-[1] pointer-events-none">
-            <div className="flex flex-col gap-2 pointer-events-none">
+          <div className="w-full lg:w-[70%] relative flex flex-col gap-8 z-[1] pointer-events-auto">
+            <div className="flex flex-col gap-2 pointer-events-auto">
               <h3 className="text-lg font-tabletgothic">
                 Inovace v městské a regionální dopravě
               </h3>

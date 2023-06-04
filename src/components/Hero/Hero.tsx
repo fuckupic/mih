@@ -124,11 +124,11 @@ export default function Hero() {
     >
       <div className="heroSection !z-10 p-8 lg:p-16 w-full max-w-[50%] lg:max-w-[50%] xl:max-w-[50%] 2xl:max-w-[40%] centerAbsolute sticky mx-auto text-center flex flex-col items-center justify-center gap-4">
         <div className="absolute centerAbsolute z-[3] w-[100%] md:w-[80%] flex flex-col items-center justify-center gap-2 md:gap-4">
-          <h3 className="introText font-tabletgothic z-[2] text-sm sm:text-xl pointer-events-none">
+          <h3 className="introText font-tabletgothic z-[2] text-sm sm:text-xl pointer-events-auto">
             Mobility Innovation Hub Plzeň
           </h3>
-          <div className="separator w-[90%] bg-primary border-1 border-solid h-1 z-[2] pointer-events-none "></div>
-          <h1 className="headline leading-tight sm:leading-normal text-lg sm:text-2xl lg:text-4xl font-campton font-bold z-[2] pointer-events-none">
+          <div className="separator w-[90%] bg-primary border-1 border-solid h-1 z-[2] pointer-events-auto "></div>
+          <h1 className="headline leading-tight sm:leading-normal text-lg sm:text-2xl lg:text-4xl font-campton font-bold z-[2] pointer-events-auto">
             Budoucnost městské mobility vzniká v Plzni
           </h1>
           <a
@@ -140,7 +140,7 @@ export default function Hero() {
         </div>
         <div
           ref={mainCircleRef}
-          className="mainCircle max-w-[100vw] bg-black flex justify-center items-center absolute centerAbsolute w-[175%] sm:w-[133%] md:w-[125%] lg:w-[90%] z-[1] aspect-square xl:aspect-square rounded-full pointer-events-none"
+          className="mainCircle max-w-[100vw] bg-black flex justify-center items-center absolute centerAbsolute w-[175%] sm:w-[133%] md:w-[125%] lg:w-[90%] z-[1] aspect-square xl:aspect-square rounded-full pointer-events-auto"
         ></div>
         <CircleParticles />
       </div>
