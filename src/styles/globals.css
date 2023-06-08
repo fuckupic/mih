@@ -93,6 +93,9 @@ body {
 .cls-1 {
   fill: none;
   stroke-miterlimit: 10;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 .secondaryOrb {
   /* radial gradient blue light orb with three color steps */
