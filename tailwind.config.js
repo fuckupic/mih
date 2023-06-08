@@ -20,7 +20,7 @@ module.exports = {
       },
       fontFamily: {
         campton: ['Campton', 'sans-serif'],
-        tabletgothic: ['TabletGothic', 'sans-serif'],
+        tabletgothic: ['tablet-gothic', 'sans-serif'],
       },
     },
   },
