@@ -38,7 +38,7 @@ export default function ScrollingSections() {
         },
         {
           opacity: 1,
-          width: '50%',
+          width: '40%',
         }
       )
 

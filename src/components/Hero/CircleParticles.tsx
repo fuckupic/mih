@@ -26,7 +26,7 @@ const CircleParticles = () => {
     width && height
       ? width > 1000
         ? width > 1500
-          ? Number(width) * 0.5
+          ? Number(width) * 0.7
           : Number(width) * 0.8
         : Number(width)
       : undefined
