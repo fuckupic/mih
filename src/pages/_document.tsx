@@ -12,6 +12,7 @@ export default function Document() {
           rel="stylesheet"
           href="https://use.typekit.net/xkk8bsk.css"
         ></link>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.0/MotionPathPlugin.min.js"></script>
       </Head>
       <body>
         <Main />

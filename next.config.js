@@ -14,6 +14,10 @@ module.exports = {
       __dirname,
       'node_modules/gsap/dist/ScrollSmoother.min.js'
     )
+    config.resolve.alias['MotionPathPlugin'] = path.resolve(
+      __dirname,
+      'node_modules/gsap/dist/MotionPathPlugin.min.js'
+    )
 
     return config
   },
