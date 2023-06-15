@@ -234,3 +234,7 @@ body {
     filter: drop-shadow(0 0 0 0 rgba(0, 189, 199, 0));
   }
 }
+
+.hook {
+  overflow: hidden;
+}
