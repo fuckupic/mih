@@ -5,8 +5,8 @@ import ParticleImage, { ParticleOptions, forces } from 'react-particle-image'
 
 const BackgroundOrb = () => {
   return (
-    <div className="top-0 left-0 z-[0] fixed w-[100%] h-[100%] flex items-center justify-center">
-      <div className=" rounded-full mainOrb !w-[80%] lg:!w-[40%] aspect-square "></div>
+    <div className="top-0 left-0 overflow-hidden z-[0] fixed !max-w-[100vw] w-[100%] h-[100%] flex items-center justify-center">
+      <div className="rounded-full mainOrb !w-[80%] lg:!w-[40%] aspect-square "></div>
     </div>
   )
 }

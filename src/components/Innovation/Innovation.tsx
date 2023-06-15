@@ -2,7 +2,7 @@ import React from 'react'
 
 const Innovation: React.FC = () => {
   return (
-    <div className="section !mt-[14em] lg:!mt-[28em]" id="innovation">
+    <div className="section " id="innovation">
       <div className="sectionWrapper justify-start flex-col flex-1 items-start gap-16">
         <div className="!h-[min] flex justify-center lg:justify-between flex-col md:flex-row flex-1 items-start gap-16 z-[1] pointer-events-auto">
           <div className="w-full lg:w-[30%] font-tabletgothic flex flex-col gap-4 z-[1] pointer-events-auto">

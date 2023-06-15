@@ -29,8 +29,8 @@ const clickForce = () => {
 
 const ForegroundOrb = () => {
   return (
-    <div className="top-0 left-0 z-[0] fixed w-[100%] h-[100%] flex items-center justify-center">
-      <div className=" rounded-full secondaryOrb w-[60%] aspect-square opacity-40"></div>
+    <div className="top-0 left-0 !max-w-[100vw] overflow-hidden z-[0] fixed w-[100%] h-[100%] flex items-center justify-center">
+      <div className=" rounded-full absolute secondaryOrb w-[60%] aspect-square opacity-40"></div>
       <div className=" rounded-full absolute logoOrb w-[50%] sm:w-[50%] aspect-square"></div>
     </div>
   )

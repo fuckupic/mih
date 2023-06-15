@@ -11,20 +11,43 @@
 
 @font-face {
   font-family: 'Campton';
-  font-style: bold;
+  font-weight: 700;
   src: url('fonts/Campton-Bold.woff2') format('woff2'),
     url('fonts/Campton-Bold.woff') format('woff');
 }
 
 @font-face {
   font-family: 'Campton';
-  font-style: semibold;
+  font-weight: 800;
+  src: url('fonts/Campton-ExtraBold.woff2') format('woff2'),
+    url('fonts/Campton-ExtraBold.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Campton';
+  font-weight: 600;
   src: url('fonts/Campton-SemiBold.woff2') format('woff2'),
     url('fonts/Campton-SemiBold.woff') format('woff');
 }
 
+.headline {
+  font-weight: 700 !important;
+}
+
+.word {
+  @apply centerAbsolute;
+  position: absolute;
+  z-index: 10;
+  /* center absolute div */
+  display: inline-block;
+  opacity: 1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .section {
-  @apply w-[100vw] mb-16 max-w-[100vw] flex flex-col justify-center items-center relative p-8 lg:p-16;
+  @apply w-[100vw] max-w-[100vw] flex flex-col justify-center items-center relative p-8 lg:p-16;
 }
 
 .sectionWrapper {
@@ -97,7 +120,10 @@ body {
   top: 0;
   left: 0;
 }
-.secondaryOrb {
+.secondaryOrb,
+.introOrb,
+.headlightOrb {
+  opacity: 0;
   /* radial gradient blue light orb with three color steps */
   background: radial-gradient(
     circle at 50% 50%,
@@ -107,7 +133,38 @@ body {
     rgba(0, 189, 199, 0) 100%
   );
 }
+
+.cityOrb {
+  opacity: 0;
+  /* radial gradient blue light orb with three color steps */
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(0, 189, 199, 1) 0%,
+    rgba(0, 189, 199, 0.8) 5%,
+    rgba(0, 189, 199, 0) 70%,
+    rgba(0, 189, 199, 0) 90%
+  );
+
+  animation: cityOrbAnimation 2s ease-in-out infinite;
+}
+
+@keyframes cityOrbAnimation {
+  0% {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+}
+
 .logoOrb {
+  opacity: 0;
   /* radial gradient blue light orb with three color steps */
   background: radial-gradient(
     circle at 50% 50%,
@@ -146,6 +203,7 @@ body {
 }
 
 .smallFrontOrb {
+  opacity: 0;
   background: radial-gradient(
     circle at 50% 50%,
     rgba(0, 189, 199, 1) 0%,
@@ -157,4 +215,22 @@ body {
   height: 2rem;
   opacity: 0.5;
   position: absolute;
+}
+
+/* apply animation glow here */
+.future {
+  animation: glow 1s ease-in-out infinite;
+}
+
+/* animation - rapid outside glow that grows and then shrinks back (something like expecto patronum) */
+@keyframes glow {
+  0% {
+    filter: drop-shadow(0 0 0 0 rgba(0, 189, 199, 0.7));
+  }
+  50% {
+    filter: drop-shadow(0 0 0 50px rgba(0, 189, 199, 0));
+  }
+  100% {
+    filter: drop-shadow(0 0 0 0 rgba(0, 189, 199, 0));
+  }
 }

@@ -1,30 +1,8 @@
 import React, { useState, useEffect } from 'react'
+import useDeviceType from '../../hooks/useDeviceType'
 
 const CityBackground: React.FC = () => {
-  const [deviceType, setDeviceType] = useState<'mobile' | 'tablet' | 'desktop'>(
-    'desktop'
-  )
-
-  useEffect(() => {
-    const handleResize = () => {
-      const width = window.innerWidth
-      if (width <= 768) {
-        setDeviceType('mobile')
-      } else if (width > 768 && width <= 1024) {
-        setDeviceType('tablet')
-      } else {
-        setDeviceType('desktop')
-      }
-    }
-
-    handleResize()
-
-    window.addEventListener('resize', handleResize)
-
-    return () => {
-      window.removeEventListener('resize', handleResize)
-    }
-  }, [])
+  const deviceType = useDeviceType()
 
   const cityBlockImage = (key: number) => {
     let src2 = './images/rightPart 3.svg'
