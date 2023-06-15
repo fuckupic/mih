@@ -68,10 +68,10 @@ export default function Hero() {
         opacity: 1,
         autoAlpha: 1,
         scale: 0.5,
-        y: -50,
+        y: 0,
       },
       {
-        y: 10,
+        y: 0,
         scale: 0,
         repeat: 4,
         autoAlpha: 0,
@@ -89,7 +89,7 @@ export default function Hero() {
       '.future',
       {
         opacity: 0,
-        y: 10,
+        y: 0,
       },
       {
         opacity: 1,
@@ -120,7 +120,7 @@ export default function Hero() {
       switch (index) {
         case 0:
           // expectoAnimation.play()
-          tl.to(word, { autoAlpha: 1, y: 0, scale: 1.1 })
+          tl.to(word, { autoAlpha: 1, y: 0, scale: 1.5 })
           tl.to(
             word,
             {
@@ -140,76 +140,61 @@ export default function Hero() {
             {
               autoAlpha: 0,
               opacity: 0,
-              y: () =>
-                hookRef.current
-                  ? `-${hookRef.current.offsetHeight / 4 - 100}`
-                  : '0',
               duration: 0.5,
+              scale: 1.5,
               ease: 'power1.out',
             },
             0
           )
-          tl.to(word, { autoAlpha: 1, y: 0, ease: 'none' }, '<')
-          tl.to(word, { y: 0, scale: 1.5, ease: 'power2.out' }, '>')
-          tl.to(word, { autoAlpha: 0 }, '>')
+          tl.to(word, { autoAlpha: 1, scale: 1, y: 0, ease: 'none' }, '<')
+          tl.to(word, { autoAlpha: 0, y: 0, ease: 'power2.out' }, '>')
           break
         case 2:
-          tl.fromTo(
-            word,
-            {
-              autoAlpha: 0,
-              y: 0,
-              scale: 1.5,
-              ease: 'power1.inOut',
-            },
-            { autoAlpha: 1, scale: 1 }
-          )
-          tl.to(word, { autoAlpha: 1, y: 50, ease: 'power1.in' }, '>')
-          tl.to(
-            word,
-            {
-              autoAlpha: 1,
-              y: () =>
-                hookRef.current
-                  ? `-${hookRef.current.offsetHeight / 4 - 100}`
-                  : '0',
-              ease: 'power1.out',
-            },
-            '>'
-          )
-          tl.to(word, { autoAlpha: 0 }, '>')
-
-          break
-        case 3:
-          tl.fromTo(
+          tl.from(
             word,
             {
               autoAlpha: 0,
               opacity: 0,
-              y: 100,
-              ease: 'power1.inOut',
+              duration: 0.5,
+              scale: 1.5,
+              ease: 'power1.out',
             },
-            { autoAlpha: 1, opacity: 1, y: 0, scale: 1.1 }
+            0
           )
-          tl.to(word, { autoAlpha: 1, y: 0, ease: 'power1.in' }, '>')
-          tl.to(
+          tl.to(word, { autoAlpha: 1, scale: 1, y: 0, ease: 'none' }, '<')
+          tl.to(word, { autoAlpha: 0, y: 0, ease: 'power2.out' }, '>')
+          break
+        case 3:
+          tl.from(
             word,
             {
               autoAlpha: 0,
-              y: () =>
-                hookRef.current
-                  ? `-${hookRef.current.offsetHeight / 4 - 100}`
-                  : '0',
+              opacity: 0,
+              duration: 0.5,
+              scale: 1.5,
               ease: 'power1.out',
             },
-            '>'
+            0
           )
+          tl.to(word, { autoAlpha: 1, scale: 1, y: 0, ease: 'none' }, '<')
           tl.to(logoOrb, { autoAlpha: 1, opacity: 1, ease: 'power1.in' }, '<')
           tl.to(logoOrb, { autoAlpha: 1, scale: 1, ease: 'power1.in' }, '>')
+          tl.to(word, { autoAlpha: 0, y: 0, ease: 'power2.out' }, '>')
 
           break
         case 4:
-          tl.to(word, { autoAlpha: 1, opacity: 1 }, 0)
+          tl.from(
+            word,
+            {
+              autoAlpha: 0,
+              opacity: 0,
+              duration: 0.5,
+              scale: 1.5,
+              ease: 'power1.out',
+            },
+            0
+          )
+
           tl.to(
             mainOrb,
             {
@@ -233,7 +218,8 @@ export default function Hero() {
             },
             '<'
           )
-          tl.to(word, { autoAlpha: 0, opacity: 0 }, '>')
+          tl.to(word, { autoAlpha: 1, scale: 1, y: 0, ease: 'none' }, '<')
+          tl.to(word, { autoAlpha: 0, y: 0, ease: 'power2.out' }, '>')
           break
       }
 
@@ -280,12 +266,12 @@ export default function Hero() {
         className="hook cityWrapper overflow-hidden relative !h-[100vh] flex justify-center items-center"
       >
         {/* object svg */}
-        <div className="rounded-full absolute cityOrb !w-[40rem] z-[0] aspect-square !opacity-100"></div>
-        <img
+        {/* <div className="rounded-full absolute cityOrb !w-[40rem] z-[0] aspect-square !opacity-100"></div> */}
+        {/* <img
           src="./images/cityFrontBackground.svg"
           className=" z-[2] !w-[200%] sm:w-![100vw] absolute bottom-0"
           alt=""
-        />
+        /> */}
       </div>
       <div className="hook mobilityWrapper !w-[100%] max-w-[100vw]  !h-[100vh] relative">
         <div
