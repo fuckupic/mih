@@ -248,11 +248,11 @@ export default function Hero() {
 
   return (
     <div
-      className=" max-w-[100vw] !w-[100vw] !h-[500vh] !relative "
+      className=" max-w-[100vw] !w-[100vw] !h-[500vh] !relative bg-gradient-to-b from-black to-transparent z-[1]"
       id="hero"
       ref={mainWrapper}
     >
-      <div className="hook sticky z-[2] top-0 left-0 w-[100vw] h-[100vh] flex intems-center justify-center">
+      <div className="hook sticky z-[2] top-0 left-0 w-[100vw] h-[100vh] flex intems-center justify-center ">
         <div className="rounded-full fixed introOrb w-[10rem] z-[2] aspect-square !opacity-100"></div>
         <h1
           className=" headline leading-tight sm:leading-none  text-6xl sm:text-8xl lg:text-[10rem] font-campton z-[2] pointer-events-auto"
@@ -283,7 +283,7 @@ export default function Hero() {
         <div className="rounded-full absolute cityOrb !w-[40rem] z-[0] aspect-square !opacity-100"></div>
         <img
           src="./images/cityFrontBackground.svg"
-          className=" z-[0] !w-[200%] sm:w-![100vw] absolute bottom-0"
+          className=" z-[2] !w-[200%] sm:w-![100vw] absolute bottom-0"
           alt=""
         />
       </div>
@@ -300,21 +300,7 @@ export default function Hero() {
         </div>
       </div>
       <div className="hook bornsWrapper !h-[100vh]"></div>
-      <div className="hook pilsenWrapper overflow-hidden relative !h-[100vh]">
-        <div className="w-[100%] h-[100%] absolute flex flex-row gap-[2] !z-[1]">
-          <div className="w-[49%] h-[100%] flex flex-col items-start justify-start relative gap-2">
-            <img src="./images/rightPart 3.svg" alt="" />
-          </div>
-          <div className="w-[2%] h-[100%] flex flex-col relative gap-12"></div>
-          <div className="w-[49%] h-[100%] flex flex-col items-end justify-start relative gap-2">
-            <img
-              src="./images/rightPart 3.svg"
-              className="right-0 top-0 transform rotate-180"
-              alt=""
-            />
-          </div>
-        </div>
-      </div>
+      <div className="hook pilsenWrapper overflow-hidden relative !h-[100vh]"></div>
     </div>
   )
 }

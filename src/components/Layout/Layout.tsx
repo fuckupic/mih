@@ -16,7 +16,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           />
         </div>
       </header>
-      <main>{children}</main>{' '}
+      <main className="relative">{children}</main>{' '}
       {/* Add paddingTop to prevent content from being hidden behind the header */}
     </div>
   )

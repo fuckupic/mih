@@ -32,18 +32,18 @@ const CityBackground: React.FC = () => {
   }
 
   return (
-    <div className="top-0 left-0 z-[0] absolute w-[100%] h-[100%] flex items-start justify-center overflow-hidden">
-      <div className="w-[100%] h-[100%] relative flex flex-row gap-[2] z-10">
+    <div className="top-0 left-0 z-[0] absolute !w-[100%] !h-[100%] flex items-start justify-center overflow-hidden">
+      <div className="!w-[100%] !h-[100%] relative flex flex-row gap-[2] z-10">
         <div className="w-[49%] h-[100%] flex flex-col items-start justify-start relative gap-2">
           {deviceType === 'mobile'
-            ? Array.from({ length: 20 }, (_, i) => cityBlockImage(i))
-            : cityBlockImage(0)}
+            ? Array.from({ length: 30 }, (_, i) => cityBlockImage(i))
+            : Array.from({ length: 5 }, (_, i) => cityBlockImage(i))}
         </div>
         <div className="w-[2%] h-[100%] flex flex-col relative gap-12"></div>
         <div className="w-[49%] h-[100%] flex flex-col items-end justify-start relative gap-2">
           {deviceType === 'mobile'
-            ? Array.from({ length: 20 }, (_, i) => reversedCityBlockImage(i))
-            : reversedCityBlockImage(0)}
+            ? Array.from({ length: 30 }, (_, i) => reversedCityBlockImage(i))
+            : Array.from({ length: 5 }, (_, i) => reversedCityBlockImage(i))}
         </div>
       </div>
     </div>

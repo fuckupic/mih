@@ -61,7 +61,6 @@ export default function ScrollingSections() {
       <div className="relative h-min overflow-visible" ref={wrapperRef}>
         {/* <InnovationImage /> */}
         <BackgroundOrb />
-        <CityBackground />
         <ForegroundOrb />
         <Innovation />
         <Projects />
