@@ -248,7 +248,7 @@ export default function Hero() {
       </div>
       <div className="hook mobilityWrapper !w-[100%] !h-[100vh] relative">
         <div
-          className="light absolute left- !h-[5rem] !w-[100vw]"
+          className="light absolute overflow-x-hidden !h-[5rem] !w-[100vw]"
           style={{ top: '50%' }}
         >
           <div className="rounded-full absolute headlightOrb !w-[3rem] z-[0] aspect-square !opacity-100 bg-red-500"></div>
