@@ -94,7 +94,6 @@ export default function Hero() {
           start: `${index === 0 ? ' top' : `top bottom`}`,
           end: 'bottom center',
           scrub: true,
-          markers: true,
         },
       })
 
