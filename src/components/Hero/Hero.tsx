@@ -170,7 +170,7 @@ export default function Hero() {
             },
             0
           )
-          tl.to(mainOrb, { opacity: 1, scale: 1.2, ease: 'power2.in' }, '<')
+          tl.to(mainOrb, { opacity: 1, scale: 0.7, ease: 'power2.in' }, '<')
           tl.to(mainOrb, { opacity: 1, scale: 0.5, ease: 'power2.in' }, '>')
           tl.to(mainOrb, { opacity: 0, scale: 0.5, ease: 'power2.in' }, '>')
           tl.to(word, { autoAlpha: 0, x: 0, ease: 'power3.inOut' }, '<')
