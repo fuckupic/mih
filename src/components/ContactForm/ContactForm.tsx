@@ -69,7 +69,7 @@ const ContactForm: React.FC = () => {
 
   return (
     // your form code here with some modifications to the form controls
-    <div className="section !h-min">
+    <div className="section !h-min z-[2]">
       <div className="sectionWrapper flex-col !justify-start flex-1 items-start gap-16">
         <div className=" w-full sm:w-[70%] justify-start relative flex flex-col gap-8">
           <div className="flex flex-col gap-2">

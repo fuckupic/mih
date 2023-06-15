@@ -2,7 +2,7 @@ import React from 'react'
 
 const Services: React.FC = () => {
   return (
-    <div className="section pointer-events-auto">
+    <div className="section pointer-events-auto z-[2]">
       <div className="sectionWrapper relative flex-col flex-1 items-center justify-center text-center gap-16">
         <div className="w-[70%] justify-center relative flex flex-col gap-8">
           <div className="flex flex-col gap-4">

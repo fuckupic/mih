@@ -3,7 +3,7 @@ import ContactForm from '../ContactForm/ContactForm'
 
 const Vision: React.FC = () => {
   return (
-    <div className="section !h-min pointer-events-auto">
+    <div className="section !h-min pointer-events-auto z-[2]">
       <div className="sectionWrapper justify-between flex-col sm:flex-row  flex-1 items-start gap-16">
         <div className="w-full sm:w-[30%] font-tabletgothic flex flex-col gap-4">
           <div className="flex flex-col gap-2 font-medium">
@@ -27,7 +27,7 @@ const Vision: React.FC = () => {
         <div className="w-full sm:w-[70%] relative flex flex-col gap-8">
           <div className="flex flex-col gap-2">
             <h3 className="text-lg font-tabletgothic">Plzeň 2050</h3>
-            <div className="separator w-[90%] bg-primary border-1 border-solid h-1 z-[1] "></div>
+            <div className="separator w-[90%] bg-primary border-1 border-solid h-1 z-[2] "></div>
             <h2 className="font-campton text-3xl font-semibold">
               Plzeň budoucnosti funguje na souladu autonomní a klasické dopravy
               v harmonii s přirozeným pohybem lidí. Je zdrojem řešení pro mnohá
