@@ -109,7 +109,7 @@ export default function Hero() {
               y: 0,
               ease: 'power1.inOut',
             },
-            { scale: 1.1 }
+            { autoAlpha: 1, scale: 1.1 }
           )
 
           tl.to(word, { autoAlpha: 1, y: 50, ease: 'power1.in' }, '>')
@@ -125,6 +125,7 @@ export default function Hero() {
             },
             '>'
           )
+          tl.to(word, { autoAlpha: 0 })
           break
         case 1:
           tl.from(
@@ -143,6 +144,7 @@ export default function Hero() {
           )
           tl.to(word, { autoAlpha: 1, y: 0, ease: 'none' }, '<')
           tl.to(word, { y: 0, scale: 1.5, ease: 'power2.out' }, '>')
+          tl.to(word, { autoAlpha: 0 }, '>')
           break
         case 2:
           tl.from(word, { autoAlpha: 0, x: 50, ease: 'power1.in' }, 0)
@@ -184,7 +186,7 @@ export default function Hero() {
             mainOrb,
             {
               opacity: 0,
-              scale: 0.5,
+              scale: 1,
               ease: 'power3.inOut',
             },
             '>'
