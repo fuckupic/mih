@@ -121,7 +121,7 @@ export default function Hero() {
                 hookRef.current
                   ? `-${hookRef.current.offsetHeight / 4 - 100}`
                   : '0',
-              ease: 'power1.in',
+              ease: 'power1.out',
             },
             '>'
           )
@@ -153,8 +153,10 @@ export default function Hero() {
           tl.from(word, { autoAlpha: 0, x: 0, ease: 'power1.in' }, 0)
           tl.to(word, { autoAlpha: 1, y: -100, ease: 'power3.inOut' }, '>')
           tl.to(logoOrb, { autoAlpha: 1, opacity: 1, ease: 'power1.in' }, '<')
-          tl.from(mainOrb, { autoAlpha: 0, opacity: 0, ease: 'power1.in' }, '>')
-          tl.to(mainOrb, { autoAlpha: 1, opacity: 0.5, ease: 'power1.in' }, '<')
+          tl.to(logoOrb, { autoAlpha: 1, scale: 2, ease: 'power1.in' }, '>')
+          tl.to(logoOrb, { autoAlpha: 1, scale: 1, ease: 'power1.in' }, '>')
+
+          // tl.to(mainOrb, { autoAlpha: 1, opacity: 0.5, ease: 'power1.in' }, '<')
 
           break
         case 4:
@@ -168,11 +170,20 @@ export default function Hero() {
             },
             0
           )
-          tl.from(mainOrb, { opacity: 1, scale: 0.7, ease: 'power1.in' }, '<')
+          // tl.from(mainOrb, { opacity: 1, scale: 0.7, ease: 'power1.in' }, '<')
           tl.to(
             mainOrb,
             {
               opacity: 1,
+              scale: 0.5,
+              ease: 'power3.inOut',
+            },
+            '>'
+          )
+          tl.to(
+            mainOrb,
+            {
+              opacity: 0,
               scale: 0.5,
               ease: 'power3.inOut',
             },
