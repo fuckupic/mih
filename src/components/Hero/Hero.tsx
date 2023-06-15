@@ -155,7 +155,6 @@ export default function Hero() {
           tl.to(logoOrb, { autoAlpha: 1, opacity: 1, ease: 'power1.in' }, '<')
           tl.from(mainOrb, { autoAlpha: 0, opacity: 0, ease: 'power1.in' }, '>')
           tl.to(mainOrb, { autoAlpha: 1, opacity: 0.5, ease: 'power1.in' }, '<')
-          tl.to(word, { autoAlpha: 0, ease: 'power2.in' }, '<')
 
           break
         case 4:
@@ -169,10 +168,16 @@ export default function Hero() {
             },
             0
           )
-          tl.to(mainOrb, { opacity: 1, scale: 0.7, ease: 'power2.in' }, '<')
-          tl.to(mainOrb, { opacity: 1, scale: 0.5, ease: 'power2.in' }, '>')
-          tl.to(mainOrb, { opacity: 0, scale: 0.5, ease: 'power2.in' }, '>')
-          tl.to(word, { autoAlpha: 0, x: 0, ease: 'power3.inOut' }, '<')
+          tl.from(mainOrb, { opacity: 1, scale: 0.7, ease: 'power1.in' }, '<')
+          tl.to(
+            mainOrb,
+            {
+              opacity: 1,
+              scale: 0.5,
+              ease: 'power3.inOut',
+            },
+            '>'
+          )
           // tl.to(word, { autoAlpha: 0, scale: 1, ease: 'power2.in' })
 
           break
