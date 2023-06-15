@@ -125,10 +125,6 @@ export default function Hero() {
             word,
             {
               autoAlpha: 0,
-              y: () =>
-                hookRef.current
-                  ? `${hookRef.current.offsetHeight / 4 - 100}`
-                  : '0',
               ease: 'power1.out',
             },
             '>'
