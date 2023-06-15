@@ -121,10 +121,19 @@ body {
   left: 0;
 }
 .secondaryOrb,
-.introOrb,
 .headlightOrb {
   opacity: 0;
   /* radial gradient blue light orb with three color steps */
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(0, 189, 199, 1) 0%,
+    rgba(0, 189, 199, 0.8) 20%,
+    rgba(0, 189, 199, 0) 70%,
+    rgba(0, 189, 199, 0) 100%
+  );
+}
+
+.introOrb {
   background: radial-gradient(
     circle at 50% 50%,
     rgba(0, 189, 199, 1) 0%,

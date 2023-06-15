@@ -65,24 +65,42 @@ export default function Hero() {
       introOrb,
       {
         bottom: '0',
-        opacity: 0,
+        opacity: 1,
+        autoAlpha: 1,
         scale: 0.5,
         y: -50,
       },
       {
         y: 10,
-        scale: 0.2,
-        repeat: -1,
+        scale: 0,
+        repeat: 4,
+        autoAlpha: 0,
         duration: 1,
-        opacity: 0.2,
+        opacity: 0,
         yoyo: true,
         ease: 'power1.inOut',
         bottom: '0',
-        paused: true, // Initially paused, will be played after it appears.
       }
     )
 
     expectoAnimation.play()
+
+    const heroIntro = gsap.fromTo(
+      '.future',
+      {
+        opacity: 0,
+        y: 10,
+      },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: 'power1.inOut',
+        paused: true,
+      }
+    )
+
+    heroIntro.play()
 
     words.forEach((word, index) => {
       // Setting up the unique hook for each word
@@ -102,30 +120,19 @@ export default function Hero() {
       switch (index) {
         case 0:
           // expectoAnimation.play()
-          tl.fromTo(
-            word,
-            {
-              autoAlpha: 1,
-              y: 0,
-              ease: 'power1.inOut',
-            },
-            { autoAlpha: 1, scale: 1.1 }
-          )
-
-          tl.to(word, { autoAlpha: 1, y: 50, ease: 'power1.in' }, '>')
+          tl.to(word, { autoAlpha: 1, y: 0, scale: 1.1 })
           tl.to(
             word,
             {
-              autoAlpha: 1,
+              autoAlpha: 0,
               y: () =>
                 hookRef.current
-                  ? `-${hookRef.current.offsetHeight / 4 - 100}`
+                  ? `${hookRef.current.offsetHeight / 4 - 100}`
                   : '0',
               ease: 'power1.out',
             },
             '>'
           )
-          tl.to(word, { autoAlpha: 0 })
           break
         case 1:
           tl.from(
@@ -147,32 +154,62 @@ export default function Hero() {
           tl.to(word, { autoAlpha: 0 }, '>')
           break
         case 2:
-          tl.from(word, { autoAlpha: 0, x: 50, ease: 'power1.in' }, 0)
-          tl.to(word, { autoAlpha: 1, x: 0, ease: 'none' }, '>')
-          tl.to(word, { autoAlpha: 1, x: 150, ease: 'power2.in' }, '>')
+          tl.fromTo(
+            word,
+            {
+              autoAlpha: 0,
+              y: 0,
+              scale: 1.5,
+              ease: 'power1.inOut',
+            },
+            { autoAlpha: 1, scale: 1 }
+          )
+          tl.to(word, { autoAlpha: 1, y: 50, ease: 'power1.in' }, '>')
+          tl.to(
+            word,
+            {
+              autoAlpha: 1,
+              y: () =>
+                hookRef.current
+                  ? `-${hookRef.current.offsetHeight / 4 - 100}`
+                  : '0',
+              ease: 'power1.out',
+            },
+            '>'
+          )
+          tl.to(word, { autoAlpha: 0 }, '>')
+
           break
         case 3:
-          tl.from(word, { autoAlpha: 0, x: 0, ease: 'power1.in' }, 0)
-          tl.to(word, { autoAlpha: 1, y: -100, ease: 'power3.inOut' }, '>')
+          tl.fromTo(
+            word,
+            {
+              autoAlpha: 0,
+              opacity: 0,
+              y: 100,
+              ease: 'power1.inOut',
+            },
+            { autoAlpha: 1, opacity: 1, y: 0, scale: 1.1 }
+          )
+          tl.to(word, { autoAlpha: 1, y: 0, ease: 'power1.in' }, '>')
+          tl.to(
+            word,
+            {
+              autoAlpha: 0,
+              y: () =>
+                hookRef.current
+                  ? `-${hookRef.current.offsetHeight / 4 - 100}`
+                  : '0',
+              ease: 'power1.out',
+            },
+            '>'
+          )
           tl.to(logoOrb, { autoAlpha: 1, opacity: 1, ease: 'power1.in' }, '<')
-          tl.to(logoOrb, { autoAlpha: 1, scale: 2, ease: 'power1.in' }, '>')
           tl.to(logoOrb, { autoAlpha: 1, scale: 1, ease: 'power1.in' }, '>')
-
-          // tl.to(mainOrb, { autoAlpha: 1, opacity: 0.5, ease: 'power1.in' }, '<')
 
           break
         case 4:
-          tl.fromTo(
-            word,
-            { autoAlpha: 0, y: -100, ease: 'power1.in' },
-            {
-              autoAlpha: 1,
-              y: 0,
-              ease: 'power3.inOut',
-            },
-            0
-          )
-          // tl.from(mainOrb, { opacity: 1, scale: 0.7, ease: 'power1.in' }, '<')
+          tl.to(word, { autoAlpha: 1, opacity: 1 }, 0)
           tl.to(
             mainOrb,
             {
@@ -180,19 +217,23 @@ export default function Hero() {
               scale: 0.5,
               ease: 'power3.inOut',
             },
-            '>'
+            0 // Start at the same time as the word animation
           )
+          tl.to(mainOrb, {
+            opacity: 1,
+            scale: 1,
+            ease: 'power3.inOut',
+          })
           tl.to(
             mainOrb,
             {
-              opacity: 0,
+              opacity: 0.5,
               scale: 1,
               ease: 'power3.inOut',
             },
-            '>'
+            '<'
           )
-          // tl.to(word, { autoAlpha: 0, scale: 1, ease: 'power2.in' })
-
+          tl.to(word, { autoAlpha: 0, opacity: 0 }, '>')
           break
       }
 
@@ -212,7 +253,7 @@ export default function Hero() {
       ref={mainWrapper}
     >
       <div className="hook sticky z-[2] top-0 left-0 w-[100vw] h-[100vh] flex intems-center justify-center">
-        <div className="rounded-full absolute introOrb w-[10rem] z-[2] aspect-square !opacity-100"></div>
+        <div className="rounded-full fixed introOrb w-[10rem] z-[2] aspect-square !opacity-100"></div>
         <h1
           className=" headline leading-tight sm:leading-none  text-6xl sm:text-8xl lg:text-[10rem] font-campton z-[2] pointer-events-auto"
           ref={headlineRef}
@@ -251,11 +292,11 @@ export default function Hero() {
           className="light absolute !h-[5rem] max-w-[100vw] !w-[100vw]"
           style={{ top: '50%' }}
         >
-          <div className="rounded-full absolute headlightOrb !w-[3rem] z-[0] aspect-square !opacity-100 bg-red-500"></div>
+          {/* <div className="rounded-full absolute headlightOrb !w-[3rem] z-[0] aspect-square !opacity-100 bg-red-500"></div>
           <div className="rounded-full absolute headlightOrb !w-[1rem] z-[0] aspect-square !opacity-80 bg-green-500"></div>
           <div className="rounded-full absolute headlightOrb !w-[4rem] z-[0] aspect-square !opacity-80 bg-green-500"></div>
           <div className="rounded-full absolute headlightOrb !w-[4rem] z-[0] aspect-square !opacity-80 bg-green-500"></div>
-          <div className="rounded-full absolute headlightOrb !w-[6rem] z-[0] aspect-square !opacity-60 bg-blue-500"></div>
+          <div className="rounded-full absolute headlightOrb !w-[6rem] z-[0] aspect-square !opacity-60 bg-blue-500"></div> */}
         </div>
       </div>
       <div className="hook bornsWrapper !h-[100vh]"></div>

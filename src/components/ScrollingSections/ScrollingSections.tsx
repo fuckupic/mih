@@ -33,7 +33,7 @@ export default function ScrollingSections() {
       timeline.fromTo(
         '.mainOrb',
         {
-          opacity: 0,
+          opacity: 0.5,
           width: '5%',
         },
         {
