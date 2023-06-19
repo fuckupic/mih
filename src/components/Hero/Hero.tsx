@@ -19,48 +19,6 @@ export default function Hero() {
     const introOrb = document.querySelector('.introOrb')
     const words = document.querySelectorAll('.word')
 
-    const expectoAnimation = gsap.fromTo(
-      introOrb,
-      {
-        bottom: '0',
-        opacity: 1,
-        autoAlpha: 1,
-        scale: 0.5,
-        y: 0,
-      },
-      {
-        y: 0,
-        scale: 0,
-        repeat: 4,
-        autoAlpha: 0,
-        duration: 1,
-        opacity: 0,
-        yoyo: true,
-        ease: 'power1.inOut',
-        bottom: '0',
-      }
-    )
-    expectoAnimation.play()
-
-    const heroIntro = gsap.fromTo(
-      '.future',
-      {
-        opacity: 0,
-        y: 0,
-      },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: 'power1.inOut',
-        onComplete: () => {
-          gsap.set('.future', { clearProps: 'all' })
-        },
-      }
-    )
-
-    heroIntro.play()
-
     words.forEach((word, index) => {
       // Setting up the unique hook for each word
       const hookClass = index === 0 ? 'sticky' : `${word.classList[1]}Wrapper`
@@ -86,15 +44,6 @@ export default function Hero() {
           scale: index === 0 ? 0.8 : 1,
           duration: 1,
           ease: 'power2.inOut',
-          onStart: () => {
-            if (index > 0) {
-              gsap.to('.future', {
-                opacity: 0,
-                duration: 0.2,
-                ease: 'power1.inOut',
-              })
-            }
-          },
         },
         0
       )
@@ -118,7 +67,7 @@ export default function Hero() {
       ref={mainWrapper}
     >
       <div className="sticky z-[2] top-0 left-0 w-[100vw] !h-[100vh] flex intems-center justify-center ">
-        <div className="rounded-full fixed introOrb w-[10rem] z-[2] aspect-square !opacity-100 "></div>
+        {/* <div className="rounded-full fixed introOrb w-[10rem] z-[2] aspect-square !opacity-100 "></div> */}
         <h1
           className=" headline leading-tight sm:leading-none  text-6xl sm:text-8xl lg:text-[10rem] font-campton z-[2] pointer-events-auto"
           ref={headlineRef}
