@@ -172,6 +172,7 @@ body {
 }
 
 .logoOrb {
+  opacity: 0;
   /* radial gradient blue light orb with three color steps */
   background: radial-gradient(
     circle at 50% 50%,
@@ -243,5 +244,5 @@ body {
 }
 
 .hook {
-  overflow: hidden;
+  @apply h-[50vh] sm:!h-[100vh] overflow-hidden;
 }

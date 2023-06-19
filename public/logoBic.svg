@@ -1,32 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg id="Vrstva_1" data-name="Vrstva 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 280.14 100.84">
+<svg id="Vrstva_1" data-name="Vrstva 1" xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 280.14 100.84">
   <defs>
     <style>
       .cls-1 {
-        fill: none;
+      fill: none;
       }
 
       .cls-2 {
-        fill: #fff;
-        font-family: Campton-Bold, Campton;
-        font-size: 135px;
-        font-weight: 700;
+      clip-path: url(#clippath);
       }
 
       .cls-3 {
-        clip-path: url(#clippath);
+      fill: #fff;
       }
 
       .cls-4 {
-        fill: #52bfa1;
+      fill: #52bfa1;
       }
     </style>
     <clipPath id="clippath">
-      <polygon class="cls-1" points="0 0 0 100.84 230.09 100.84 230.09 60.29 195.09 60.29 195.09 40.29 230.09 40.29 230.09 0 0 0"/>
+      <polygon class="cls-1"
+        points="0 0 0 100.84 230.09 100.84 230.09 60.29 195.09 60.29 195.09 40.29 230.09 40.29 230.09 0 0 0" />
     </clipPath>
   </defs>
-  <polygon class="cls-4" points="280.14 55.88 250.77 80.49 243.95 73.05 265.25 50.3 243.95 27.75 250.77 20.1 280.14 44.92 280.14 55.88"/>
-  <g class="cls-3">
-    <text class="cls-2" transform="translate(-3.58 96.19)"><tspan x="0" y="0">BIC</tspan></text>
+  <polygon class="cls-4"
+    points="280.14 55.88 250.77 80.49 243.95 73.05 265.25 50.3 243.95 27.75 250.77 20.1 280.14 44.92 280.14 55.88" />
+  <g class="cls-2">
+    <g>
+      <path class="cls-3"
+        d="M83.63,70.68c0,15.25-12.28,25.51-32.94,25.51H4.52V4.4H47.99c19.98,0,31.59,9.45,31.59,24.43,0,8.5-4.72,17.28-12.69,20.11,11.21,2.43,16.74,11.88,16.74,21.73ZM27.34,23.03v19.17h17.14c8.64,0,13.37-4.32,13.37-10.26s-4.59-8.91-13.37-8.91H27.34Zm34.02,44.68c0-5.67-4.72-8.91-13.23-8.91H27.34v18.49h20.38c9.45,0,13.63-4.18,13.63-9.58Z" />
+      <path class="cls-3" d="M119.27,4.4V96.19h-22.81V4.4h22.81Z" />
+      <path class="cls-3"
+        d="M204.45,58.12h23.49c-2.97,23.76-21.06,39.82-46.03,39.82-27.67,0-48.6-19.98-48.6-47.65S154.23,2.64,181.91,2.64c24.97,0,43.06,16.06,46.03,39.82h-23.49c-2.43-11.47-10.53-18.49-22.68-18.49-14.98,0-25.38,11.07-25.38,26.32s10.39,26.32,25.38,26.32c12.15,0,20.25-7.02,22.68-18.49Z" />
+    </g>
   </g>
 </svg>

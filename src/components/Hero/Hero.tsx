@@ -15,16 +15,7 @@ export default function Hero() {
   const mainWrapper = useRef<HTMLDivElement>(null)
   const hookRef = useRef<HTMLDivElement>(null)
 
-  // const handleScrollToInnovation = () => {
-  //   const innovationSection = document.getElementById('innovation')
-  //   if (innovationSection) {
-  //     innovationSection.scrollIntoView({ behavior: 'smooth' })
-  //   }
-  // }
-
   useIsomorphicLayoutEffect(() => {
-    const mainOrb = document.querySelector('.mainOrb')
-    const logoOrb = document.querySelector('.logoOrb')
     const introOrb = document.querySelector('.introOrb')
     const words = document.querySelectorAll('.word')
 
@@ -122,12 +113,12 @@ export default function Hero() {
 
   return (
     <div
-      className=" max-w-[100vw] !w-[100vw] !h-[500vh] !relative  z-[1]"
+      className=" max-w-[100vw] !w-[100vw] !h-[250vh] sm:!h-[500vh] !relative  z-[1]"
       id="hero"
       ref={mainWrapper}
     >
-      <div className="hook sticky z-[2] top-0 left-0 w-[100vw] h-[100vh] flex intems-center justify-center ">
-        <div className="rounded-full fixed introOrb w-[10rem] z-[2] aspect-square !opacity-100"></div>
+      <div className="sticky z-[2] top-0 left-0 w-[100vw] !h-[100vh] flex intems-center justify-center ">
+        <div className="rounded-full fixed introOrb w-[10rem] z-[2] aspect-square !opacity-100 "></div>
         <h1
           className=" headline leading-tight sm:leading-none  text-6xl sm:text-8xl lg:text-[10rem] font-campton z-[2] pointer-events-auto"
           ref={headlineRef}
@@ -151,17 +142,9 @@ export default function Hero() {
       </div>
       <div
         ref={hookRef}
-        className="hook cityWrapper overflow-hidden relative !h-[100vh] flex justify-center items-center"
-      >
-        {/* object svg */}
-        {/* <div className="rounded-full absolute cityOrb !w-[40rem] z-[0] aspect-square !opacity-100"></div> */}
-        {/* <img
-          src="./images/cityFrontBackground.svg"
-          className=" z-[2] !w-[200%] sm:w-![100vw] absolute bottom-0"
-          alt=""
-        /> */}
-      </div>
-      <div className="hook mobilityWrapper !w-[100%] max-w-[100vw]  !h-[100vh] relative">
+        className="hook cityWrapper overflow-hidden relative  flex justify-center items-center"
+      ></div>
+      <div className="hook mobilityWrapper !w-[100%] max-w-[100vw]   relative">
         <div
           className="light absolute !h-[5rem] max-w-[100vw] !w-[100vw]"
           style={{ top: '50%' }}
@@ -173,8 +156,8 @@ export default function Hero() {
           <div className="rounded-full absolute headlightOrb !w-[6rem] z-[0] aspect-square !opacity-60 bg-blue-500"></div> */}
         </div>
       </div>
-      <div className="hook bornsWrapper !h-[100vh]"></div>
-      <div className="hook pilsenWrapper overflow-hidden relative !h-[100vh]"></div>
+      <div className="hook bornsWrapper "></div>
+      <div className="hook pilsenWrapper overflow-hidden relative "></div>
     </div>
   )
 }

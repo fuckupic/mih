@@ -119,7 +119,7 @@ const ContactForm: React.FC = () => {
                 onChange={handleChange}
                 className="select inputField"
               >
-                <option value="">Select an option...</option>
+                <option value="">Vyber možnost...</option>
                 <option value="partnership">Partnerství</option>
                 <option value="personalMobility">Osobní mobilita</option>
                 <option value="cargoMobility">Nákladní mobilita</option>
