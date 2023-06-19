@@ -13,6 +13,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             src="logoWhite_circle.svg"
             alt="Logo white"
             style={{ height: '50px' }}
+            className="logo"
           />
         </div>
       </header>

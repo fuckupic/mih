@@ -231,7 +231,8 @@ body {
 }
 
 /* add fade-in to the h1 */
-h1 {
+h1,
+.logo {
   animation: fadeIn 0.5s ease-in-out;
 }
 

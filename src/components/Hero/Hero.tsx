@@ -62,7 +62,7 @@ export default function Hero() {
 
   return (
     <div
-      className=" max-w-[100vw] !w-[100vw] !h-[250vh] sm:!h-[500vh] !relative  z-[1]"
+      className=" max-w-[100vw] !w-[100vw] !h-[300vh] sm:!h-[500vh] !relative  z-[1]"
       id="hero"
       ref={mainWrapper}
     >
@@ -106,7 +106,7 @@ export default function Hero() {
         </div>
       </div>
       <div className="hook bornsWrapper "></div>
-      <div className="hook pilsenWrapper overflow-hidden relative "></div>
+      <div className="hook !h-[100vh] pilsenWrapper overflow-hidden relative "></div>
     </div>
   )
 }
