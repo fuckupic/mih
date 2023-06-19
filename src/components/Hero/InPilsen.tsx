@@ -109,7 +109,7 @@ export default function City() {
     >
       <div className="heroSection !z-10 p-8 lg:p-16 w-full max-w-[90%]  2xl:max-w-[40%] sticky mx-auto text-center flex flex-col items-center justify-center gap-4">
         <div className="absolute centerAbsolute z-[3] w-[100%]  flex flex-col items-center justify-center gap-2 md:gap-4">
-          <h1 className="headline  leading-tight sm:leading-normal sm:text-4xl lg:text-[10rem] font-campton z-[2] pointer-events-auto">
+          <h1 className="headline  leading-tight sm:leading-normal sm:text-6xl lg:text-[10rem] font-campton z-[2] pointer-events-auto">
             v Plzni
           </h1>
         </div>

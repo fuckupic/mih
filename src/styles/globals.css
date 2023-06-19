@@ -99,10 +99,8 @@ body {
 }
 
 .mainOrb {
+  /* opacity: 70%; */
   /* radial gradient blue light orb with three color steps */
-  left: 50%;
-  top: 50%;
-  opacity: 0.5;
   background: radial-gradient(
     circle at 50% 50%,
     rgba(0, 189, 199, 1) 0%,
@@ -174,12 +172,11 @@ body {
 }
 
 .logoOrb {
-  opacity: 0;
   /* radial gradient blue light orb with three color steps */
   background: radial-gradient(
     circle at 50% 50%,
-    rgba(0, 189, 199, 1) 0%,
-    rgba(0, 189, 199, 1) 1%,
+    rgb(27, 216, 226) 0%,
+    rgba(27, 216, 226) 1%,
     rgba(0, 189, 199, 0) 1.2%,
     rgba(0, 189, 199, 0) 100%
   );

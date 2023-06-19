@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Vrstva_1" data-name="Vrstva 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 280.14 100.84">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+      }
+
+      .cls-2 {
+        fill: #fff;
+        font-family: Campton-Bold, Campton;
+        font-size: 135px;
+        font-weight: 700;
+      }
+
+      .cls-3 {
+        clip-path: url(#clippath);
+      }
+
+      .cls-4 {
+        fill: #52bfa1;
+      }
+    </style>
+    <clipPath id="clippath">
+      <polygon class="cls-1" points="0 0 0 100.84 230.09 100.84 230.09 60.29 195.09 60.29 195.09 40.29 230.09 40.29 230.09 0 0 0"/>
+    </clipPath>
+  </defs>
+  <polygon class="cls-4" points="280.14 55.88 250.77 80.49 243.95 73.05 265.25 50.3 243.95 27.75 250.77 20.1 280.14 44.92 280.14 55.88"/>
+  <g class="cls-3">
+    <text class="cls-2" transform="translate(-3.58 96.19)"><tspan x="0" y="0">BIC</tspan></text>
+  </g>
+</svg>

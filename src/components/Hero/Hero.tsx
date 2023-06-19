@@ -80,6 +80,7 @@ export default function Hero() {
           start: `${index === 0 ? ' top bottom' : `top bottom`}`,
           end: 'bottom center',
           scrub: true,
+          // Only enable the animation if heroIntro has been completed
         },
       })
 

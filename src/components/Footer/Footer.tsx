@@ -7,13 +7,13 @@ const ContactForm: React.FC = () => {
         {/* just 3 white logos in flex-row justify-between items-center */}
         <div className="flex flex-row gap-4 justify-between items-center w-[50%]">
           <div className="flex flex-col gap-4">
-            <img className="w-[100px]" src="/whiteLogo.svg" alt="logo" />
+            <img className="w-[100px]" src="/logoBic.svg" alt="logo" />
           </div>
           <div className="flex flex-col gap-4">
             <img className="w-[100px]" src="/whiteLogo.svg" alt="logo" />
           </div>
           <div className="flex flex-col gap-4">
-            <img className="w-[100px]" src="/whiteLogo.svg" alt="logo" />
+            <img className="w-[100px]" src="/pineLogo.png" alt="logo" />
           </div>
         </div>
       </div>
