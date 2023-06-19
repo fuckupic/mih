@@ -230,6 +230,11 @@ body {
   animation: glow 1s ease-in-out infinite;
 }
 
+/* add fade-in to the h1 */
+h1 {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
 /* animation - rapid outside glow that grows and then shrinks back (something like expecto patronum) */
 @keyframes glow {
   0% {
@@ -245,4 +250,14 @@ body {
 
 .hook {
   @apply h-[50vh] sm:!h-[100vh] overflow-hidden;
+}
+
+/* fade in animation */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
