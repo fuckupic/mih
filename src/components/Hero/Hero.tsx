@@ -116,17 +116,30 @@ export default function Hero() {
       })
 
       // Animation for each word
-      tl.from(
+      tl.fromTo(
         word,
         {
           opacity: index === 0 ? 1 : 0,
           scale: 1.2,
-          ease: 'power1.out',
+        },
+        {
+          opacity: 1,
+          scale: 1,
+          duration: 1,
+          ease: 'power2.inOut',
         },
         0
       )
-      tl.to(word, { opacity: 1, scale: 1, y: 0, ease: 'none' }, '<')
-      tl.to(word, { opacity: 0, y: 0, ease: 'power2.out' }, '>')
+      tl.to(
+        word,
+        {
+          opacity: 0,
+          scale: 1.2,
+          duration: 1,
+          ease: 'power2.inOut',
+        },
+        '>'
+      )
     })
 
     // Separate timeline for logoOrb
