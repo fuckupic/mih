@@ -66,7 +66,7 @@ export default function Hero() {
       id="hero"
       ref={mainWrapper}
     >
-      <div className="sticky z-[2] top-0 left-0 w-[100vw] !h-[100vh] flex intems-center justify-center ">
+      <div className=" sticky z-[2] top-0 left-0 w-[100vw] !h-[100vh] flex intems-center overflow-hidden justify-center ">
         {/* <div className="rounded-full fixed introOrb w-[10rem] z-[2] aspect-square !opacity-100 "></div> */}
         <h1
           className=" headline leading-tight sm:leading-none  text-6xl sm:text-8xl lg:text-[10rem] font-campton z-[2] pointer-events-auto"
