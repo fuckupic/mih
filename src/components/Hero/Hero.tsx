@@ -28,39 +28,6 @@ export default function Hero() {
     const introOrb = document.querySelector('.introOrb')
     const words = document.querySelectorAll('.word')
 
-    const headlights = document.querySelectorAll('.headlightOrb')
-
-    const moveLights = (headlight: gsap.TweenTarget) => {
-      const timeline = gsap.timeline({
-        repeat: -1,
-        yoyo: true,
-      })
-
-      const randomDuration = Math.random() * 5 + 3 // Between 3 and 8 seconds
-      const randomY = Math.random() * 300 - 100 // Between -100 and 100 pixels
-
-      timeline
-        .fromTo(
-          headlight,
-          {
-            x: '0',
-            opacity: 0,
-            autoAlpha: 0,
-          },
-          {
-            x: '100vw',
-            y: randomY,
-            opacity: 1,
-            autoAlpha: 1,
-            duration: randomDuration,
-            ease: 'sine.inOut',
-          }
-        )
-        .to(headlight, { opacity: 0 })
-    }
-
-    headlights.forEach(moveLights)
-
     const expectoAnimation = gsap.fromTo(
       introOrb,
       {
@@ -82,7 +49,6 @@ export default function Hero() {
         bottom: '0',
       }
     )
-
     expectoAnimation.play()
 
     const heroIntro = gsap.fromTo(
@@ -96,7 +62,9 @@ export default function Hero() {
         y: 0,
         duration: 1,
         ease: 'power1.inOut',
-        paused: true,
+        onComplete: () => {
+          gsap.set('.future', { clearProps: 'all' })
+        },
       }
     )
 
@@ -120,11 +88,11 @@ export default function Hero() {
         word,
         {
           opacity: index === 0 ? 1 : 0,
-          scale: 1.2,
+          scale: index === 0 ? 1 : 1.2,
         },
         {
           opacity: 1,
-          scale: 1,
+          scale: index === 0 ? 0.8 : 1,
           duration: 1,
           ease: 'power2.inOut',
         },
@@ -141,30 +109,6 @@ export default function Hero() {
         '>'
       )
     })
-
-    // Separate timeline for logoOrb
-    const logoOrbTl = gsap.timeline({
-      scrollTrigger: {
-        trigger: '.hookClassForLogoOrb', // Replace this with the proper hook for logoOrb
-        start: 'top bottom',
-        end: 'bottom center',
-        scrub: true,
-      },
-    })
-    logoOrbTl.to(logoOrb, { autoAlpha: 1, opacity: 1, ease: 'power1.in' }, '<')
-    logoOrbTl.to(logoOrb, { autoAlpha: 1, scale: 1, ease: 'power1.in' }, '>')
-
-    // Separate timeline for mainOrb
-    const mainOrbTl = gsap.timeline({
-      scrollTrigger: {
-        trigger: '.hookClassForMainOrb', // Replace this with the proper hook for mainOrb
-        start: 'top bottom',
-        end: 'bottom center',
-        scrub: true,
-      },
-    })
-    mainOrbTl.to(mainOrb, { opacity: 1, scale: 1, ease: 'power3.inOut' })
-    mainOrbTl.to(mainOrb, { opacity: 0.5, scale: 1, ease: 'power3.inOut' }, '<')
   }, [])
 
   return (

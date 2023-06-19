@@ -71,8 +71,6 @@
 }
 
 .centerAbsolute {
-  top: 50%;
-  left: 50%;
   transform: translate(-50%, -50%);
 }
 
@@ -102,6 +100,9 @@ body {
 
 .mainOrb {
   /* radial gradient blue light orb with three color steps */
+  left: 50%;
+  top: 50%;
+  opacity: 0.5;
   background: radial-gradient(
     circle at 50% 50%,
     rgba(0, 189, 199, 1) 0%,
