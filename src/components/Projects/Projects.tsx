@@ -123,15 +123,15 @@ const Modal: React.FC<{
           )}
         </div>
         <div className="w-[100%] h-[1px] bg-primary opacity-20"></div>
-        <div className="w-[100%] flex flex-row relative gap-8">
-          <div className="flex flex-col gap-2 w-[70%] max-w-[70%]">
+        <div className="w-[100%] flex flex-col sm:flex-row relative gap-8">
+          <div className="flex flex-col gap-2 w-[100%] sm:w-[70%] max-w-[100%]  sm:max-w-[70%]">
             <h5>Popis:</h5>
             <div
               className="text-md leading-relaxed p-0"
               dangerouslySetInnerHTML={{ __html: project.content.rendered }}
             />
           </div>
-          <div className="flex flex-col gap-4 w-[30%] max-w-[30%]">
+          <div className="flex flex-col gap-4 w-[100%] sm:w-[30%] max-w-[100%] sm:max-w-[30%]">
             <button
               id="modal_contact"
               className="btn btn-primary"
