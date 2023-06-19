@@ -80,7 +80,6 @@ export default function Hero() {
           start: `${index === 0 ? ' top bottom' : `top bottom`}`,
           end: 'bottom center',
           scrub: true,
-          // Only enable the animation if heroIntro has been completed
         },
       })
 
@@ -96,6 +95,15 @@ export default function Hero() {
           scale: index === 0 ? 0.8 : 1,
           duration: 1,
           ease: 'power2.inOut',
+          onStart: () => {
+            if (index > 0) {
+              gsap.to('.future', {
+                opacity: 0,
+                duration: 0.2,
+                ease: 'power1.inOut',
+              })
+            }
+          },
         },
         0
       )
