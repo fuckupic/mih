@@ -109,7 +109,7 @@ export default function Hero() {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: `.${hookClass}`,
-          start: `${index === 0 ? ' top' : `top bottom`}`,
+          start: `${index === 0 ? ' top bottom' : `top bottom`}`,
           end: 'bottom center',
           scrub: true,
         },
@@ -119,8 +119,7 @@ export default function Hero() {
       tl.from(
         word,
         {
-          opacity: 0,
-          duration: 0.5,
+          opacity: index === 0 ? 1 : 0,
           scale: 1.2,
           ease: 'power1.out',
         },
@@ -157,7 +156,7 @@ export default function Hero() {
 
   return (
     <div
-      className=" max-w-[100vw] !w-[100vw] !h-[500vh] !relative bg-gradient-to-b from-black to-transparent z-[1]"
+      className=" max-w-[100vw] !w-[100vw] !h-[500vh] !relative  z-[1]"
       id="hero"
       ref={mainWrapper}
     >

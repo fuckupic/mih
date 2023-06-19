@@ -35,7 +35,7 @@
 }
 
 .word {
-  @apply centerAbsolute;
+  @apply centerAbsolute pointer-events-none;
   position: absolute;
   z-index: 10;
   /* center absolute div */
