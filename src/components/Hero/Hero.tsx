@@ -16,48 +16,51 @@ export default function Hero() {
   const hookRef = useRef<HTMLDivElement>(null)
 
   useIsomorphicLayoutEffect(() => {
-    const introOrb = document.querySelector('.introOrb')
-    const words = document.querySelectorAll('.word')
+    const ctx = gsap.context(() => {
+      const introOrb = document.querySelector('.introOrb')
+      const words = document.querySelectorAll('.word')
 
-    words.forEach((word, index) => {
-      // Setting up the unique hook for each word
-      const hookClass = index === 0 ? 'sticky' : `${word.classList[1]}Wrapper`
+      words.forEach((word, index) => {
+        // Setting up the unique hook for each word
+        const hookClass = index === 0 ? 'sticky' : `${word.classList[1]}Wrapper`
 
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: `.${hookClass}`,
-          start: `${index === 0 ? ' top bottom' : `top bottom`}`,
-          end: 'bottom center',
-          scrub: true,
-        },
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: `.${hookClass}`,
+            start: `${index === 0 ? ' top bottom' : `top bottom`}`,
+            end: 'bottom center',
+            scrub: true,
+          },
+        })
+
+        // Animation for each word
+        tl.fromTo(
+          word,
+          {
+            opacity: index === 0 ? 1 : 0,
+            scale: index === 0 ? 1 : 1.2,
+          },
+          {
+            opacity: 1,
+            scale: index === 0 ? 0.8 : 1,
+            duration: 1,
+            ease: 'power2.inOut',
+          },
+          0
+        )
+        tl.to(
+          word,
+          {
+            opacity: 0,
+            scale: 1.2,
+            duration: 1,
+            ease: 'power2.inOut',
+          },
+          '>'
+        )
       })
-
-      // Animation for each word
-      tl.fromTo(
-        word,
-        {
-          opacity: index === 0 ? 1 : 0,
-          scale: index === 0 ? 1 : 1.2,
-        },
-        {
-          opacity: 1,
-          scale: index === 0 ? 0.8 : 1,
-          duration: 1,
-          ease: 'power2.inOut',
-        },
-        0
-      )
-      tl.to(
-        word,
-        {
-          opacity: 0,
-          scale: 1.2,
-          duration: 1,
-          ease: 'power2.inOut',
-        },
-        '>'
-      )
-    })
+    }, mainWrapper)
+    return () => ctx.revert()
   }, [])
 
   return (

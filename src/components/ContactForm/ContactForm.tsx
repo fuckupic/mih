@@ -69,7 +69,7 @@ const ContactForm: React.FC = () => {
 
   return (
     // your form code here with some modifications to the form controls
-    <div className="section !h-min z-[2]">
+    <div id="contact_form" className="section !h-min z-[2]">
       <div className="sectionWrapper flex-col !justify-start flex-1 items-start gap-16">
         <div className=" w-full sm:w-[70%] justify-start relative flex flex-col gap-8">
           <div className="flex flex-col gap-2">
@@ -141,7 +141,7 @@ const ContactForm: React.FC = () => {
                   rows={8}
                 />
               </div>
-              <button className="btn btn-primary w-28" type="submit">
+              <button className="btn btn-primary w-28 send" type="submit">
                 Odeslat
               </button>
             </div>

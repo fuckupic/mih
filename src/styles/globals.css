@@ -55,11 +55,15 @@
 }
 
 .cardCarousel {
-  @apply text-left border w-[100%] sm:w-[70%] rounded-lg bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-60 border-primary p-4 flex flex-col items-start font-tabletgothic justify-end relative !pointer-events-auto cursor-pointer transition hover:scale-105;
+  @apply text-left overflow-hidden border w-[100%] sm:w-[70%] rounded-lg bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-60 border-primary p-4 flex flex-col items-start font-tabletgothic justify-between relative !pointer-events-auto cursor-pointer transition hover:scale-105;
+}
+
+.projectCarousel {
+  @apply text-left border w-[100%]  rounded-lg bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-60 border-primary p-4 flex flex-col items-start font-tabletgothic justify-between relative !pointer-events-auto cursor-pointer transition hover:scale-105;
 }
 
 .modalCarousel {
-  @apply text-left border w-[100%] rounded-lg bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-60 border-primary p-4 flex flex-col items-start font-tabletgothic justify-end relative !pointer-events-auto transition;
+  @apply border w-[100%] rounded-lg bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-60 border-primary font-tabletgothic relative !pointer-events-auto transition;
 }
 
 .cardGradient {
@@ -84,6 +88,10 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+}
+
+h5 {
+  @apply text-neutral-400 text-sm;
 }
 
 body {
@@ -234,6 +242,56 @@ body {
 h1,
 .logo {
   animation: fadeIn 0.5s ease-in-out;
+}
+
+/* cursors setup */
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  z-index: 999;
+}
+
+.cursor::before {
+  content: '';
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+}
+.piu {
+  display: block;
+  font-size: 1rem;
+  opacity: 0;
+}
+.piu.active {
+  display: block;
+  margin-top: 31.3%;
+}
+
+.cursor-follower {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(255, 255, 255, 0.1);
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  z-index: 999;
+  user-select: none;
+  pointer-events: none;
+  /* transform: translate(4px, 4px); */
 }
 
 /* animation - rapid outside glow that grows and then shrinks back (something like expecto patronum) */
