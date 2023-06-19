@@ -115,117 +115,44 @@ export default function Hero() {
         },
       })
 
-      // Creating a timeline for each word with its own ScrollTrigger
-      // Unique animations for each word
-      switch (index) {
-        case 0:
-          // expectoAnimation.play()
-          tl.to(word, { autoAlpha: 1, y: 0, scale: 1.5 })
-          tl.to(
-            word,
-            {
-              autoAlpha: 0,
-              ease: 'power1.out',
-            },
-            '>'
-          )
-          break
-        case 1:
-          tl.from(
-            word,
-            {
-              autoAlpha: 0,
-              opacity: 0,
-              duration: 0.5,
-              scale: 1.5,
-              ease: 'power1.out',
-            },
-            0
-          )
-          tl.to(word, { autoAlpha: 1, scale: 1, y: 0, ease: 'none' }, '<')
-          tl.to(word, { autoAlpha: 0, y: 0, ease: 'power2.out' }, '>')
-          break
-        case 2:
-          tl.from(
-            word,
-            {
-              autoAlpha: 0,
-              opacity: 0,
-              duration: 0.5,
-              scale: 1.5,
-              ease: 'power1.out',
-            },
-            0
-          )
-          tl.to(word, { autoAlpha: 1, scale: 1, y: 0, ease: 'none' }, '<')
-          tl.to(word, { autoAlpha: 0, y: 0, ease: 'power2.out' }, '>')
-          break
-        case 3:
-          tl.from(
-            word,
-            {
-              autoAlpha: 0,
-              opacity: 0,
-              duration: 0.5,
-              scale: 1.5,
-              ease: 'power1.out',
-            },
-            0
-          )
-          tl.to(word, { autoAlpha: 1, scale: 1, y: 0, ease: 'none' }, '<')
-          tl.to(logoOrb, { autoAlpha: 1, opacity: 1, ease: 'power1.in' }, '<')
-          tl.to(logoOrb, { autoAlpha: 1, scale: 1, ease: 'power1.in' }, '>')
-          tl.to(word, { autoAlpha: 0, y: 0, ease: 'power2.out' }, '>')
-
-          break
-        case 4:
-          tl.from(
-            word,
-            {
-              autoAlpha: 0,
-              opacity: 0,
-              duration: 0.5,
-              scale: 1.5,
-              ease: 'power1.out',
-            },
-            0
-          )
-
-          tl.to(
-            mainOrb,
-            {
-              opacity: 1,
-              scale: 0.5,
-              ease: 'power3.inOut',
-            },
-            0 // Start at the same time as the word animation
-          )
-          tl.to(mainOrb, {
-            opacity: 1,
-            scale: 1,
-            ease: 'power3.inOut',
-          })
-          tl.to(
-            mainOrb,
-            {
-              opacity: 0.5,
-              scale: 1,
-              ease: 'power3.inOut',
-            },
-            '<'
-          )
-          tl.to(word, { autoAlpha: 1, scale: 1, y: 0, ease: 'none' }, '<')
-          tl.to(word, { autoAlpha: 0, y: 0, ease: 'power2.out' }, '>')
-          break
-      }
-
-      // Fade-out
-      tl.to(
+      // Animation for each word
+      tl.from(
         word,
-        { autoAlpha: 0, ease: 'power2.inOut' },
-        1 // starts at the end of the timeline
+        {
+          opacity: 0,
+          duration: 0.5,
+          scale: 1.2,
+          ease: 'power1.out',
+        },
+        0
       )
+      tl.to(word, { opacity: 1, scale: 1, y: 0, ease: 'none' }, '<')
+      tl.to(word, { opacity: 0, y: 0, ease: 'power2.out' }, '>')
     })
+
+    // Separate timeline for logoOrb
+    const logoOrbTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: '.hookClassForLogoOrb', // Replace this with the proper hook for logoOrb
+        start: 'top bottom',
+        end: 'bottom center',
+        scrub: true,
+      },
+    })
+    logoOrbTl.to(logoOrb, { autoAlpha: 1, opacity: 1, ease: 'power1.in' }, '<')
+    logoOrbTl.to(logoOrb, { autoAlpha: 1, scale: 1, ease: 'power1.in' }, '>')
+
+    // Separate timeline for mainOrb
+    const mainOrbTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: '.hookClassForMainOrb', // Replace this with the proper hook for mainOrb
+        start: 'top bottom',
+        end: 'bottom center',
+        scrub: true,
+      },
+    })
+    mainOrbTl.to(mainOrb, { opacity: 1, scale: 1, ease: 'power3.inOut' })
+    mainOrbTl.to(mainOrb, { opacity: 0.5, scale: 1, ease: 'power3.inOut' }, '<')
   }, [])
 
   return (
