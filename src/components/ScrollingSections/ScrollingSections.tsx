@@ -1,4 +1,4 @@
-import React, { useRef, useContext, useState } from 'react'
+import React, { useRef, useContext, useState, useEffect } from 'react'
 import gsap from 'gsap'
 import ScrollTrigger from 'ScrollTrigger'
 import { useIsomorphicLayoutEffect } from '../../../helpers/isomorphicEffect'
@@ -11,12 +11,25 @@ import Footer from '../Footer/Footer'
 import BackgroundOrb from './BackgroundOrb'
 import CityBackground from './CityBackground'
 import ForegroundOrb from './ForegroundOrb'
+import axios from 'axios'
+
 // import InnovationImage from './InnovationImage'
 
 export default function ScrollingSections() {
   const wrapperRef = useRef<HTMLDivElement | null>(null)
 
+  const [data, setData] = useState<any>(null)
+
   useIsomorphicLayoutEffect(() => {
+    axios
+      .get('https://mih-admin.plzen.eu/wp-json/wp/v2/pages/2')
+      .then((response) => {
+        setData(response.data.acf)
+      })
+      .catch((error) => {
+        console.error('There was an error!', error)
+      })
+
     gsap.registerPlugin(ScrollTrigger)
     const ctx = gsap.context(() => {
       const timeline = gsap.timeline({
@@ -56,14 +69,17 @@ export default function ScrollingSections() {
     return () => ctx.revert()
   }, [])
 
+  if (data === null) {
+    return <div>Loading...</div>
+  }
+
   return (
     <>
       <div className="relative h-min overflow-visible" ref={wrapperRef}>
-        {/* <InnovationImage /> */}
-        <Innovation />
-        <Projects />
-        <Services />
-        <Vision />
+        <Innovation blockData={data.block_1} />
+        <Projects blockData={data.block_2} />
+        <Services blockData={data.block_3} />
+        <Vision blockData={data.block_4} />
         <ContactForm />
         <Footer />
       </div>

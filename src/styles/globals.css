@@ -320,3 +320,58 @@ h1,
     opacity: 1;
   }
 }
+
+/* In your CSS file, e.g., App.css */
+/* modal-insight.css */
+
+.modal-insight p {
+  line-height: 1.6;
+  font-weight: normal;
+  margin-bottom: 16px;
+}
+
+.modal-insight h1,
+.modal-insight h2,
+.modal-insight h3,
+.modal-insight h4,
+.modal-insight h5,
+.modal-insight h6 {
+  margin-bottom: 20px;
+}
+
+.modal-insight h1 {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.modal-insight h2 {
+  font-size: 1.75em;
+  font-weight: bold;
+}
+
+.modal-insight h3 {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.modal-insight h4 {
+  font-size: 1.25em;
+  font-weight: bold;
+}
+
+.modal-insight h5 {
+  font-size: 1em;
+  font-weight: bold;
+}
+
+.modal-insight h6 {
+  font-size: 0.875em;
+  font-weight: bold;
+}
+
+.modal-insight span {
+  line-height: 1.6;
+  font-weight: normal;
+}
+
+/* Add other styles as necessary */

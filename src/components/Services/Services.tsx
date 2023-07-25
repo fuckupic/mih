@@ -1,3 +1,9 @@
+import { BlockData } from '../../types/dataTypes'
+
+interface ServiceProps {
+  blockData: BlockData
+}
+
 import React, { useState, useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 
@@ -5,20 +11,22 @@ interface Service {
   id: number
   title: { rendered: string }
   content: { rendered: string }
-  _embedded?: {
+  _links?: {
     'wp:featuredmedia'?: [
       {
         media_details?: {
           sizes?: {
-            medium?: {
+            full?: {
               source_url?: string
             }
           }
         }
         source_url?: string
+        href?: string
       }
     ]
   }
+  imageUrl?: string
 }
 
 const Modal: React.FC<{
@@ -75,13 +83,19 @@ const Modal: React.FC<{
     )
   }, [])
 
-  const featuredMedia = service._embedded?.['wp:featuredmedia']?.[0] ?? null
-  const mediaUrl =
-    featuredMedia?.media_details?.sizes?.medium?.source_url ||
-    featuredMedia?.source_url ||
-    ''
+  const imageUrl =
+    service._links &&
+    service._links['wp:featuredmedia'] &&
+    service._links['wp:featuredmedia'][0] &&
+    service._links['wp:featuredmedia'][0].media_details &&
+    service._links['wp:featuredmedia'][0].media_details.sizes &&
+    service._links['wp:featuredmedia'][0].media_details.sizes.full &&
+    service._links['wp:featuredmedia'][0].media_details.sizes.full.source_url
+      ? service._links['wp:featuredmedia'][0].media_details.sizes.full
+          .source_url
+      : ''
 
-  console.log(mediaUrl)
+  console.log('This is an image url', imageUrl)
 
   return (
     <div
@@ -106,18 +120,18 @@ const Modal: React.FC<{
           </button>
         </div>
         <div className="w-[100%] h-[1px] bg-primary opacity-20"></div>
-        <div className="w-[100%] flex flex-row items-end">
+        <div className="w-[100%] gap-4 flex flex-row items-end">
           <div className="w-[50%] max-w-[50%] flex flex-col gap-1">
             <h5>Název:</h5>
             <h3 className="text-2xl sm:text-4xl font-semibold">
               {service.title.rendered}
             </h3>
           </div>
-          {mediaUrl && (
+          {service.imageUrl && (
             <img
-              src={mediaUrl}
+              src={service.imageUrl}
               alt="Featured Media"
-              className="w-[50%] max-w-[50%] rounded-lg modalCarousel"
+              className="w-[150%] max-w-[150%] sm:w-[50%] sm:max-w-[50%] rounded-md modalCarousel"
             />
           )}
         </div>
@@ -126,7 +140,7 @@ const Modal: React.FC<{
           <div className="flex flex-col gap-2 w-[100%] sm:w-[70%] max-w-[100%]  sm:max-w-[70%]">
             <h5>Popis:</h5>
             <div
-              className="text-md leading-relaxed p-0"
+              className="text-md leading-relaxed p-0 modal-insight"
               dangerouslySetInnerHTML={{ __html: service.content.rendered }}
             />
           </div>
@@ -152,30 +166,74 @@ const Modal: React.FC<{
   )
 }
 
-const Services: React.FC = () => {
+const Services: React.FC<ServiceProps> = ({ blockData }) => {
   const [services, setServices] = useState<Service[]>([])
   const [selectedService, setSelectedService] = useState<Service | null>(null)
 
   useEffect(() => {
-    fetch('https://mihplzen.k8s-dev.plzen.eu/wp-json/wp/v2/services?_embed')
-      .then((response) => response.json())
-      .then((data) => setServices(data))
+    const fetchServiceData = async () => {
+      const response = await fetch(
+        'https://mih-admin.plzen.eu/wp-json/wp/v2/services'
+      )
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`)
+      }
+      const servicesData = await response.json()
+      console.log('Services data:', servicesData)
+
+      const updatedServicesData = await Promise.all(
+        servicesData.map(async (service: Service) => {
+          if (
+            service._links &&
+            service._links['wp:featuredmedia'] &&
+            service._links['wp:featuredmedia'][0] &&
+            service._links['wp:featuredmedia'][0].href
+          ) {
+            console.log('Single service data:', service)
+            console.log(
+              'Service media details:',
+              service._links['wp:featuredmedia'][0]
+            )
+            const mediaResponse = await fetch(
+              service._links['wp:featuredmedia'][0].href
+            )
+            if (!mediaResponse.ok) {
+              throw new Error(`HTTP error! status: ${mediaResponse.status}`)
+            }
+            const mediaData = await mediaResponse.json()
+            if (
+              mediaData.media_details &&
+              mediaData.media_details.sizes &&
+              mediaData.media_details.sizes.full &&
+              mediaData.media_details.sizes.full.source_url
+            ) {
+              const imageUrl = mediaData.media_details.sizes.full.source_url
+              console.log('Image URL:', imageUrl)
+              return { ...service, imageUrl } // Attach the imageUrl to each service
+            }
+          }
+          return service
+        })
+      )
+
+      setServices(updatedServicesData)
+    }
+
+    fetchServiceData().catch((error) =>
+      console.error('Error fetching services:', error)
+    )
   }, [])
+
   return (
     <div className="section pointer-events-auto z-[3]">
       <div className="sectionWrapper relative flex-col flex-1 items-center justify-center text-center gap-8">
         <div className="w-[70%] justify-center relative flex flex-col gap-8">
           <div className="flex flex-col gap-4">
-            <h3 className="text-lg font-tabletgothic">Naše služby</h3>
+            <h3 className="text-lg font-tabletgothic">{blockData.subtitle}</h3>
             <h2 className="font-campton text-3xl font-semibold">
-              Co nabízí MIH Plzeň
+              {blockData.title}
             </h2>
-            <div className="font-tabletgothic ">
-              Inspirujeme mladou generaci k inovacím a experimentování a zároveň
-              je propojujeme s mentory, podnikately, renomovanými firmami v
-              regionu a investory. Inovativní Plzeň je kolébkou budoucích řešení
-              městské mobility.
-            </div>
+            <div className="font-tabletgothic ">{blockData.description}</div>
           </div>
         </div>
         <div className="w-[100%] flex flex-col sm:flex-row  gap-8 place-items-start">
@@ -186,7 +244,10 @@ const Services: React.FC = () => {
               <div
                 className="service cardCarousel sm:aspect-square max-w-[100%] sm:max-w-[30%] pointer-events-auto"
                 key={service.id}
-                onClick={() => setSelectedService(service)}
+                onClick={() => {
+                  setSelectedService(service)
+                  console.log('Selected service:', service)
+                }}
               >
                 <div className="from-primary to-lightblue cardGradient !opacity-10 pointer-events-none"></div>
                 <h5 className="text-white pointer-events-none">MIH Služba</h5>

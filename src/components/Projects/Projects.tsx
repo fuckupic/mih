@@ -1,21 +1,29 @@
+import { BlockData } from '../../types/dataTypes'
+
 import React, { useState, useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
+
+interface ProjectProps {
+  blockData: BlockData
+}
 
 interface Project {
   id: number
   title: { rendered: string }
   content: { rendered: string }
-  _embedded?: {
+  imageUrl?: string
+  _links?: {
     'wp:featuredmedia'?: [
       {
         media_details?: {
           sizes?: {
-            medium?: {
+            full?: {
               source_url?: string
             }
           }
         }
         source_url?: string
+        href?: string
       }
     ]
   }
@@ -76,13 +84,19 @@ const Modal: React.FC<{
     )
   }, [])
 
-  const featuredMedia = project._embedded?.['wp:featuredmedia']?.[0] ?? null
-  const mediaUrl =
-    featuredMedia?.media_details?.sizes?.medium?.source_url ||
-    featuredMedia?.source_url ||
-    ''
+  const imageUrl =
+    project._links &&
+    project._links['wp:featuredmedia'] &&
+    project._links['wp:featuredmedia'][0] &&
+    project._links['wp:featuredmedia'][0].media_details &&
+    project._links['wp:featuredmedia'][0].media_details.sizes &&
+    project._links['wp:featuredmedia'][0].media_details.sizes.full &&
+    project._links['wp:featuredmedia'][0].media_details.sizes.full.source_url
+      ? project._links['wp:featuredmedia'][0].media_details.sizes.full
+          .source_url
+      : ''
 
-  console.log(mediaUrl)
+  console.log('This is an image url', imageUrl)
 
   return (
     <div
@@ -107,18 +121,18 @@ const Modal: React.FC<{
           </button>
         </div>
         <div className="w-[100%] h-[1px] bg-primary opacity-20"></div>
-        <div className="w-[100%] flex flex-row items-end">
+        <div className="w-[100%] gap-4 flex flex-row items-end">
           <div className="w-[50%] max-w-[50%] flex flex-col gap-1">
             <h5>Název:</h5>
             <h3 className="text-2xl sm:text-4xl font-semibold">
               {project.title.rendered}
             </h3>
           </div>
-          {mediaUrl && (
+          {project.imageUrl && (
             <img
-              src={mediaUrl}
+              src={project.imageUrl}
               alt="Featured Media"
-              className="w-[50%] max-w-[50%] rounded-lg modalCarousel"
+              className="w-[150%] max-w-[150%] sm:w-[50%] sm:max-w-[50%] rounded-md modalCarousel"
             />
           )}
         </div>
@@ -127,7 +141,7 @@ const Modal: React.FC<{
           <div className="flex flex-col gap-2 w-[100%] sm:w-[70%] max-w-[100%]  sm:max-w-[70%]">
             <h5>Popis:</h5>
             <div
-              className="text-md leading-relaxed p-0"
+              className="text-md leading-relaxed p-0 modal-insight"
               dangerouslySetInnerHTML={{ __html: project.content.rendered }}
             />
           </div>
@@ -153,14 +167,62 @@ const Modal: React.FC<{
   )
 }
 
-const Projects: React.FC = () => {
+const Projects: React.FC<ProjectProps> = ({ blockData }) => {
   const [projects, setProjects] = useState<any[]>([])
   const [selectedProject, setSelectedProject] = useState<any>(null)
 
   useEffect(() => {
-    fetch('https://mihplzen.k8s-dev.plzen.eu/wp-json/wp/v2/projects')
-      .then((response) => response.json())
-      .then((data) => setProjects(data))
+    const fetchProjectData = async () => {
+      const response = await fetch(
+        'https://mih-admin.plzen.eu/wp-json/wp/v2/projects'
+      )
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`)
+      }
+      const servicesData = await response.json()
+      console.log('Projects data:', servicesData)
+
+      const updatedProjectsData = await Promise.all(
+        servicesData.map(async (project: Project) => {
+          if (
+            project._links &&
+            project._links['wp:featuredmedia'] &&
+            project._links['wp:featuredmedia'][0] &&
+            project._links['wp:featuredmedia'][0].href
+          ) {
+            console.log('Single project data:', project)
+            console.log(
+              'Project media details:',
+              project._links['wp:featuredmedia'][0]
+            )
+            const mediaResponse = await fetch(
+              project._links['wp:featuredmedia'][0].href
+            )
+            if (!mediaResponse.ok) {
+              throw new Error(`HTTP error! status: ${mediaResponse.status}`)
+            }
+            const mediaData = await mediaResponse.json()
+            if (
+              mediaData.media_details &&
+              mediaData.media_details.sizes &&
+              mediaData.media_details.sizes.full &&
+              mediaData.media_details.sizes.full.source_url
+            ) {
+              const imageUrl = mediaData.media_details.sizes.full.source_url
+              console.log('Image URL:', imageUrl)
+              return { ...project, imageUrl } // Attach the imageUrl to each project
+            }
+          }
+          return project
+        })
+      )
+
+      setProjects(updatedProjectsData)
+    }
+
+    fetchProjectData().catch((error) =>
+      console.error('Error fetching services:', error)
+    )
   }, [])
 
   return (
@@ -169,21 +231,18 @@ const Projects: React.FC = () => {
         <div className="w-full md:w-[70%] relative flex flex-col gap-8 z-[1]">
           <div className="flex flex-col gap-2">
             <div className="flex flex-row gap-2 items-center justify-start">
-              <h3 className="text-lg font-tabletgothic">Inovativní Plzeň</h3>
+              <h3 className="text-lg font-tabletgothic">
+                {blockData.subtitle}
+              </h3>
               <div className="badge badge-primary badge-outline">
                 Aktuální projekty
               </div>
             </div>
             <div className="separator w-[90%] bg-primary border-1 border-solid h-1 z-[1] "></div>
             <h2 className="font-campton text-3xl font-semibold">
-              Plzeň pečuje o rozsáhlý inovační ekosystém
+              {blockData.title}
             </h2>
-            <div className="font-tabletgothic ">
-              Inspirujeme mladou generaci k inovacím a experimentování a zároveň
-              je propojujeme s mentory, podnikately, renomovanými firmami v
-              regionu a investory. Inovativní Plzeň je kolébkou budoucích řešení
-              městské mobility.
-            </div>
+            <div className="font-tabletgothic ">{blockData.description}</div>
           </div>
         </div>
 
