@@ -117,7 +117,7 @@ const Modal: React.FC<{
         onClick={(e) => e.stopPropagation()}
         className="modalCarousel2 overflow-auto flex flex-col max-w-[90%] sm:max-w-[60%] max-h-[90%]  text-left"
       >
-        <div className="p-8 py-4  border-[0.1px] rounded-t-lg border-primary bg-gradient-to-b from-black via-black  to-black project w-[100%] relative md:sticky md:top-0 z-[4]">
+        <div className="p-8 py-4  border-[0.1px] rounded-t-lg border-primary bg-gradient-to-b from-black via-black  to-black project w-[100%] sticky top-0 z-[4]">
           <div className="flex flex-col gap-4 ">
             <div className="flex flex-row justify-between ">
               <div className="flex flex-row gap-2 justify-start items-center">
@@ -176,7 +176,7 @@ const Modal: React.FC<{
             </defs>
             <rect width="100%" height="100%" fill="url(#grid)" />
           </svg>
-          <div className="flex flex-col gap-2 m-0 sm:w-[40%]">
+          <div className="flex flex-col gap-2 m-0">
             <h5>Název:</h5>
             <h3 className="text-3xl sm:text-4xl font-semibold">
               {project.title.rendered}
@@ -191,6 +191,15 @@ const Modal: React.FC<{
               className="text-md leading-relaxed p-0 modal-insight"
               dangerouslySetInnerHTML={{ __html: project.content.rendered }}
             />
+          </div>
+          <div className=" flex flex-col gap-2 w-[100%]  max-w-[100%] ">
+            {project.imageUrl && (
+              <img
+                src={project.imageUrl}
+                alt="Featured Media"
+                className="sm:w-[75%] sm:max-w-[100%] rounded-md modalCarousel"
+              />
+            )}
           </div>
         </div>
         <div className="px-8 pb-8  relative flex flex-col sm:flex-row gap-4 w-[100%] max-w-[100%]">

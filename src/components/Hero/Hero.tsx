@@ -17,18 +17,22 @@ export default function Hero() {
   const hookRef = useRef<HTMLDivElement>(null)
 
   useIsomorphicLayoutEffect(() => {
+    // Reset scroll position to the top of the page
+    window.scrollTo(0, 0)
+
+    gsap.set('.word', { opacity: 0, scale: 1.2 })
+
     const ctx = gsap.context(() => {
       const introOrb = document.querySelector('.introOrb')
       const words = document.querySelectorAll('.word')
 
       words.forEach((word, index) => {
-        // Setting up the unique hook for each word
         const hookClass = index === 0 ? 'sticky' : `${word.classList[1]}Wrapper`
 
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: `.${hookClass}`,
-            start: `${index === 0 ? ' top bottom' : `top bottom`}`,
+            start: `${index === 0 ? 'top bottom' : `top bottom`}`,
             end: 'bottom center',
             scrub: true,
           },
@@ -38,7 +42,7 @@ export default function Hero() {
         tl.fromTo(
           word,
           {
-            opacity: index === 0 ? 1 : 0,
+            opacity: index === 0 ? 1 : 0, // Only the first word starts with opacity 1
             scale: index === 0 ? 1 : 1.2,
           },
           {
@@ -59,8 +63,20 @@ export default function Hero() {
           },
           '>'
         )
+
+        // Additional code to hide the word if the scroll position is past a certain point
+        if (index === 0 && window.scrollY > 0) {
+          // You can modify the threshold here
+          gsap.to(word, {
+            opacity: 0,
+            scale: 1.2,
+            duration: 1,
+            ease: 'power2.inOut',
+          })
+        }
       })
     }, mainWrapper)
+
     return () => ctx.revert()
   }, [])
 

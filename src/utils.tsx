@@ -3,7 +3,7 @@ import { toast } from 'react-toastify'
 export const handleSmoothScroll = (targetId: string) => {
   const element = document.getElementById(targetId)
   if (element) {
-    const offset = -20 // Define the offset
+    const offset = -80 // Define the offset
     const bodyRect = document.body.getBoundingClientRect().top
     const elementRect = element.getBoundingClientRect().top
     const elementPosition = elementRect - bodyRect

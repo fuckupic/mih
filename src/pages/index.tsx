@@ -3,6 +3,7 @@ import Hero from '../components/Hero/Hero'
 import CityBackground from '@/components/ScrollingSections/CityBackground'
 import BackgroundOrb from '@/components/ScrollingSections/BackgroundOrb'
 import ForegroundOrb from '@/components/ScrollingSections/ForegroundOrb'
+import { useIsomorphicLayoutEffect } from '../../helpers/isomorphicEffect'
 
 import Cursor from '@/components/Cursor/Cursor'
 
@@ -22,6 +23,10 @@ const IndexPage: React.FC = () => {
     return () => {
       window.removeEventListener('resize', handleResize)
     }
+  }, [])
+
+  useIsomorphicLayoutEffect(() => {
+    window.scrollTo(0, 0)
   }, [])
   return (
     <>

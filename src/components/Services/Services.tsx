@@ -1,3 +1,7 @@
+import Slider from 'react-slick'
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
+
 import { copyLinkToClipboard } from '@/utils'
 import { useRouter } from 'next/router'
 import { handleSmoothScroll } from '@/utils'
@@ -117,7 +121,7 @@ const Modal: React.FC<{
         onClick={(e) => e.stopPropagation()}
         className="modalCarousel2 overflow-auto flex flex-col max-w-[90%] sm:max-w-[60%] max-h-[90%]  text-left"
       >
-        <div className="p-8 py-4  border-[0.1px] rounded-t-lg border-primary bg-gradient-to-b from-black via-black  to-black service w-[100%] relative md:sticky md:top-0 z-[4]">
+        <div className="p-8 py-4  border-[0.1px] rounded-t-lg border-primary bg-gradient-to-b from-black via-black  to-black service w-[100%] relative sticky top-0 z-[4]">
           <div className="flex flex-col gap-4 ">
             <div className="flex flex-row justify-between ">
               <div className="flex flex-row gap-2 justify-start items-center">
@@ -138,7 +142,7 @@ const Modal: React.FC<{
             </div>
           </div>
         </div>
-        <div className="relative p-8 max-w-[100%] flex flex-col gap-4 sm:flex-row items-center sm:justify-center justify-between ">
+        <div className="relative p-8 max-w-[100%] flex flex-col gap-4 sm:flex-row items-center justify-start ">
           <svg
             className="absolute left-0 top-0 z-[-1]"
             width="100%"
@@ -176,22 +180,15 @@ const Modal: React.FC<{
             </defs>
             <rect width="100%" height="100%" fill="url(#grid)" />
           </svg>
-          <div className="flex flex-col gap-2 m-0 sm:w-[40%]">
+          <div className="flex flex-col gap-2 m-0">
             <h5>Název:</h5>
             <h3 className="text-3xl sm:text-4xl font-semibold">
               {service.title.rendered}
             </h3>
           </div>
-          {service.imageUrl && (
-            <img
-              src={service.imageUrl}
-              alt="Featured Media"
-              className="sm:w-[40%] sm:max-w-[40%] rounded-md modalCarousel"
-            />
-          )}
         </div>
 
-        <div className="border-t rounded-b-lg border-primary p-8  w-[100%] flex flex-col relative gap-8">
+        <div className="border-t rounded-b-lg border-primary p-8  w-[100%] flex flex-col relative gap-4">
           <div className=" flex flex-col gap-2 w-[100%]  max-w-[100%] ">
             <h5>Popis:</h5>
             <div
@@ -199,8 +196,17 @@ const Modal: React.FC<{
               dangerouslySetInnerHTML={{ __html: service.content.rendered }}
             />
           </div>
+          <div className=" flex flex-col gap-2 w-[100%]  max-w-[100%] ">
+            {service.imageUrl && (
+              <img
+                src={service.imageUrl}
+                alt="Featured Media"
+                className="sm:w-[75%] sm:max-w-[100%] aspect-video rounded-md modalCarousel"
+              />
+            )}
+          </div>
         </div>
-        <div className="px-8 pb-8  relative flex flex-col sm:flex-row gap-4 w-[100%] max-w-[100%]">
+        <div className="px-8 pb-16 sm:pb-8  relative flex flex-col sm:flex-row gap-4 w-[100%] max-w-[100%]">
           <button
             id="modal_contact"
             className="btn btn-primary"
@@ -232,6 +238,8 @@ const Services: React.FC<ServiceProps> = ({ blockData }) => {
     if (serviceIdFromUrl) {
       handleSmoothScroll('services') // Scroll to Services section
       // ... Fetch services if necessary ...
+    } else {
+      handleSmoothScroll('hero')
     }
   }, [serviceIdFromUrl])
 
@@ -312,42 +320,96 @@ const Services: React.FC<ServiceProps> = ({ blockData }) => {
             <div className="font-tabletgothic ">{blockData.description}</div>
           </div>
         </div>
-        <div className="z-[2] w-[100%] flex flex-col sm:flex-row  gap-8 place-items-start">
-          {services
-            .slice(0)
-            .reverse()
-            .map((service) => (
-              <div
-                className="service cardCarousel sm:aspect-square max-w-[100%] sm:max-w-[30%] pointer-events-auto"
-                key={service.id}
-                onClick={() => {
-                  setSelectedService(service)
-                  router.push(`/?service_id=${service.id}`, undefined, {
-                    shallow: true,
-                  })
-                  console.log('Selected service:', service)
-                }}
-              >
-                <div className="from-primary to-lightblue cardGradient !opacity-10 pointer-events-none"></div>
-                <h5 className="text-white pointer-events-none">MIH Služba</h5>
-                <div className="flex flex-col gap-4 pointer-events-none">
-                  <div className="flex flex-col">
-                    <h5>Služba:</h5>
-                    <h3 className="text-xl font-semibold">
-                      {service.title.rendered}
-                    </h3>
+        <div className="z-[2] w-[100%] flex flex-col sm:flex-row gap-8 place-items-start">
+          {services.length > 3 ? (
+            <Slider
+              slidesToShow={3}
+              slidesToScroll={1}
+              infinite
+              dots
+              arrows
+              responsive={[
+                {
+                  breakpoint: 768,
+                  settings: { slidesToShow: 1 },
+                },
+              ]}
+            >
+              {services
+                .slice(0)
+                .reverse()
+                .map((service) => (
+                  <div
+                    className="service cardCarousel sm:aspect-square max-w-[100%] sm:max-w-[30%] pointer-events-auto"
+                    key={service.id}
+                    onClick={() => {
+                      setSelectedService(service)
+                      router.push(`/?service_id=${service.id}`, undefined, {
+                        shallow: true,
+                      })
+                      console.log('Selected service:', service)
+                    }}
+                  >
+                    <div className="from-primary to-lightblue cardGradient !opacity-10 pointer-events-none"></div>
+                    <h5 className="text-white pointer-events-none">
+                      MIH Služba
+                    </h5>
+                    <div className="flex flex-col gap-4 pointer-events-none">
+                      <div className="flex flex-col">
+                        <h5>Služba:</h5>
+                        <h3 className="text-xl font-semibold">
+                          {service.title.rendered}
+                        </h3>
+                      </div>
+                      <div className="flex flex-col pointer-events-none">
+                        <h5>Popis:</h5>
+                        <p className="text-md">
+                          {service.content.rendered
+                            .replace(/<[^>]*>/g, '')
+                            .substr(0, 100) + '...'}
+                        </p>
+                      </div>
+                    </div>
                   </div>
-                  <div className="flex flex-col pointer-events-none">
-                    <h5>Popis:</h5>
-                    <p className="text-md">
-                      {service.content.rendered
-                        .replace(/<[^>]*>/g, '')
-                        .substr(0, 100) + '...'}
-                    </p>
+                ))}
+            </Slider>
+          ) : (
+            services
+              .slice(0)
+              .reverse()
+              .map((service) => (
+                <div
+                  className="service cardCarousel sm:aspect-square max-w-[100%] sm:max-w-[30%] pointer-events-auto"
+                  key={service.id}
+                  onClick={() => {
+                    setSelectedService(service)
+                    router.push(`/?service_id=${service.id}`, undefined, {
+                      shallow: true,
+                    })
+                    console.log('Selected service:', service)
+                  }}
+                >
+                  <div className="from-primary to-lightblue cardGradient !opacity-10 pointer-events-none"></div>
+                  <h5 className="text-white pointer-events-none">MIH Služba</h5>
+                  <div className="flex flex-col gap-4 pointer-events-none">
+                    <div className="flex flex-col">
+                      <h5>Služba:</h5>
+                      <h3 className="text-xl font-semibold">
+                        {service.title.rendered}
+                      </h3>
+                    </div>
+                    <div className="flex flex-col pointer-events-none">
+                      <h5>Popis:</h5>
+                      <p className="text-md">
+                        {service.content.rendered
+                          .replace(/<[^>]*>/g, '')
+                          .substr(0, 100) + '...'}
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))
+          )}
         </div>
 
         {selectedService && (
