@@ -35,12 +35,12 @@
 }
 
 .word {
-  @apply centerAbsolute pointer-events-none;
+  @apply pointer-events-none;
   position: absolute;
   z-index: 10;
   /* center absolute div */
   display: inline-block;
-  opacity: 1;
+  /* opacity: 1; */
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
