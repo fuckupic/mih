@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React from 'react'
 
 const ContactForm: React.FC = () => {
@@ -7,13 +8,29 @@ const ContactForm: React.FC = () => {
         {/* just 3 white logos in flex-row justify-between items-center */}
         <div className="flex flex-row gap-4 justify-between items-center w-[50%]">
           <div className="flex flex-col gap-4">
-            <img className="w-[80px]" src="/logoBic.svg" alt="logo" />
+            <Link
+              href="https://www.bic.cz/"
+              passHref
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img className="w-[80px]" src="/logoBic.svg" alt="logo" />
+            </Link>
           </div>
           <div className="flex flex-col gap-4">
-            <img className="w-[100px]" src="/whiteLogo.svg" alt="logo" />
+            <Link href="#hero">
+              <img className="w-[100px]" src="/whiteLogo.svg" alt="logo" />
+            </Link>
           </div>
           <div className="flex flex-col gap-4">
-            <img className="w-[100px]" src="/logoPine.svg" alt="logo" />
+            <Link
+              href="https://www.plzeninovativni.eu/"
+              passHref
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img className="w-[100px]" src="/logoPine.svg" alt="logo" />
+            </Link>
           </div>
         </div>
       </div>

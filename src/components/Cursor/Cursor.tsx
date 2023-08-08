@@ -45,17 +45,21 @@ const Cursor: React.FC = () => {
             posX += (mouseX - posX) / 9
             posY += (mouseY - posY) / 9
 
+            // Shift the custom cursor to the right and down if it is hovering over an element
+            const shiftX = isCursorInsideElement ? -15 : 0 // You can adjust this value
+            const shiftY = isCursorInsideElement ? -15 : 0 // You can adjust this value
+
             if (follower) {
               gsap.set(follower, {
-                x: posX - follower.offsetWidth / 2,
-                y: posY - follower.offsetHeight / 2,
+                x: posX - follower.offsetWidth / 2 + shiftX,
+                y: posY - follower.offsetHeight / 2 + shiftY,
               })
             }
 
             if (cursor) {
               gsap.set(cursor, {
-                x: mouseX - cursor.offsetWidth / 2,
-                y: mouseY - cursor.offsetHeight / 2,
+                x: mouseX - cursor.offsetWidth / 2 + shiftX,
+                y: mouseY - cursor.offsetHeight / 2 + shiftY,
               })
             }
           },
@@ -63,13 +67,13 @@ const Cursor: React.FC = () => {
       )
 
       const scaleUp = gsap.timeline({ paused: true }).to(cursor!, {
-        scale: 1.2,
+        scale: 0.8,
         transformOrigin: 'center',
         backgroundColor: '#00BDC7',
       })
 
       const scaleButtonUp = gsap.timeline({ paused: true }).to(cursor!, {
-        scale: 1,
+        scale: 0.8,
         transformOrigin: 'center',
         backgroundColor: '#2DD687',
       })
@@ -100,6 +104,8 @@ const Cursor: React.FC = () => {
           const isInsideService = target.classList.contains('service')
           const isInsideProject = target.classList.contains('project')
           const isInsideSend = target.classList.contains('send')
+          const isInsideCopy = target.classList.contains('copy_link')
+          const isInsideClose = target.classList.contains('close')
           const isInsideButton = target.classList.contains('btn')
 
           if (isInsideService || isInsideProject) {
@@ -108,22 +114,36 @@ const Cursor: React.FC = () => {
               textReveal.play(0)
               isCursorInsideElement = true
               cursor.querySelector('.piu')!.textContent = isInsideService
-                ? 'Zobrazit Službu'
-                : 'Zobrazit Projekt'
+                ? 'Zobrazit službu'
+                : 'Zobrazit projekt'
             }
           } else if (isInsideSend) {
             if (!isCursorInsideElement) {
               scaleUp.play(0)
               textReveal.play(0)
               isCursorInsideElement = true
-              cursor.querySelector('.piu')!.textContent = 'Odeslat Formulář'
+              cursor.querySelector('.piu')!.textContent = 'Odeslat formulář'
+            }
+          } else if (isInsideCopy) {
+            if (!isCursorInsideElement) {
+              scaleUp.play(0)
+              textReveal.play(0)
+              isCursorInsideElement = true
+              cursor.querySelector('.piu')!.textContent = 'Zkopírovat odkaz'
+            }
+          } else if (isInsideClose) {
+            if (!isCursorInsideElement) {
+              scaleUp.play(0)
+              textReveal.play(0)
+              isCursorInsideElement = true
+              cursor.querySelector('.piu')!.textContent = 'Zavřít'
             }
           } else if (isInsideButton) {
             if (!isCursorInsideElement) {
               scaleButtonUp.play(0)
               textReveal.play(0)
               isCursorInsideElement = true
-              cursor.querySelector('.piu')!.textContent = 'Zobrazit Více'
+              cursor.querySelector('.piu')!.textContent = 'Zobrazit více'
             }
           } else if (isCursorInsideElement) {
             scaleDown.play(0)

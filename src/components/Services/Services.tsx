@@ -1,3 +1,6 @@
+import { copyLinkToClipboard } from '@/utils'
+import { useRouter } from 'next/router'
+import { handleSmoothScroll } from '@/utils'
 import { BlockData } from '../../types/dataTypes'
 
 interface ServiceProps {
@@ -36,6 +39,7 @@ const Modal: React.FC<{
   services: Service[]
 }> = ({ service, onClose, setSelectedService, services }) => {
   const modalRef = useRef<HTMLDivElement>(null)
+  const router = useRouter()
 
   const handleContactClick = () => {
     onClose()
@@ -51,6 +55,9 @@ const Modal: React.FC<{
     )
     const nextIndex = (currentIndex + 1) % services.length
     setSelectedService(services[nextIndex])
+    router.push(`/?service_id=${services[nextIndex].id}`, undefined, {
+      shallow: true,
+    })
   }
 
   useEffect(() => {
@@ -100,30 +107,78 @@ const Modal: React.FC<{
   return (
     <div
       onClick={handleOutsideClick}
-      className="fixed top-0 left-0 w-[100vw] h-[100vh] flex items-center justify-center !z-[9999] backdrop:blur-[5px]"
+      className="fixed top-0 left-0 w-[100vw] h-[100vh] flex items-center justify-center !z-[10]  backdrop:blur-[20px]"
       style={{
-        backgroundColor: 'rgba(0, 0, 0, 0.4)',
+        backgroundColor: 'rgba(0, 0, 0, 0.9)',
       }}
     >
       <div
         ref={modalRef}
         onClick={(e) => e.stopPropagation()}
-        className="modalCarousel flex flex-col gap-6 bg-black p-8 max-w-[90%] max-h-[90%] overflow-auto  text-left"
+        className="modalCarousel2 overflow-auto flex flex-col max-w-[90%] sm:max-w-[60%] max-h-[90%]  text-left"
       >
-        <div className="service w-[100%] flex flex-row justify-between">
-          <h4>MIH Služba</h4>
-          <button
-            onClick={onClose}
-            className="btn btn-error btn-sm !capitalize"
-          >
-            Zavřít
-          </button>
+        <div className="p-8 py-4  border-[0.1px] rounded-t-lg border-primary bg-gradient-to-b from-black via-black  to-black service w-[100%] relative md:sticky md:top-0 z-[4]">
+          <div className="flex flex-col gap-4 ">
+            <div className="flex flex-row justify-between ">
+              <div className="flex flex-row gap-2 justify-start items-center">
+                <button
+                  onClick={() => copyLinkToClipboard(service.id)}
+                  className="btn btn-primary btn-outline btn-sm copy_link"
+                >
+                  Copy 🔗
+                </button>
+                <h4>MIH Služba</h4>
+              </div>
+              <button
+                onClick={onClose}
+                className="close btn btn-error btn-circle text-base !capitalize "
+              >
+                X
+              </button>
+            </div>
+          </div>
         </div>
-        <div className="w-[100%] h-[1px] bg-primary opacity-20"></div>
-        <div className="w-[100%] gap-4 flex flex-row items-end">
-          <div className="w-[50%] max-w-[50%] flex flex-col gap-1">
+        <div className="relative p-8 max-w-[100%] flex flex-row items-center justify-between ">
+          <svg
+            className="absolute left-0"
+            width="100%"
+            height="100%"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <defs>
+              <pattern
+                id="smallGrid"
+                width="8"
+                height="8"
+                patternUnits="userSpaceOnUse"
+              >
+                <path
+                  d="M 8 0 L 0 0 0 8"
+                  fill="none"
+                  stroke="rgba(45,214,135,0.4)"
+                  stroke-width="0.5"
+                />
+              </pattern>
+              <pattern
+                id="grid"
+                width="80"
+                height="80"
+                patternUnits="userSpaceOnUse"
+              >
+                <rect width="80" height="80" fill="url(#smallGrid)" />
+                <path
+                  d="M 80 0 L 0 0 0 80"
+                  fill="none"
+                  stroke="rgba(45,214,135,0.2)"
+                  stroke-width="1"
+                />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#grid)" />
+          </svg>
+          <div className="flex flex-col gap-2 m-0 w-[40%]">
             <h5>Název:</h5>
-            <h3 className="text-2xl sm:text-4xl font-semibold">
+            <h3 className="text-3xl sm:text-4xl font-semibold">
               {service.title.rendered}
             </h3>
           </div>
@@ -131,35 +186,35 @@ const Modal: React.FC<{
             <img
               src={service.imageUrl}
               alt="Featured Media"
-              className="w-[150%] max-w-[150%] sm:w-[50%] sm:max-w-[50%] rounded-md modalCarousel"
+              className="sm:w-[40%] sm:max-w-[40%] rounded-md modalCarousel"
             />
           )}
         </div>
-        <div className="w-[100%] h-[1px] bg-primary opacity-20"></div>
-        <div className="w-[100%] flex flex-col sm:flex-row relative gap-8">
-          <div className="flex flex-col gap-2 w-[100%] sm:w-[70%] max-w-[100%]  sm:max-w-[70%]">
+
+        <div className="border-t rounded-b-lg border-primary p-8  w-[100%] flex flex-col relative gap-8">
+          <div className=" flex flex-col gap-2 w-[100%]  max-w-[100%] ">
             <h5>Popis:</h5>
             <div
               className="text-md leading-relaxed p-0 modal-insight"
               dangerouslySetInnerHTML={{ __html: service.content.rendered }}
             />
           </div>
-          <div className="flex flex-col gap-4 w-[100%] sm:w-[30%] max-w-[100%] sm:max-w-[30%]">
-            <button
-              id="modal_contact"
-              className="btn btn-primary"
-              onClick={handleContactClick}
-            >
-              Kontaktujte nás
-            </button>
-            <button
-              id="modal_next"
-              className="btn btn-white btn-outline"
-              onClick={handleNextClick}
-            >
-              Další služba
-            </button>
-          </div>
+        </div>
+        <div className="px-8 pb-8  relative flex flex-col sm:flex-row gap-4 w-[100%] max-w-[100%]">
+          <button
+            id="modal_contact"
+            className="btn btn-primary"
+            onClick={handleContactClick}
+          >
+            Kontaktujte nás
+          </button>
+          <button
+            id="modal_next"
+            className="btn btn-white btn-outline"
+            onClick={handleNextClick}
+          >
+            Další služba
+          </button>
         </div>
       </div>
     </div>
@@ -167,8 +222,29 @@ const Modal: React.FC<{
 }
 
 const Services: React.FC<ServiceProps> = ({ blockData }) => {
+  const router = useRouter()
+  const serviceIdFromUrl = router.query.service_id
+
   const [services, setServices] = useState<Service[]>([])
   const [selectedService, setSelectedService] = useState<Service | null>(null)
+
+  useEffect(() => {
+    if (serviceIdFromUrl) {
+      handleSmoothScroll('services') // Scroll to Services section
+      // ... Fetch services if necessary ...
+    }
+  }, [serviceIdFromUrl])
+
+  useEffect(() => {
+    if (serviceIdFromUrl && services.length > 0) {
+      const serviceToSelect = services.find(
+        (service) => service.id === parseInt(serviceIdFromUrl as string)
+      )
+      if (serviceToSelect) {
+        setSelectedService(serviceToSelect) // Open the modal with the proper service
+      }
+    }
+  }, [services, serviceIdFromUrl])
 
   useEffect(() => {
     const fetchServiceData = async () => {
@@ -225,7 +301,7 @@ const Services: React.FC<ServiceProps> = ({ blockData }) => {
   }, [])
 
   return (
-    <div className="section pointer-events-auto z-[3]">
+    <div className="section pointer-events-auto z-[3]" id="services">
       <div className="sectionWrapper relative flex-col flex-1 items-center justify-center text-center gap-8">
         <div className="w-[70%] justify-center relative flex flex-col gap-8">
           <div className="flex flex-col gap-4">
@@ -246,6 +322,9 @@ const Services: React.FC<ServiceProps> = ({ blockData }) => {
                 key={service.id}
                 onClick={() => {
                   setSelectedService(service)
+                  router.push(`/?service_id=${service.id}`, undefined, {
+                    shallow: true,
+                  })
                   console.log('Selected service:', service)
                 }}
               >
@@ -279,7 +358,10 @@ const Services: React.FC<ServiceProps> = ({ blockData }) => {
             services={services}
           />
         )}
-        <button className="btn btn-primary pointer-events-auto">
+        <button
+          className="btn btn-primary"
+          onClick={() => handleSmoothScroll('contact_form')}
+        >
           Spojte se s námi
         </button>
       </div>

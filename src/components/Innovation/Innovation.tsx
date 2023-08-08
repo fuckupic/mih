@@ -1,4 +1,6 @@
+import Link from 'next/link'
 import { BlockData } from '../../types/dataTypes'
+import { handleSmoothScroll } from '@/utils'
 
 interface InnovationProps {
   blockData: BlockData
@@ -9,7 +11,7 @@ const Innovation: React.FC<InnovationProps> = ({ blockData }) => {
     <div className="section " id="innovation">
       <div className="sectionWrapper justify-start flex-col flex-1 items-start gap-16">
         <div className="!h-[min] flex justify-center lg:justify-between flex-col md:flex-row flex-1 items-start gap-16 z-[1] pointer-events-auto">
-          <div className="w-full lg:w-[30%] font-tabletgothic flex flex-col gap-4 z-[1] pointer-events-auto">
+          <div className="w-full lg:w-[30%] font-tabletgothic flex flex-col gap-4 z-[1] pointer-events-auto innovation-text">
             <div dangerouslySetInnerHTML={{ __html: blockData.left_col }} />
           </div>
           <div className="w-full lg:w-[70%] relative flex flex-col gap-8 z-[1] pointer-events-auto">
@@ -23,8 +25,16 @@ const Innovation: React.FC<InnovationProps> = ({ blockData }) => {
               </h2>
             </div>
             <div className="w-[100%] flex flex-row gap-4 justify-start items-center pointer-events-auto">
-              <button className="btn btn-primary btn-sm">Proč Plzeň?</button>
-              <button className="btn btn-primary btn-outline btn-sm">
+              <button
+                className="btn btn-primary btn-sm"
+                onClick={() => handleSmoothScroll('projects')}
+              >
+                Proč Plzeň?
+              </button>
+              <button
+                className="btn btn-primary btn-outline btn-sm"
+                onClick={() => handleSmoothScroll('services')}
+              >
                 Co nabízíme
               </button>
             </div>

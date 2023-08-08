@@ -13,7 +13,10 @@ const Vision: React.FC<VisionProps> = ({ blockData }) => {
       <div className="sectionWrapper justify-between flex-col sm:flex-row  flex-1 items-start gap-16">
         <div className="w-full sm:w-[30%] font-tabletgothic flex flex-col gap-4">
           <div className="flex flex-col gap-2 font-medium">
-            <div dangerouslySetInnerHTML={{ __html: blockData.left_col }} />
+            <div
+              className="flex flex-col gap-2"
+              dangerouslySetInnerHTML={{ __html: blockData.left_col }}
+            />
           </div>
         </div>
         <div className="w-full sm:w-[70%] relative flex flex-col gap-8">

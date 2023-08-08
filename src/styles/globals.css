@@ -59,11 +59,15 @@
 }
 
 .projectCarousel {
-  @apply text-left border w-[100%]  rounded-lg bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-60 border-primary p-4 flex flex-col items-start font-tabletgothic justify-between relative !pointer-events-auto cursor-pointer transition hover:scale-105;
+  @apply text-left border w-[100%]  rounded-lg bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-60 border-primary p-4 flex flex-col items-start font-tabletgothic justify-between relative !pointer-events-auto cursor-pointer transition hover:scale-105;
 }
 
 .modalCarousel {
-  @apply border w-[100%] rounded-lg bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-60 border-primary font-tabletgothic relative !pointer-events-auto transition;
+  @apply border w-[100%] h-[100%] rounded-lg bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-60 border-primary font-tabletgothic relative !pointer-events-auto transition overflow-x-clip;
+}
+
+.modalCarousel2 {
+  @apply border border-primary rounded-lg w-[100%] h-[100%] font-tabletgothic relative !pointer-events-auto transition;
 }
 
 .cardGradient {
@@ -72,6 +76,10 @@
 
 .inputField {
   @apply border-2 backdrop-filter backdrop-blur-lg bg-transparent border-primary rounded-lg p-2;
+}
+
+h3 {
+  @apply text-lg font-tabletgothic;
 }
 
 .centerAbsolute {
@@ -98,9 +106,11 @@ body {
   color: white;
   background: black;
   overflow-x: hidden;
-  scroll-behavior: smooth;
 }
 
+html {
+  scroll-behavior: smooth;
+}
 .font-tabletgothic {
   line-height: 1.4;
   min-height: 0em; /* Set a min-height to the container */
@@ -344,7 +354,7 @@ h1,
   font-weight: bold;
 }
 
-.modal-insight h2 {
+h2 {
   font-size: 1.75em;
   font-weight: bold;
 }
@@ -372,6 +382,28 @@ h1,
 .modal-insight span {
   line-height: 1.6;
   font-weight: normal;
+}
+
+.innovation-text h3 {
+  margin-bottom: 0.5rem;
+}
+
+li {
+  position: relative;
+  padding-left: 20px; /* Create space for the custom bullet point */
+}
+
+li::before {
+  content: '\2022'; /* Unicode bullet character */
+  position: absolute;
+  left: 0;
+  color: rgba(
+    0,
+    189,
+    199,
+    1
+  ); /* Sets the color of the custom bullet points to green */
+  font-size: 1em; /* You can adjust the size if needed */
 }
 
 /* Add other styles as necessary */

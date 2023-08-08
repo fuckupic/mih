@@ -1,3 +1,4 @@
+import { handleSmoothScroll } from '@/utils'
 import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'ScrollTrigger'
@@ -70,6 +71,18 @@ export default function Hero() {
       ref={mainWrapper}
     >
       <div className=" sticky z-[2] top-0 left-0 w-[100vw] !h-[100vh] flex intems-center overflow-hidden justify-center ">
+        <button
+          className="btn text-s btn-secondary btn-circle btn-sm btn-outline absolute bottom-[25%] z-[1000]"
+          onClick={() => handleSmoothScroll('innovation')}
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+            <path
+              className="fill-current"
+              d="M12 17.414 3.293 8.707l1.414-1.414L12 14.586l7.293-7.293 1.414 1.414L12 17.414z"
+            />
+          </svg>
+        </button>
+
         {/* <div className="rounded-full fixed introOrb w-[10rem] z-[2] aspect-square !opacity-100 "></div> */}
         <h1
           className=" headline leading-tight sm:leading-none  text-6xl sm:text-8xl lg:text-[10rem] font-campton z-[2] pointer-events-auto"

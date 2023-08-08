@@ -1,4 +1,7 @@
+import { copyLinkToClipboard } from '@/utils'
 import { BlockData } from '../../types/dataTypes'
+import { handleSmoothScroll } from '@/utils'
+import { useRouter } from 'next/router'
 
 import React, { useState, useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
@@ -29,7 +32,6 @@ interface Project {
   }
 }
 
-// Create a simple Modal component
 const Modal: React.FC<{
   project: Project
   onClose: () => void
@@ -37,6 +39,7 @@ const Modal: React.FC<{
   projects: Project[]
 }> = ({ project, onClose, setSelectedProject, projects }) => {
   const modalRef = useRef<HTMLDivElement>(null)
+  const router = useRouter()
 
   const handleContactClick = () => {
     onClose()
@@ -52,6 +55,9 @@ const Modal: React.FC<{
     )
     const nextIndex = (currentIndex + 1) % projects.length
     setSelectedProject(projects[nextIndex])
+    router.push(`/?project_id=${projects[nextIndex].id}`, undefined, {
+      shallow: true,
+    })
   }
 
   useEffect(() => {
@@ -101,30 +107,78 @@ const Modal: React.FC<{
   return (
     <div
       onClick={handleOutsideClick}
-      className="fixed top-0 left-0 w-[100vw] h-[100vh] flex items-center justify-center !z-[9999] backdrop:blur-[5px]"
+      className="fixed top-0 left-0 w-[100vw] h-[100vh] flex items-center justify-center !z-[10]  backdrop:blur-[20px]"
       style={{
-        backgroundColor: 'rgba(0, 0, 0, 0.4)',
+        backgroundColor: 'rgba(0, 0, 0, 0.9)',
       }}
     >
       <div
         ref={modalRef}
         onClick={(e) => e.stopPropagation()}
-        className="modalCarousel flex flex-col gap-6 bg-black p-8 max-w-[90%] max-h-[90%] overflow-auto  text-left"
+        className="modalCarousel2 overflow-auto flex flex-col max-w-[90%] sm:max-w-[60%] max-h-[90%]  text-left"
       >
-        <div className="project w-[100%] flex flex-row justify-between">
-          <h4>MIH Projekt</h4>
-          <button
-            onClick={onClose}
-            className="btn btn-error btn-sm !capitalize"
-          >
-            Zavřít
-          </button>
+        <div className="p-8 py-4  border-[0.1px] rounded-t-lg border-primary bg-gradient-to-b from-black via-black  to-black project w-[100%] relative md:sticky md:top-0 z-[4]">
+          <div className="flex flex-col gap-4 ">
+            <div className="flex flex-row justify-between ">
+              <div className="flex flex-row gap-2 justify-start items-center">
+                <button
+                  onClick={() => copyLinkToClipboard(project.id)}
+                  className="btn btn-primary btn-outline btn-sm copy_link"
+                >
+                  Copy 🔗
+                </button>
+                <h4>MIH Projekt</h4>
+              </div>
+              <button
+                onClick={onClose}
+                className="close btn btn-error btn-circle text-base !capitalize "
+              >
+                X
+              </button>
+            </div>
+          </div>
         </div>
-        <div className="w-[100%] h-[1px] bg-primary opacity-20"></div>
-        <div className="w-[100%] gap-4 flex flex-row items-end">
-          <div className="w-[50%] max-w-[50%] flex flex-col gap-1">
+        <div className="relative p-8 max-w-[100%] flex flex-row items-center justify-between ">
+          <svg
+            className="absolute left-0"
+            width="100%"
+            height="100%"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <defs>
+              <pattern
+                id="smallGrid"
+                width="8"
+                height="8"
+                patternUnits="userSpaceOnUse"
+              >
+                <path
+                  d="M 8 0 L 0 0 0 8"
+                  fill="none"
+                  stroke="rgba(45,214,135,0.4)"
+                  stroke-width="0.5"
+                />
+              </pattern>
+              <pattern
+                id="grid"
+                width="80"
+                height="80"
+                patternUnits="userSpaceOnUse"
+              >
+                <rect width="80" height="80" fill="url(#smallGrid)" />
+                <path
+                  d="M 80 0 L 0 0 0 80"
+                  fill="none"
+                  stroke="rgba(45,214,135,0.2)"
+                  stroke-width="1"
+                />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#grid)" />
+          </svg>
+          <div className="flex flex-col gap-2 m-0 w-[40%]">
             <h5>Název:</h5>
-            <h3 className="text-2xl sm:text-4xl font-semibold">
+            <h3 className="text-3xl sm:text-4xl font-semibold">
               {project.title.rendered}
             </h3>
           </div>
@@ -132,35 +186,35 @@ const Modal: React.FC<{
             <img
               src={project.imageUrl}
               alt="Featured Media"
-              className="w-[150%] max-w-[150%] sm:w-[50%] sm:max-w-[50%] rounded-md modalCarousel"
+              className="sm:w-[40%] sm:max-w-[40%] rounded-md modalCarousel"
             />
           )}
         </div>
-        <div className="w-[100%] h-[1px] bg-primary opacity-20"></div>
-        <div className="w-[100%] flex flex-col sm:flex-row relative gap-8">
-          <div className="flex flex-col gap-2 w-[100%] sm:w-[70%] max-w-[100%]  sm:max-w-[70%]">
+
+        <div className="border-t rounded-b-lg border-primary p-8  w-[100%] flex flex-col relative gap-8">
+          <div className=" flex flex-col gap-2 w-[100%]  max-w-[100%] ">
             <h5>Popis:</h5>
             <div
               className="text-md leading-relaxed p-0 modal-insight"
               dangerouslySetInnerHTML={{ __html: project.content.rendered }}
             />
           </div>
-          <div className="flex flex-col gap-4 w-[100%] sm:w-[30%] max-w-[100%] sm:max-w-[30%]">
-            <button
-              id="modal_contact"
-              className="btn btn-primary"
-              onClick={handleContactClick}
-            >
-              Kontaktujte nás
-            </button>
-            <button
-              id="modal_next"
-              className="btn btn-white btn-outline"
-              onClick={handleNextClick}
-            >
-              Další projekt
-            </button>
-          </div>
+        </div>
+        <div className="px-8 pb-8  relative flex flex-col sm:flex-row gap-4 w-[100%] max-w-[100%]">
+          <button
+            id="modal_contact"
+            className="btn btn-primary"
+            onClick={handleContactClick}
+          >
+            Kontaktujte nás
+          </button>
+          <button
+            id="modal_next"
+            className="btn btn-white btn-outline"
+            onClick={handleNextClick}
+          >
+            Další projekt
+          </button>
         </div>
       </div>
     </div>
@@ -168,8 +222,29 @@ const Modal: React.FC<{
 }
 
 const Projects: React.FC<ProjectProps> = ({ blockData }) => {
+  const router = useRouter()
+  const RouterIdFromUrl = router.query.project_id
+
   const [projects, setProjects] = useState<any[]>([])
   const [selectedProject, setSelectedProject] = useState<any>(null)
+
+  useEffect(() => {
+    if (RouterIdFromUrl) {
+      handleSmoothScroll('projects') // Scroll to Projects section
+      // ... Fetch projects if necessary ...
+    }
+  }, [RouterIdFromUrl])
+
+  useEffect(() => {
+    if (RouterIdFromUrl && projects.length > 0) {
+      const projectToSelect = projects.find(
+        (project) => project.id === parseInt(RouterIdFromUrl as string)
+      )
+      if (projectToSelect) {
+        setSelectedProject(projectToSelect) // Open the modal with the proper project
+      }
+    }
+  }, [projects, RouterIdFromUrl])
 
   useEffect(() => {
     const fetchProjectData = async () => {
@@ -179,11 +254,11 @@ const Projects: React.FC<ProjectProps> = ({ blockData }) => {
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`)
       }
-      const servicesData = await response.json()
-      console.log('Projects data:', servicesData)
+      const projectsData = await response.json()
+      console.log('Projects data:', projectsData)
 
       const updatedProjectsData = await Promise.all(
-        servicesData.map(async (project: Project) => {
+        projectsData.map(async (project: Project) => {
           if (
             project._links &&
             project._links['wp:featuredmedia'] &&
@@ -221,7 +296,7 @@ const Projects: React.FC<ProjectProps> = ({ blockData }) => {
     }
 
     fetchProjectData().catch((error) =>
-      console.error('Error fetching services:', error)
+      console.error('Error fetching projects:', error)
     )
   }, [])
 
@@ -254,7 +329,13 @@ const Projects: React.FC<ProjectProps> = ({ blockData }) => {
               <div
                 className="project projectCarousel gap-5 pointer-events-auto"
                 key={project.id}
-                onClick={() => setSelectedProject(project)}
+                onClick={() => {
+                  setSelectedProject(project)
+                  router.push(`/?project_id=${project.id}`, undefined, {
+                    shallow: true,
+                  })
+                  console.log('Selected project:', project)
+                }}
               >
                 <div className="from-primary to-lightblue cardGradient !opacity-10 pointer-events-none"></div>
                 <h5 className="text-white pointer-events-none">MIH Projekt</h5>
