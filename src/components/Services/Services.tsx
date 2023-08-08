@@ -138,9 +138,9 @@ const Modal: React.FC<{
             </div>
           </div>
         </div>
-        <div className="relative p-8 max-w-[100%] flex flex-row items-center justify-between ">
+        <div className="relative p-8 max-w-[100%] flex flex-col gap-4 sm:flex-row items-center sm:justify-center justify-between ">
           <svg
-            className="absolute left-0"
+            className="absolute left-0 top-0 z-[-1]"
             width="100%"
             height="100%"
             xmlns="http://www.w3.org/2000/svg"
@@ -176,7 +176,7 @@ const Modal: React.FC<{
             </defs>
             <rect width="100%" height="100%" fill="url(#grid)" />
           </svg>
-          <div className="flex flex-col gap-2 m-0 w-[40%]">
+          <div className="flex flex-col gap-2 m-0 sm:w-[40%]">
             <h5>Název:</h5>
             <h3 className="text-3xl sm:text-4xl font-semibold">
               {service.title.rendered}
