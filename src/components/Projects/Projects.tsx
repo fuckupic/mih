@@ -303,7 +303,7 @@ const Projects: React.FC<ProjectProps> = ({ blockData }) => {
   return (
     <div className="section pointer-events-auto" id="projects">
       <div className="sectionWrapper flex-col flex-1 items-start gap-16">
-        <div className="w-full md:w-[70%] relative flex flex-col gap-8 z-[1]">
+        <div className="z-[2] w-full md:w-[70%] relative flex flex-col gap-8 z-[1]">
           <div className="flex flex-col gap-2">
             <div className="flex flex-row gap-2 items-center justify-start">
               <h3 className="text-lg font-tabletgothic">
@@ -313,7 +313,7 @@ const Projects: React.FC<ProjectProps> = ({ blockData }) => {
                 Aktuální projekty
               </div>
             </div>
-            <div className="separator w-[90%] bg-primary border-1 border-solid h-1 z-[1] "></div>
+            <div className="separator w-[90%] bg-primary border-1 border-solid h-1 "></div>
             <h2 className="font-campton text-3xl font-semibold">
               {blockData.title}
             </h2>
@@ -321,7 +321,7 @@ const Projects: React.FC<ProjectProps> = ({ blockData }) => {
           </div>
         </div>
 
-        <div className="w-full lg:w-[100%] relative flex flex-col lg:flex-col gap-8 z-[1] !pointer-events-auto">
+        <div className="w-full lg:w-[100%] relative flex flex-col lg:flex-col gap-8 !pointer-events-auto">
           {projects
             .slice(0)
             .reverse()

@@ -301,9 +301,9 @@ const Services: React.FC<ServiceProps> = ({ blockData }) => {
   }, [])
 
   return (
-    <div className="section pointer-events-auto z-[3]" id="services">
+    <div className="section pointer-events-auto" id="services">
       <div className="sectionWrapper relative flex-col flex-1 items-center justify-center text-center gap-8">
-        <div className="w-[70%] justify-center relative flex flex-col gap-8">
+        <div className="z-[2]  w-[70%] justify-center relative flex flex-col gap-8 z-[1]">
           <div className="flex flex-col gap-4">
             <h3 className="text-lg font-tabletgothic">{blockData.subtitle}</h3>
             <h2 className="font-campton text-3xl font-semibold">
@@ -359,7 +359,7 @@ const Services: React.FC<ServiceProps> = ({ blockData }) => {
           />
         )}
         <button
-          className="btn btn-primary"
+          className="z-[2] btn btn-primary"
           onClick={() => handleSmoothScroll('contact_form')}
         >
           Spojte se s námi
