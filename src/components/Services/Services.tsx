@@ -303,7 +303,7 @@ const Services: React.FC<ServiceProps> = ({ blockData }) => {
   return (
     <div className="section pointer-events-auto" id="services">
       <div className="sectionWrapper relative flex-col flex-1 items-center justify-center text-center gap-8">
-        <div className="z-[2]  w-[70%] justify-center relative flex flex-col gap-8 z-[1]">
+        <div className="z-[2]  w-[70%] justify-center relative flex flex-col gap-8">
           <div className="flex flex-col gap-4">
             <h3 className="text-lg font-tabletgothic">{blockData.subtitle}</h3>
             <h2 className="font-campton text-3xl font-semibold">
@@ -312,7 +312,7 @@ const Services: React.FC<ServiceProps> = ({ blockData }) => {
             <div className="font-tabletgothic ">{blockData.description}</div>
           </div>
         </div>
-        <div className="w-[100%] flex flex-col sm:flex-row  gap-8 place-items-start">
+        <div className="z-[2] w-[100%] flex flex-col sm:flex-row  gap-8 place-items-start">
           {services
             .slice(0)
             .reverse()

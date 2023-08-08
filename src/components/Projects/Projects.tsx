@@ -138,7 +138,7 @@ const Modal: React.FC<{
             </div>
           </div>
         </div>
-        <div className="relative p-8 max-w-[100%] flex flex-col gap-4 sm:flex-row items-center sm:justify-center justify-between ">
+        <div className="relative p-8 max-w-[100%] flex flex-col gap-4 sm:flex-row items-center justify-start ">
           <svg
             className="absolute left-0 top-0 z-[-1]"
             width="100%"
@@ -182,13 +182,6 @@ const Modal: React.FC<{
               {project.title.rendered}
             </h3>
           </div>
-          {project.imageUrl && (
-            <img
-              src={project.imageUrl}
-              alt="Featured Media"
-              className="sm:w-[40%] sm:max-w-[40%] rounded-md modalCarousel"
-            />
-          )}
         </div>
 
         <div className="border-t rounded-b-lg border-primary p-8  w-[100%] flex flex-col relative gap-8">
@@ -303,7 +296,7 @@ const Projects: React.FC<ProjectProps> = ({ blockData }) => {
   return (
     <div className="section pointer-events-auto" id="projects">
       <div className="sectionWrapper flex-col flex-1 items-start gap-16">
-        <div className="z-[2] w-full md:w-[70%] relative flex flex-col gap-8 z-[1]">
+        <div className="z-[2] w-full md:w-[70%] relative flex flex-col gap-8">
           <div className="flex flex-col gap-2">
             <div className="flex flex-row gap-2 items-center justify-start">
               <h3 className="text-lg font-tabletgothic">
@@ -321,7 +314,7 @@ const Projects: React.FC<ProjectProps> = ({ blockData }) => {
           </div>
         </div>
 
-        <div className="w-full lg:w-[100%] relative flex flex-col lg:flex-col gap-8 !pointer-events-auto">
+        <div className="z-[2] w-full lg:w-[100%] relative flex flex-col lg:flex-col gap-8 !pointer-events-auto">
           {projects
             .slice(0)
             .reverse()
