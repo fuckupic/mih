@@ -356,7 +356,10 @@ const Projects: React.FC<ProjectProps> = ({ blockData }) => {
       {selectedProject && (
         <Modal
           project={selectedProject}
-          onClose={() => setSelectedProject(null)}
+          onClose={() => {
+            setSelectedProject(null)
+            router.push('/', undefined, { shallow: true })
+          }}
           setSelectedProject={setSelectedProject}
           projects={projects}
         />

@@ -353,7 +353,10 @@ const Services: React.FC<ServiceProps> = ({ blockData }) => {
         {selectedService && (
           <Modal
             service={selectedService}
-            onClose={() => setSelectedService(null)}
+            onClose={() => {
+              setSelectedService(null)
+              router.push('/', undefined, { shallow: true })
+            }}
             setSelectedService={setSelectedService}
             services={services}
           />
