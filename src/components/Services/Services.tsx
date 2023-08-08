@@ -236,8 +236,7 @@ const Services: React.FC<ServiceProps> = ({ blockData }) => {
 
   useEffect(() => {
     if (serviceIdFromUrl) {
-      handleSmoothScroll('services') // Scroll to Services section
-      // ... Fetch services if necessary ...
+      handleSmoothScroll('hero')
     } else {
       handleSmoothScroll('hero')
     }

@@ -232,7 +232,7 @@ const Projects: React.FC<ProjectProps> = ({ blockData }) => {
 
   useEffect(() => {
     if (RouterIdFromUrl) {
-      handleSmoothScroll('projects') // Scroll to Projects section
+      handleSmoothScroll('hero') // Scroll to Projects section
       // ... Fetch projects if necessary ...
     }
   }, [RouterIdFromUrl])

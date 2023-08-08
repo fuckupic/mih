@@ -116,9 +116,18 @@ html {
   min-height: 0em; /* Set a min-height to the container */
 }
 
+@keyframes glowingStar {
+  0% {
+    opacity: 0.9;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 .mainOrb {
-  /* opacity: 70%; */
-  /* radial gradient blue light orb with three color steps */
   background: radial-gradient(
     circle at 50% 50%,
     rgba(0, 189, 199, 1) 0%,
@@ -128,6 +137,8 @@ html {
     rgba(0, 189, 199, 0) 70%,
     rgba(0, 189, 199, 0) 100%
   );
+  animation: glowingStar 2s infinite ease alternate;
+  /* Add other necessary properties */
 }
 
 .cls-1 {
