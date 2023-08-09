@@ -121,7 +121,7 @@ const Modal: React.FC<{
         onClick={(e) => e.stopPropagation()}
         className="modalCarousel2 overflow-auto flex flex-col max-w-[90%] sm:max-w-[60%] max-h-[90%]  text-left"
       >
-        <div className="p-8 py-4  border-[0.1px] rounded-t-lg border-primary bg-gradient-to-b from-black via-black  to-black service w-[100%] relative sticky top-0 z-[4]">
+        <div className="p-8 py-4  border-[0.1px] rounded-t-lg border-primary bg-gradient-to-b from-black via-black  to-black service w-[100%] sticky top-0 z-[4]">
           <div className="flex flex-col gap-4 ">
             <div className="flex flex-row justify-between ">
               <div className="flex flex-row gap-2 justify-start items-center">
@@ -201,7 +201,7 @@ const Modal: React.FC<{
               <img
                 src={service.imageUrl}
                 alt="Featured Media"
-                className="sm:w-[75%] sm:max-w-[100%] aspect-video rounded-md modalCarousel"
+                className="sm:w-[75%] sm:max-w-[100%] rounded-md modalCarousel"
               />
             )}
           </div>
@@ -236,7 +236,7 @@ const Services: React.FC<ServiceProps> = ({ blockData }) => {
 
   useEffect(() => {
     if (serviceIdFromUrl) {
-      handleSmoothScroll('hero')
+      // handleSmoothScroll('hero')
     } else {
       handleSmoothScroll('hero')
     }

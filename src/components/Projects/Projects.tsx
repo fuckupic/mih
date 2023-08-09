@@ -202,7 +202,7 @@ const Modal: React.FC<{
             )}
           </div>
         </div>
-        <div className="px-8 pb-8  relative flex flex-col sm:flex-row gap-4 w-[100%] max-w-[100%]">
+        <div className="px-8 pb-16 sm:pb-8  relative flex flex-col sm:flex-row gap-4 w-[100%] max-w-[100%]">
           <button
             id="modal_contact"
             className="btn btn-primary"
@@ -225,28 +225,21 @@ const Modal: React.FC<{
 
 const Projects: React.FC<ProjectProps> = ({ blockData }) => {
   const router = useRouter()
-  const RouterIdFromUrl = router.query.project_id
+  const projectIdFromUrl = router.query.project_id
 
   const [projects, setProjects] = useState<any[]>([])
   const [selectedProject, setSelectedProject] = useState<any>(null)
 
   useEffect(() => {
-    if (RouterIdFromUrl) {
-      handleSmoothScroll('hero') // Scroll to Projects section
-      // ... Fetch projects if necessary ...
-    }
-  }, [RouterIdFromUrl])
-
-  useEffect(() => {
-    if (RouterIdFromUrl && projects.length > 0) {
+    if (projectIdFromUrl && projects.length > 0) {
       const projectToSelect = projects.find(
-        (project) => project.id === parseInt(RouterIdFromUrl as string)
+        (project) => project.id === parseInt(projectIdFromUrl as string)
       )
       if (projectToSelect) {
         setSelectedProject(projectToSelect) // Open the modal with the proper project
       }
     }
-  }, [projects, RouterIdFromUrl])
+  }, [projects, projectIdFromUrl])
 
   useEffect(() => {
     const fetchProjectData = async () => {
