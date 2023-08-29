@@ -68,7 +68,6 @@ const ContactForm: React.FC = () => {
   }
 
   return (
-    // your form code here with some modifications to the form controls
     <div id="contact_form" className="section !h-min z-[2]">
       <div className="sectionWrapper flex-col !justify-start flex-1 items-start gap-16">
         <div className=" w-full sm:w-[70%] justify-start relative flex flex-col gap-8">
@@ -81,71 +80,26 @@ const ContactForm: React.FC = () => {
             </div>
             {/* form with name, email, choose one, additional note */}
           </div>
-          <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-            <div className="flex flex-col gap-2">
-              <label htmlFor="name" className="font-tabletgothic text-md">
-                * Jméno
-              </label>
-              <input
-                required
-                id="name"
-                value={values.name}
-                onChange={handleChange}
-                type="text"
-                className="inputField"
-              />
-            </div>
-            <div className="flex flex-col gap-2">
-              <label htmlFor="email" className="font-tabletgothic text-md">
-                * Emailová adresa
-              </label>
-              <input
-                required
-                id="email"
-                value={values.email}
-                onChange={handleChange}
-                type="email"
-                className="inputField"
-              />
-            </div>
-            <div className="flex flex-col gap-2">
-              <label htmlFor="mobility" className="font-tabletgothic text-md">
-                Zajímá mě
-              </label>
-              <select
-                required
-                id="mobility"
-                value={values.mobility}
-                onChange={handleChange}
-                className="select inputField"
-              >
-                <option value="">Vyber možnost...</option>
-                <option value="partnership">Partnerství</option>
-                <option value="personalMobility">Osobní mobilita</option>
-                <option value="cargoMobility">Nákladní mobilita</option>
-                <option value="futureInnovations">
-                  Budoucí inovace v mobilitě
-                </option>
-                <option value="startups">Startupy</option>
-                <option value="events">Události</option>
-              </select>
-              <div className="flex flex-col gap-2">
-                <label htmlFor="note" className="font-tabletgothic text-md">
-                  Poznámka
-                </label>
-                <textarea
-                  id="note"
-                  value={values.note}
-                  onChange={handleChange}
-                  className="textarea inputField"
-                  rows={8}
-                />
+          {/* link to email and phone */}
+          <div className="flex flex-col gap-4">
+            <div className="font-tabletgothic text-xl">
+              <div className="font-tabletgothic text-xl text-primary">
+                Ing. Luděk Šantora
               </div>
-              <button className="btn btn-primary w-28 send" type="submit">
-                Odeslat
-              </button>
+              <a
+                href="mailto:santora@plzen.eu"
+                className="hover:text-primary-light transition-colors underline"
+              >
+                santora@plzen.eu
+              </a>
+              {/* phone */}
+              <a href="tel:+42602414111">
+                <div className="font-tabletgothic text-xl underline">
+                  +420 602 414 111
+                </div>
+              </a>
             </div>
-          </form>
+          </div>
         </div>
       </div>
     </div>
