@@ -361,6 +361,11 @@ h1,
 /* In your CSS file, e.g., App.css */
 /* modal-insight.css */
 
+.modal-insight a {
+  /* underline */
+  text-decoration: underline;
+}
+
 .modal-insight p {
   line-height: 1.6;
   font-weight: normal;
